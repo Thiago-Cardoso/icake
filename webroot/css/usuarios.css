@@ -1,0 +1,22 @@
+#UsuarioLogin
+{
+	text-transform: lowercase;
+}
+
+#UsuarioNome
+{
+	text-transform: uppercase;
+}
+
+#UsuarioEmail
+{
+	text-transform: lowercase;
+}
+/*
+#ed_Usuario_ativo
+{
+	background-color: #ddd;
+	width: 200px;
+	text-align: right;
+}
+*/
