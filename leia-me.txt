@@ -15,7 +15,7 @@ Fique atento as estas configurações para que a aplicação funcione corretamen
 Afim de agilizar ainda mais a manutenção do cadastros existentes foi usado o plugin jCake, que
 possui uma integração com o jquery.
 
-Maiores detalhes do icake, acesse https://github.com/icake
+Maiores detalhes do icake, acesse https://github.com/adrianodemoura/icake
 
 2 - Instalação
 Copie todo o diretório icake para dentro do diretório de aplicações do apache. 
