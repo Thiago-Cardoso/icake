@@ -434,6 +434,10 @@ class VisaoHelper extends Helper {
 			case '99.999-999':
 				$mascarado = substr($valor,0,2).'.'.substr($valor,2,3).'-'.substr($valor,5,3);
 				break;
+			case 'telefone':
+			case '(99)9999-9999':
+				$mascarado = '('.substr($valor,0,2).')'.substr($valor,2,4).'-'.substr($valor,6,4);
+				break;
 		}
 		if (count($opcoes)>0)
 		{

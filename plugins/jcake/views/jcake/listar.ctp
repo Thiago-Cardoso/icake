@@ -118,7 +118,7 @@ if (isset($camposPesquisa))
 		foreach($listaCampos as $_campo)
 		{
 			$arrCmp = explode('.',$_campo);
-			$mascara= isset($campos[$arrCmp[0]][$arrCmp[1]]['mascara']) ? isset($campos[$arrCmp[0]][$arrCmp[1]]['mascara']) : '';
+			$mascara= isset($campos[$arrCmp[0]][$arrCmp[1]]['mascara']) ? $campos[$arrCmp[0]][$arrCmp[1]]['mascara'] : '';
 			$opcoes = isset($campos[$arrCmp[0]][$arrCmp[1]]['input']['options']) ? $campos[$arrCmp[0]][$arrCmp[1]]['input']['options'] : array();
 
 			$valor = $this->Visao->getMascara($_arrModel[$arrCmp[0]][$arrCmp[1]],$mascara,$opcoes);
@@ -150,4 +150,4 @@ if (isset($camposPesquisa))
 ?>
 </table>
 </div>
-<?php //pr($listaFerramentas); ?>
+<?php //pr($this->data); ?>

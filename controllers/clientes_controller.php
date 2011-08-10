@@ -49,7 +49,7 @@ class ClientesController extends AppController {
 	 */
 	public function beforeFilter()
 	{
-		if (isset($this->data))
+		if (isset($this->data) && ($this->action=='editar' || $this->action='novo') )
 		{
 			// tornando alguns campos em maiúsculo
 			$campos = array('nome','endereco','bairro');
@@ -63,6 +63,17 @@ class ClientesController extends AppController {
 			{
 				if (isset($this->data['Cliente'][$_campo])) $this->data['Cliente'][$_campo]	= ereg_replace('[./-]','',$this->data['Cliente'][$_campo]);
 			}
+			$campos = array('telefone','celular');
+			foreach($campos as $_campo)
+			{
+				if (isset($this->data['Cliente'][$_campo]))
+				{
+					$this->data['Cliente'][$_campo]	= ereg_replace('-','',$this->data['Cliente'][$_campo]);
+					$this->data['Cliente'][$_campo] = str_replace('(','',$this->data['Cliente'][$_campo]);
+					$this->data['Cliente'][$_campo] = str_replace(')','',$this->data['Cliente'][$_campo]);
+				}
+			}
+			pr($this->data['Cliente']);
 		}
 	}
 
@@ -76,9 +87,9 @@ class ClientesController extends AppController {
 		// campos padrão
 		$campos				= array();
 		$onReadView 		= array();
-		$edicaoCampos		= array('Cliente.nome','Cliente.aniversario','#','Cliente.endereco','#','Cliente.bairro','Cliente.cep','#','Cliente.estado_id','Cliente.cidade_id','@','Cliente.email','@','Perfil','@','Cliente.obs','@','Cliente.modified','Cliente.created');
+		$edicaoCampos		= array('Cliente.nome','Cliente.aniversario','#','Cliente.endereco','#','Cliente.bairro','Cliente.cep','#','Cliente.estado_id','Cliente.cidade_id','@','Cliente.telefone','Cliente.celular','@','Cliente.email','@','Perfil','@','Cliente.obs','@','Cliente.modified','Cliente.created');
 		$botoesEdicao		= array();
-		$listaCampos 		= array('Cliente.nome','Cliente.bairro','Cidade.nome','Cliente.modified','Cliente.created');
+		$listaCampos 		= array('Cliente.nome','Cliente.bairro','Cidade.nome','Cliente.telefone','Cliente.modified','Cliente.created');
 		$listaFerramentas	= array();
 		$escreverTitBt 		= false;
 
@@ -124,6 +135,14 @@ class ClientesController extends AppController {
 		$campos['Cliente']['bairro']['th']['width']					= '200px';
 
 		$campos['Cliente']['email']['input']['size']				= '60';
+		
+		$campos['Cliente']['telefone']['input']['label']['text']	= 'Telefone';
+		$campos['Cliente']['telefone']['th']['width']				= '120px';
+		$campos['Cliente']['telefone']['mascara']					= '(99)9999-9999';
+
+		$campos['Cliente']['celular']['input']['label']['text']		= 'Celular';
+		$campos['Cliente']['celular']['th']['width']				= '120px';
+		$campos['Cliente']['celular']['mascara']					= '(99)9999-9999';
 
 		$campos['Cliente']['cep']['input']['label']['text']			= 'Cep';
 		$campos['Cliente']['cep']['input']['style']					= 'width: 90px; text-align: center;';
@@ -139,7 +158,7 @@ class ClientesController extends AppController {
 		$campos['Cidade']['nome']['input']['label']['text']			= 'Cidade';
 		$campos['Cidade']['nome']['input']['style']					= 'width: 60px;';
 		$campos['Cidade']['nome']['th']['width']					= '200px';
-		
+
 		$campos['Cliente']['obs']['input']['label']['text']			= 'Observações';
 		$campos['Cliente']['obs']['input']['type']					= 'textarea';
 		$campos['Cliente']['obs']['input']['cols']					= '69';
@@ -155,7 +174,7 @@ class ClientesController extends AppController {
 
 		if ($this->action=='imprimir')
 		{
-			$edicaoCampos = array('Cliente.nome','Cliente.aniversario','#','Cliente.endereco','#','Cliente.bairro','#','Cliente.cep','#','Cidade.nome','Estado.uf','@','Cliente.email','@','Perfil.nome','@','Cliente.obs','@','Cliente.modified','#','Cliente.created');
+			$edicaoCampos = array('Cliente.nome','Cliente.aniversario','#','Cliente.endereco','#','Cliente.bairro','#','Cliente.cep','#','Cidade.nome','Estado.uf','@','Cliente.telefone','Cliente.celular','@','Cliente.email','@','Perfil.nome','@','Cliente.obs','@','Cliente.modified','#','Cliente.created');
 		}
 
 		if ($this->action=='listar')
