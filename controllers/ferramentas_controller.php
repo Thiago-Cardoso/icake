@@ -51,13 +51,16 @@ class FerramentasController extends AppController {
 	/**
 	 * Antes da renderização da view
 	 * 
-	 * Somente administradores pode acessar
+	 * Somente administradores pode acessar, salvo se o sistema não foi instalado
 	 * 
 	 * @return	void
 	 */
 	public function beforeRender()
 	{
-		$meusperfis = $this->Session->read('meusperfis'); if (!in_array('ADMINISTRADOR',$meusperfis)) $this->redirect('../usuarios/acesso_nao_autorizado');
+		if ($this->Session->check('meusperfis'))
+		{
+			$meusperfis = $this->Session->read('meusperfis'); if (!in_array('ADMINISTRADOR',$meusperfis)) $this->redirect('../usuarios/acesso_nao_autorizado');
+		}
 	}
 
 	/**

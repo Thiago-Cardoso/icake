@@ -23,7 +23,7 @@
 	@$connected = $db->getDataSource('default');
 	if (!$connected->isConnected() || (isset($this->viewVars['title']) && $this->viewVars['title']=='Missing Database Table')  )
 	{
-		exit('<script>document.location.href="'.Router::url('/',true).'ferramentas/instalabd'.'"</script>');
+		if (!$this->Session->check('usuario')) exit('<script>document.location.href="'.Router::url('/',true).'ferramentas/instalabd'.'"</script>');
 	}
 ?>
 

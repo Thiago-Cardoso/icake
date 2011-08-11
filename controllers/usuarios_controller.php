@@ -189,8 +189,8 @@ class UsuariosController extends AppController {
 	 */
 	public function listar()
 	{
-		$perfis = $this->Session->read('perfis');
-		if (!in_array('ADMINISTRADOR',$perfis)) $this->redirect('acesso_nao_autorizado');
+		$meusperfis = $this->Session->read('meusperfis');
+		if (!in_array('ADMINISTRADOR',$meusperfis)) $this->redirect('acesso_nao_autorizado');
 		parent::listar();
 	}
 
