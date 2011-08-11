@@ -76,6 +76,15 @@ class UsuariosController extends AppController {
 		$campos['Usuario']['nome']['input']['size']				= '60';
 		$campos['Usuario']['nome']['th']['width']				= '400px';
 
+		$campos['Usuario']['senha']['input']['label']['text'] 	= 'Senha';
+		$campos['Usuario']['senha']['input']['type'] 			= 'password';
+		$campos['Usuario']['senha']['input']['maxlength'] 		= 20;
+		$campos['Usuario']['senha']['input']['size']			= 19;
+		$campos['Usuario']['senha2']['input']['label']['text'] 	= 'repita a senha';
+		$campos['Usuario']['senha2']['input']['type'] 			= 'password';
+		$campos['Usuario']['senha2']['input']['maxlength'] 		= 20;
+		$campos['Usuario']['senha2']['input']['size']			= 19;
+
 		$campos['Usuario']['email']['input']['size']			= '60px';
 
 		$campos['Usuario']['celular']['input']['label']['text']	= 'Celular';
@@ -87,22 +96,26 @@ class UsuariosController extends AppController {
 		$campos['Usuario']['ativo']['th']['width'] 				= '100px';
 		$campos['Usuario']['ativo']['td']['align'] 				= 'center';
 		$campos['Usuario']['ativo']['input']['options']			= array('1'=>'Sim','0'=>'Não');
-		//$campos['Usuario']['ativo']['input']['type']			= 'radio';
-		//$campos['Usuario']['ativo']['input']['fieldset']		= '';
-		//$campos['Usuario']['ativo']['input']['legend']			= 'Ativo';
 
 		$perfis	= $this->Usuario->Perfil->find('list');
-		$campos['Perfil']['perfil']['input']['label']['text']		= 'Perfis';
-		$campos['Perfil']['perfil']['input']['multiple']			= 'checkbox';
-		$campos['Perfil']['perfil']['input']['options']				= $perfis;
+		$campos['Perfil']['perfil']['input']['label']['text']	= 'Perfis';
+		$campos['Perfil']['perfil']['input']['multiple']		= 'checkbox';
+		$campos['Perfil']['perfil']['input']['options']			= $perfis;
 
 		if ($this->action=='editar')
 		{
 			array_unshift($onReadView,'$("#UsuarioNome").focus();');
+			if (isset($this->data['Usuario']['id']) && $this->data['Usuario']['id']==$this->Session->read('usuario.id'))
+			{
+				$this->data['Usuario']['senha'] 	= '';
+				$this->data['Usuario']['senha2'] 	= '';
+				$edicaoCampos = array('Usuario.login','Usuario.ativo','@','Usuario.nome','@','Usuario.senha','Usuario.senha2','Usuario.email','#','Usuario.celular','@','Perfil','@','Usuario.modified','Usuario.created');
+			}
 		}
 		if ($this->action=='novo')
 		{
 			array_unshift($onReadView,'$("#UsuarioLogin").focus();');
+			$edicaoCampos = array('Usuario.login','Usuario.ativo','@','Usuario.nome','@','Usuario.senha','Usuario.senha2','Usuario.email','#','Usuario.celular','@','Perfil','@','Usuario.modified','Usuario.created');
 		}
 		if ($this->action=='imprimir')
 		{

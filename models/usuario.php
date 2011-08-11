@@ -60,6 +60,22 @@ class Usuario extends AppModel {
 				'message'	=> 'É necessário informar o login do Usuário!',
 			)
 		),
+		'senha'	=> array
+            (
+				1	=> array
+				(
+					'rule'		=> 'notEmpty',
+					'required'	=> true,
+					'message'	=> 'A senha é obrigatória !',
+					'on'		=> 'create'
+				),
+				2	=> array
+				(
+					'rule'		=> 'confereSenha', 
+					'message'	=> 'A senhas não estão iguais'
+				)
+				
+            )
 	);
 
 	/**
@@ -82,7 +98,31 @@ class Usuario extends AppModel {
 	);
 
 	/**
+	 * Confere se as duas senha digitadas estão iguais
+	 * 
+	 * @return	boolean
+	 */
+	public function confereSenha()
+	{
+		if (!empty($this->data['Usuario']['senha']))
+		{
+			$senha  = Security::hash(Configure::read('Security.salt') . $this->data['Usuario']['senha']);
+			$senha2 = Security::hash(Configure::read('Security.salt') . $this->data['Usuario']['senha2']);
+			if ($senha != $senha2)
+			{
+				return false;
+			} else $this->data['Usuario']['senha'] = $senha;
+		} else
+		{
+			unset($this->data['Usuario']['senha']);
+		}
+		return true;
+	}
+
+	/**
 	 * Executa código antes de salvar e depois de validar
+	 * 
+	 * Re-configura alguns campos do cadastro de usuários, como a caixa, usuário administrador sempre administrador
 	 * 
 	 * @param	array	$options
 	 * @return	boolean
