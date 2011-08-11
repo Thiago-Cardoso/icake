@@ -10,7 +10,10 @@ contato: adrianodemoura@gmail.com
 Esta é uma aplicação exemplo para utilização do Framework cakePHP, e parte do
 princípio de que seu diretório de instalação é "/var/www/icake" e que o core do cakephp
 está em "/opt/cakephp/cake". O cakePHP pode ser baixado aqui https://github.com/cakephp/cakephp.
-Fique atento as estas configurações para que a aplicação funcione corretamente.
+
+Se o core estiver em algum diretório diferente, edite o arquivo "/var/www/icake/webroot/index.php"
+e configure o caminho correto. Fique atento as estas configurações se houver algum erro
+o icake não irá funcionar.
 
 Afim de agilizar ainda mais a manutenção do cadastros existentes foi usado o plugin jCake, que
 possui uma integração com o jquery.
@@ -23,13 +26,7 @@ O padrão para distribuições debian e derivados fica em "/var/www", portanto
 seu diretório deve ficar algo como "/var/www/icake". É preciso que seu usuário 
 tenha permissão sobre o diretório.
 
-Ante de acessar o icake certifique-se de que o "core" do cakephp se encontre em "/opt/cakephp/cake", 
-caso contrário o icake não vai funcionar, o caminho do "core" do cakephp pode ser editado no seguinte
-arquivo "/var/www/icake/webroot/index.php". A configuração correta é extramamente importante, 
-certifique-se de que ela está bem configurada.
-
-Também é preciso configurar o banco de dados, o importante é configurá-lo
-no arquivo "/var/www/icake/config/database.php".
+Também é preciso configurar o banco de dados no arquivo "/var/www/icake/config/database.php".
 
 Depois de copiado e configurado o banco de dados, acesse http://localhost/icake, será exibida uma tela
 de instalação do banco de dados e ainda a instalação dos demais cadastros. O processo é bem fácil e 
