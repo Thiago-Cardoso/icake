@@ -13,6 +13,6 @@
 <center>
 <h1>bem vindo ao <?php echo SISTEMA; ?> !!!</h1>
 <br />
-<img src="<?php echo $this->here; ?>/jcake/img/gnu-tux-baby.png" border="none" />
+<img src="<?php echo $this->here; ?>img/bolo.png" border="none" />
 
 </center>

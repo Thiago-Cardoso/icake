@@ -51,7 +51,9 @@
 
 		<?php if ($this->Session->check('usuario')) : ?>
 		<div id='ferramentas'>
+			<?php if (in_array('ADMINISTRADOR',$meusperfis)) : ?>
 			<a href='<?php echo Router::url('/',true).'ferramentas'; ?>' title='Clique aqui para acessar ferramentas'><img id='ferFer' src='<?php echo Router::url('/',true).'img/bt_ferramentas.png'; ?>' border='0' /></a>
+			<?php endif; ?>
 			<a href='<?php echo Router::url('/',true).'relatorios'; ?>'  title='Clique aqui para acessar relatórios'> <img id='ferRel' src='<?php echo Router::url('/',true).'img/bt_relatorios.png'; ?>'  border='0' /></a>
 		</div>
 
@@ -61,7 +63,7 @@
 
 		<div id='menuLogin'>
 			<a href='<?php echo Router::url('/',true).'usuarios/info'; ?>'><?php echo $this->Session->read('usuario.login'); ?></a>
-			<a href='<?php echo Router::url('/',true).'usuarios/sair'; ?>'>Sair</a>
+			<a href='<?php echo Router::url('/',true).'usuarios/sair'; ?>'>sair</a>
 		</div>
 		<?php endif; ?>
 

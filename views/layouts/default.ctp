@@ -41,8 +41,8 @@
 		</div>
 
 		<div id="logocake">
-			<a href='http://www.cakephp.org' target='-blanck'><img src="/meucake/jcake/img/cake.power.gif" border="none" alt="" /></a>
-			<a href='http://www.jquery.com' target='-blanck'><img src="/meucake/jcake/img/jquery.power.gif" border="none" alt="" /></a>
+			<a href='http://www.cakephp.org' target='_blanck'><img src="<?php echo Router::url('/',true); ?>jcake/img/cake.power.gif"   border="none" alt="" /></a>
+			<a href='http://www.jquery.com'  target='_blanck'><img src="<?php echo Router::url('/',true); ?>jcake/img/jquery.power.gif" border="none" alt="" /></a>
 		</div>
 
 		<div id='menu'>

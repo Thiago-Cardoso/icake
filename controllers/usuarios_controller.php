@@ -176,8 +176,7 @@ class UsuariosController extends AppController {
 	 */
 	public function editar($id=0)
 	{
-		$perfis = $this->Session->read('perfis');
-		if (!in_array('ADMINISTRADOR',$perfis)) $this->redirect('acesso_nao_autorizado');
+		$perfis = $this->Session->read('perfis'); if (!in_array('ADMINISTRADOR',$perfis)) $this->redirect('acesso_nao_autorizado');
 		parent::editar($id);
 	}
 
@@ -239,7 +238,7 @@ class UsuariosController extends AppController {
 					$this->Session->write('usuario',$arrUsu);
 					$arrPer = array();
 					foreach($dataUsuario[0]['Perfil'] as $_linha => $_arrCampos) array_push($arrPer,$_arrCampos['nome']);
-					$this->Session->write('perfis',$arrPer);
+					$this->Session->write('meusperfis',$arrPer);
 
 					// atualizando dados do usuário
 					$this->Usuario->updateAll(array('Usuario.acessos'=>$arrUsu['acessos'],'Usuario.ultimo_acesso'=>'"'.date('Y-m-d H:i:s').'"'),array('Usuario.id'=>$arrUsu['id']));
@@ -274,7 +273,9 @@ class UsuariosController extends AppController {
 	 */
 	public function acesso_nao_autorizado()
 	{
-		
+		// título link
+		$linkTit[1] = 'Acesso não autorizado !!!';
+		$this->set(compact('linkTit'));
 	}
 }
 ?>

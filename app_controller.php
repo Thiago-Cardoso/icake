@@ -2,13 +2,13 @@
 /**
  * Controller Pai de todos
  * 
- * @package       exemploApp
- * @subpackage    exemploApp.app
+ * @package       icake
+ * @subpackage    icake.app
  */
 
 /**
- * @package       exemploApp
- * @subpackage    exemploApp.app
+ * @package       icake
+ * @subpackage    icake.app
  */
 class AppController extends Controller {
 	/**
@@ -22,9 +22,15 @@ class AppController extends Controller {
 	 */
 	public function beforeFilter()
 	{
-		if (!$this->Session->check('usuario') && $this->action != 'login' && $this->name != 'Principal')
+		if (!$this->Session->check('usuario') && $this->action != 'login' && $this->name != 'Principal' && $this->name != 'Ferramentas')
 		{
 			$this->redirect(Router::url('/',true).'usuarios/login');
+		}
+		
+		if ($this->Session->check('meusperfis'))
+		{
+			$meusperfis = $this->Session->read('meusperfis');
+			$this->set(compact('meusperfis'));
 		}
 
 		// menu para layout jcake

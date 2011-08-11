@@ -21,7 +21,7 @@
 
 	<div id='dadosPerfil'>
 		<center><h2>Perfis</h2></center>
-		<?php $data = $this->Session->read('perfis'); foreach($data as $_valor) echo ' - <strong>'.$_valor.'</strong><br />'; ?>
+		<?php $data = $this->Session->read('meusperfis'); foreach($data as $_valor) echo ' - <strong>'.$_valor.'</strong><br />'; ?>
 	</div>
 
 </div>

@@ -2,12 +2,12 @@
 /**
  * Controller para Ferramentas
  * 
- * @package		jcake
+ * @package		icake
  * @subpakage	jcake.controller
  */
 /**
- * @package		jcake
- * @subpakage	jcake.controller
+ * @package		icake
+ * @subpakage	icake.controller
  */
 class FerramentasController extends AppController {
 	/**
@@ -33,7 +33,7 @@ class FerramentasController extends AppController {
 	 * @var		array
 	 * @access	public
 	 */
-	public $helpers		= array('Jcake.Visao');
+	public $helpers	= array('Jcake.Visao');
 
 	/**
 	 * Antes de tudo
@@ -46,6 +46,18 @@ class FerramentasController extends AppController {
 		$this->layout 	= 'jcake';
 		$this->plugin 	= 'jcake';
 		parent::beforeFilter();
+	}
+
+	/**
+	 * Antes da renderização da view
+	 * 
+	 * Somente administradores pode acessar
+	 * 
+	 * @return	void
+	 */
+	public function beforeRender()
+	{
+		$meusperfis = $this->Session->read('meusperfis'); if (!in_array('ADMINISTRADOR',$meusperfis)) $this->redirect('../usuarios/acesso_nao_autorizado');
 	}
 
 	/**

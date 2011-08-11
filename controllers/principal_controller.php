@@ -2,12 +2,12 @@
 /**
  * Controller da página principal
  * 
- * @package 	exemploApp
- * @subpackage	exemploApp.controller
+ * @package 	icake
+ * @subpackage	icake.controller
  */
 /**
- * @package 	meucake
- * @subpackage	jcake.controller
+ * @package 	icake
+ * @subpackage	icake.controller
  */
 class PrincipalController extends AppController {
 	/**
