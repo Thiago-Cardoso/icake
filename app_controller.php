@@ -38,7 +38,7 @@ class AppController extends Controller {
 		{
 			$listaMenu['Cidades']	= 'cidades';
 			$listaMenu['Estados']	= 'estados';
-			if (in_array('ADMINISTRADOR',$meusperfis))
+			if (isset($meusperfis) && in_array('ADMINISTRADOR',$meusperfis))
 			{
 				$listaMenu['Usuários']	= 'usuarios';
 				$listaMenu['Perfis']	= 'perfis';

@@ -1,6 +1,7 @@
 <?php echo $this->Html->css('principal'); ?>
 <div id='info'>
 	<div id='dadosUsuario'>
+	<center><a href='<?php echo Router::url('/',true).'usuarios/editar/'.$this->Session->read('usuario.id'); ?>'>editar</a></center>
 	<center><h2>Usuário</h2></center>
 		<?php 
 			$data = $this->Session->read('usuario');

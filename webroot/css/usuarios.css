@@ -17,6 +17,11 @@
 {
 	text-transform: lowercase;
 }
+
+#UsuarioLogin
+{
+	text-align: center;
+}
 /*
 #ed_Usuario_ativo
 {

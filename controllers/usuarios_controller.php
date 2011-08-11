@@ -45,16 +45,26 @@ class UsuariosController extends AppController {
 	/**
 	 * Executa código antes da renderização da view
 	 * 
-	 * Somente administradores pode atualizar dados
+	 * Somente administradores pode atualizar todos os registros.
+	 * O Usuario Administrador não poderá acessar as senhas dos demais usuários.
+	 * O Usuário que não é administrador não pode incluir novos usuarios, não pode definir seus perfis
+	 * e ainda só pode editar ele mesmo.
 	 * 
 	 * @return	void
 	 */
 	public function beforeRender()
 	{
+		$meusperfis = $this->Session->read('meusperfis');
 		if (in_array($this->action,array('editar','novo','listar','excluir','deletar')))
 		{
-			$meusperfis = $this->Session->read('meusperfis');
-			if (!in_array('ADMINISTRADOR',$meusperfis)) $this->redirect('acesso_nao_autorizado');
+			if (!in_array('ADMINISTRADOR',$meusperfis))
+			{
+				if ($this->action != 'editar') $this->redirect('acesso_nao_autorizado');
+				elseif ($this->params['pass'][0] != $this->Session->read('usuario.id'))
+				{
+					$this->redirect('acesso_nao_autorizado');
+				}
+			}
 		}
 
 		$campos				= array();
@@ -68,7 +78,6 @@ class UsuariosController extends AppController {
 		$camposPesquisa['Usuario.nome']	= 'Nome';
 
 		$campos['Usuario']['login']['input']['label']['text'] 	= 'Login';
-		$campos['Usuario']['login']['input']['align']			= 'center';
 		$campos['Usuario']['login']['th']['width'] 				= '200px';
 		$campos['Usuario']['login']['td']['align'] 				= 'center';
 
@@ -101,7 +110,7 @@ class UsuariosController extends AppController {
 		$campos['Perfil']['perfil']['input']['label']['text']	= 'Perfis';
 		$campos['Perfil']['perfil']['input']['multiple']		= 'checkbox';
 		$campos['Perfil']['perfil']['input']['options']			= $perfis;
-
+		
 		if ($this->action=='editar')
 		{
 			array_unshift($onReadView,'$("#UsuarioNome").focus();');
@@ -141,6 +150,16 @@ class UsuariosController extends AppController {
 		{
 			$listaFerramentas['excluir']['icone'] 	= 'bt_excluir.png';
 			$listaFerramentas['excluir']['off']['1']= true;
+		}
+
+		// definições para que não é administrador
+		if (isset($meusperfis) && !in_array('ADMINISTRADOR',$meusperfis) && ($this->action == 'editar' || $this->action =='novo'))
+		{
+			$edicaoCampos		= array('Usuario.login','Usuario.ativo','@','Usuario.nome','@','Usuario.senha','Usuario.senha2','@','Usuario.email','#','Usuario.celular','@','Usuario.modified','Usuario.created');
+			$listaFerramentas['excluir']	= '';
+			$botoesEdicao['novo']	 		= '';
+			$botoesEdicao['excluir'] 		= '';
+			$botoesEdicao['listar'] 		= '';
 		}
 
 		// título link

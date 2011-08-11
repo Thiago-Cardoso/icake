@@ -41,7 +41,6 @@ class PrincipalController extends AppController {
 	 */
 	public function index()
 	{
-		die(pr($this));
 	}
 }
 ?>
