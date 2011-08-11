@@ -127,7 +127,7 @@ class UsuariosController extends AppController {
 		if ($this->action=='listar')
 		{
 			$listaFerramentas['excluir']['icone'] 	= 'bt_excluir.png';
-			$listaFerramentas['excluir']['off']['2']= true;
+			$listaFerramentas['excluir']['off']['1']= true;
 		}
 
 		// título link

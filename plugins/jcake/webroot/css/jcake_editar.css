@@ -132,7 +132,7 @@ br
 }
 
 #editar input:focus {
-    background: #C9C9C9;
+    background: #FFFFDB;
     -moz-border-radius: 6px;
 	-webkit-border-radius: 6px;
 }
