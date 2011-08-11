@@ -80,5 +80,40 @@ class Usuario extends AppModel {
 			'fields' 		=> 'id, nome'
 		),
 	);
+
+	/**
+	 * Executa código antes de salvar e depois de validar
+	 * 
+	 * @param	array	$options
+	 * @return	boolean
+	 */
+	function beforeSave($options = array())
+	{
+		if (isset($this->data))
+		{
+			// configurando a caixa para alguns campos
+			$this->data['Usuario']['nome']	= mb_strtoupper($this->data['Usuario']['nome']);
+			$this->data['Usuario']['email'] = mb_strtolower($this->data['Usuario']['email']);
+			$this->data['Usuario']['login'] = mb_strtolower($this->data['Usuario']['login']);
+
+			// removendo máscara do celular
+			$this->data['Usuario']['celular'] = ereg_replace('[- ]','',$this->data['Usuario']['celular']);
+
+			// se está editando usuário admin, então ele sempre será admin
+			if (isset($this->data['Usuario']['id']) && $this->data['Usuario']['id']==1)
+			{
+				$dataPerfil = isset($this->data['Perfil']['Perfil']) ? $this->data['Perfil']['Perfil'] : array();
+				if ($dataPerfil)
+				{
+					if (!in_array('1',$dataPerfil))array_push($dataPerfil,'1');
+				} else
+				{
+					$dataPerfil = array('1');
+				}
+				$this->data['Perfil']['Perfil'] = $dataPerfil;
+			}
+		}
+		return true;
+	}
 }
 ?>

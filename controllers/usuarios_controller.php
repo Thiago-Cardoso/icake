@@ -43,64 +43,32 @@ class UsuariosController extends AppController {
 	public $helpers		= array('Jcake.Visao');
 
 	/**
-	 * Antes de tudo
-	 * 
-	 * Antes de salvar, atualiza alguns dados do formulário, como deixar alguns campos em minúsculo ou maiúsculo e remover máscaras
-	 * 
-	 * @return void
-	 */
-	public function beforeFilter()
-	{
-		if (isset($this->data) && $this->action != 'login')
-		{
-			// configurando a caixa para alguns campos
-			$this->data['Usuario']['nome']	= mb_strtoupper($this->data['Usuario']['nome']);
-			$this->data['Usuario']['email'] = mb_strtolower($this->data['Usuario']['email']);
-			$this->data['Usuario']['login'] = mb_strtolower($this->data['Usuario']['login']);
-
-			// removendo a máscara em alguns campos			
-			$campos = array('celular');
-			foreach($campos as $_campo)
-			{
-				if (isset($this->data['Usuario'][$_campo]))
-				{
-					$this->data['Usuario'][$_campo]	= ereg_replace('-','',$this->data['Usuario'][$_campo]);
-				}
-			}
-
-			// se está editando usuário admin, então ele sempre será admin
-			if ($this->data['Usuario']['id']==1)
-			{
-				$this->data['Perfil']['Perfil'][0] = 1;
-			}
-		}
-		parent::beforeFilter();
-	}
-
-	/**
 	 * Executa código antes da renderização da view
 	 * 
+	 * Somente administradores pode atualizar dados
 	 * 
 	 * @return	void
 	 */
 	public function beforeRender()
 	{
-		$campos							= array();
-		$onReadView 					= array();
-		$listaCampos 					= array('Usuario.login','Usuario.ativo','Usuario.nome','Usuario.modified','Usuario.created');
-		$edicaoCampos					= array('Usuario.login','Usuario.ativo','@','Usuario.nome','#','Usuario.email','#','Usuario.celular','@','Perfil','@','Usuario.modified','Usuario.created');
-		$listaFerramentas				= array();
-		$botoesEdicao					= array();
-
-		if ($this->action=='imprimir')
+		if (in_array($this->action,array('editar','novo','listar','excluir','deletar')))
 		{
-			$edicaoCampos				= array('Usuario.login','Usuario.ativo','@','Usuario.nome','#','Usuario.email','@','Perfil','@','Usuario.modified','Usuario.created');
+			$meusperfis = $this->Session->read('meusperfis');
+			if (!in_array('ADMINISTRADOR',$meusperfis)) $this->redirect('acesso_nao_autorizado');
 		}
+
+		$campos				= array();
+		$onReadView 		= array();
+		$listaCampos 		= array('Usuario.login','Usuario.ativo','Usuario.nome','Usuario.celular','Usuario.modified','Usuario.created');
+		$edicaoCampos		= array('Usuario.login','Usuario.ativo','@','Usuario.nome','#','Usuario.email','#','Usuario.celular','@','Perfil','@','Usuario.modified','Usuario.created');
+		$listaFerramentas	= array();
+		$botoesEdicao		= array();
 
 		$camposPesquisa['Usuario.login']= 'Login';
 		$camposPesquisa['Usuario.nome']	= 'Nome';
 
 		$campos['Usuario']['login']['input']['label']['text'] 	= 'Login';
+		$campos['Usuario']['login']['input']['align']			= 'center';
 		$campos['Usuario']['login']['th']['width'] 				= '200px';
 		$campos['Usuario']['login']['td']['align'] 				= 'center';
 
@@ -112,7 +80,8 @@ class UsuariosController extends AppController {
 
 		$campos['Usuario']['celular']['input']['label']['text']	= 'Celular';
 		$campos['Usuario']['celular']['th']['width']			= '120px';
-		$campos['Usuario']['celular']['mascara']				= ' 99 9999-9999';
+		$campos['Usuario']['celular']['td']['align']			= 'center';
+		$campos['Usuario']['celular']['mascara']				= '99 9999-9999';
 
 		$campos['Usuario']['ativo']['input']['label']['text'] 	= 'Ativo';
 		$campos['Usuario']['ativo']['th']['width'] 				= '100px';
@@ -127,16 +96,18 @@ class UsuariosController extends AppController {
 		$campos['Perfil']['perfil']['input']['multiple']			= 'checkbox';
 		$campos['Perfil']['perfil']['input']['options']				= $perfis;
 
-		if ($this->action=='editar' || $this->action=='novo')
+		if ($this->action=='editar')
 		{
 			array_unshift($onReadView,'$("#UsuarioNome").focus();');
 		}
-
+		if ($this->action=='novo')
+		{
+			array_unshift($onReadView,'$("#UsuarioLogin").focus();');
+		}
 		if ($this->action=='imprimir')
 		{
 			$edicaoCampos = array('Usuario.login','Usuario.ativo','@','Usuario.nome','#','Usuario.email','#','Usuario.celular','@','Perfil.nome','@','Usuario.modified','Usuario.created');
 		}
-
 		if (in_array($this->action,array('editar','excluir')))
 		{
 			$campos['Usuario']['login']['input']['readonly'] 	= 'readonly';
@@ -167,33 +138,19 @@ class UsuariosController extends AppController {
 	}
 
 	/**
-	 * Exibe a tela de edição do cadastro de usuários
-	 * 
-	 * Somente o administradores pode editar todos os usuários.
-	 * 
-	 * @param	integer	$id	Id do registro a ser editado
-	 * @return	void
-	 */
-	public function editar($id=0)
-	{
-		$meusperfis = $this->Session->read('meusperfis'); if (!in_array('ADMINISTRADOR',$meusperfis)) $this->redirect('acesso_nao_autorizado');
-		parent::editar($id);
-	}
-
-	/**
 	 * Exibe a tela de lista do cadastro de usuários
 	 * 
 	 * Somente o administradores pode listar todos os usuários.
 	 * 
 	 * @return	void
 	 */
-	public function listar()
+/*	public function listar()
 	{
 		$meusperfis = $this->Session->read('meusperfis');
 		if (!in_array('ADMINISTRADOR',$meusperfis)) $this->redirect('acesso_nao_autorizado');
 		parent::listar();
 	}
-
+*/
 	/**
 	 * Exibe a tela de informação do usúário
 	 * 
