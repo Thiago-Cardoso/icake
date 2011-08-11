@@ -20,7 +20,8 @@ Maiores detalhes do icake, acesse https://github.com/adrianodemoura/icake
 2 - Instalação
 Copie todo o diretório icake para dentro do diretório de aplicações do apache. 
 O padrão para distribuições debian e derivados fica em "/var/www", portanto 
-seu diretório deve ficar algo como "/var/www/icake".
+seu diretório deve ficar algo como "/var/www/icake". É preciso que seu usuário 
+tenha permissão sobre o diretório.
 
 Ante de acessar o icake certifique-se de que o "core" do cakephp se encontre em "/opt/cakephp/cake", 
 caso contrário o icake não vai funcionar, o caminho do "core" do cakephp pode ser editado no seguinte

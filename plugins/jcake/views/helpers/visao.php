@@ -95,6 +95,15 @@ class VisaoHelper extends Helper {
 	 */
 	public function setHeaderCssJs($texto=null,$separador='/')
 	{
+		if ($this->action=='editar' || $this->action=='novo')
+		{
+			$this->Html->css('/jcake/css/jcake_editar.css', null, array('inline' => false));
+		}
+		if ($this->action=='listar')
+		{
+			$this->Html->css('/jcake/css/jcake_listar.css', null, array('inline' => false));
+		}
+
 		if (!empty($texto))
 		{
 			$arrTexto = explode($separador,$texto);
@@ -436,7 +445,7 @@ class VisaoHelper extends Helper {
 				break;
 			case 'telefone':
 			case '(99)9999-9999':
-				$mascarado = '('.substr($valor,0,2).')'.substr($valor,2,4).'-'.substr($valor,6,4);
+				//$mascarado = '('.substr($valor,0,2).')'.substr($valor,2,4).'-'.substr($valor,6,4);
 				break;
 		}
 		if (count($opcoes)>0)

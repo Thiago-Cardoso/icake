@@ -1,0 +1,21 @@
+#conteudo input[type="text"]
+{
+	text-transform: uppercase;
+}
+
+#conteudo #ClienteEmail
+{
+	text-transform: lowercase;
+}
+
+#conteudo #listar
+{
+	width: 96%;
+}
+
+#conteudo #ClienteTelefone,
+#conteudo #ClienteCelular
+{
+	width: 120px;
+	text-align: center;
+}

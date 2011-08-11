@@ -8,7 +8,6 @@
 ?>
 <?php if (!isset($listaCampos)) die('É preciso definir os campos da lista. Crie a varíavel <strong>$listaCampos</strong> no evento <strong>beforeRender</strong> do seu controlador <strong>'.$this->name.'</strong>.'); ?>
 <?php $this->Visao->escreverTitBt = isset($escreverTitBt) ? $escreverTitBt : $this->Visao->escreverTitBt; ?>
-<?php $this->Html->css('/jcake/css/jcake_listar.css', null, array('inline' => false)); ?>
 <?php if (isset($onReadView)) foreach($onReadView as $_codigo) $this->Visao->setOnReadView($_codigo); ?>
 <?php
 	if (!isset($listaFerramentas['editar']))

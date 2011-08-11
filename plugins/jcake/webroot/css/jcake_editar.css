@@ -124,3 +124,11 @@ br
 	float: left;
 	margin-right: 5px;
 }
+
+#editar input:hover {
+    background: #dddddd;
+}
+
+#editar input:focus {
+    background: #C9C9C9;
+}

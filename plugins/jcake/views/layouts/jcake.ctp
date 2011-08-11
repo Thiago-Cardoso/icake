@@ -16,11 +16,9 @@
 	<?php echo $this->Html->meta('icon'); ?>
 
 	<?php echo $this->Html->css('/jcake/css/jcake_layout.css'); ?>
-	<?php if (file_exists(WWW_ROOT.'css/'.mb_strtolower($this->name).'.css')) echo $this->Html->css(mb_strtolower($this->name).'.css'); ?>
 
 	<?php echo $this->Html->script('/jcake/js/jquery-1.5.1.min')."\n"; ?>
 	<?php echo $this->Html->script('/jcake/js/jquery.maskedinput-1.1.4.pack')."\n"; ?>
-
 	<?php echo $this->Html->script('/jcake/js/jcake')."\n"; ?>
 
 	<script type="text/javascript">
@@ -33,7 +31,7 @@
 	});
 	</script>
 
-	<?php echo $scripts_for_layout;	?>
+	<?php echo $scripts_for_layout; ?>
 
 </head>
 <body>

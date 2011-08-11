@@ -68,12 +68,9 @@ class ClientesController extends AppController {
 			{
 				if (isset($this->data['Cliente'][$_campo]))
 				{
-					$this->data['Cliente'][$_campo]	= ereg_replace('-','',$this->data['Cliente'][$_campo]);
-					$this->data['Cliente'][$_campo] = str_replace('(','',$this->data['Cliente'][$_campo]);
-					$this->data['Cliente'][$_campo] = str_replace(')','',$this->data['Cliente'][$_campo]);
+					$this->data['Cliente'][$_campo]	= ereg_replace('- ','',$this->data['Cliente'][$_campo]);
 				}
 			}
-			pr($this->data['Cliente']);
 		}
 	}
 
@@ -89,7 +86,7 @@ class ClientesController extends AppController {
 		$onReadView 		= array();
 		$edicaoCampos		= array('Cliente.nome','Cliente.aniversario','#','Cliente.endereco','#','Cliente.bairro','Cliente.cep','#','Cliente.estado_id','Cliente.cidade_id','@','Cliente.telefone','Cliente.celular','@','Cliente.email','@','Perfil','@','Cliente.obs','@','Cliente.modified','Cliente.created');
 		$botoesEdicao		= array();
-		$listaCampos 		= array('Cliente.nome','Cliente.bairro','Cidade.nome','Cliente.telefone','Cliente.modified','Cliente.created');
+		$listaCampos 		= array('Cliente.nome','Cliente.bairro','Cidade.nome','Cliente.telefone','Cliente.celular','Cliente.modified','Cliente.created');
 		$listaFerramentas	= array();
 		$escreverTitBt 		= false;
 
@@ -138,11 +135,13 @@ class ClientesController extends AppController {
 		
 		$campos['Cliente']['telefone']['input']['label']['text']	= 'Telefone';
 		$campos['Cliente']['telefone']['th']['width']				= '120px';
-		$campos['Cliente']['telefone']['mascara']					= '(99)9999-9999';
+		$campos['Cliente']['telefone']['mascara']					= ' 99 9999-9999';
+		$campos['Cliente']['telefone']['td']['align']				= 'center';
 
 		$campos['Cliente']['celular']['input']['label']['text']		= 'Celular';
 		$campos['Cliente']['celular']['th']['width']				= '120px';
-		$campos['Cliente']['celular']['mascara']					= '(99)9999-9999';
+		$campos['Cliente']['celular']['mascara']					= ' 99 9999-9999';
+		$campos['Cliente']['celular']['td']['align']				= 'center';
 
 		$campos['Cliente']['cep']['input']['label']['text']			= 'Cep';
 		$campos['Cliente']['cep']['input']['style']					= 'width: 90px; text-align: center;';
