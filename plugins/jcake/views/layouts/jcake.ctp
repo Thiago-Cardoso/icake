@@ -43,9 +43,9 @@
 		<div id='sigla'>
 			<a href='<?php echo Router::url('/',true); ?>'><?php echo SISTEMA; ?></a>
 
-			<?php if (isset($this->name)) : ?> :: <a href="<?php echo mb_strtolower(Router::url('/',true).$this->name); ?>" ><?php echo ucfirst($this->name); ?></a><?php endif ?>
+			<?php if (isset($this->name)) : ?> :: <a href="<?php echo mb_strtolower(Router::url('/',true).$this->name); ?>" ><?php echo isset($linkTit[1]) ? $linkTit[1] : ucfirst($this->name); ?></a><?php endif ?>
 
-			<?php if (isset($this->action)) : ?> :: <a href="<?php echo mb_strtolower(Router::url('/',true).$this->name.'/'.$this->action); ?>" ><?php echo ucfirst($this->action); ?></a><?php endif ?>
+			<?php if (isset($this->action)) : ?> :: <a href="<?php echo mb_strtolower(Router::url('/',true).$this->name.'/'.$this->action); ?>" ><?php echo isset($linkTit[2]) ? $linkTit[2] : ucfirst($this->action); ?></a><?php endif ?>
 
 		</div>
 

@@ -159,8 +159,11 @@ class UsuariosController extends AppController {
 			$listaFerramentas['excluir']['off']['2']= true;
 		}
 
+		// título link
+		$linkTit[1] = 'Usuários';
+
 		// atualizando a view
-		$this->set(compact('perfis','listaCampos','edicaoCampos','campos','camposPesquisa','escreverTitBt','onReadView','listaFerramentas','botoesEdicao'));
+		$this->set(compact('linkTit','perfis','listaCampos','edicaoCampos','campos','camposPesquisa','escreverTitBt','onReadView','listaFerramentas','botoesEdicao'));
 	}
 
 	/**
