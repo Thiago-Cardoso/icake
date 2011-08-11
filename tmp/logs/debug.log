@@ -1,7 +1,0 @@
-2011-08-10 15:14:27 Notice: Notice (8): MemcachePool::delete() [http://php.net/memcachepool.delete]: Server 127.0.0.1 (tcp 11211, udp 0) failed with: CLIENT_ERROR bad command line format.  Usage: delete <key> [noreply]
- (0) in [/opt/cakephp/cake/libs/cache/memcache.php, line 190]
-2011-08-10 16:15:33 Notice: Notice (8): MemcachePool::delete() [http://php.net/memcachepool.delete]: Server 127.0.0.1 (tcp 11211, udp 0) failed with: CLIENT_ERROR bad command line format.  Usage: delete <key> [noreply]
- (0) in [/opt/cakephp/cake/libs/cache/memcache.php, line 190]
-2011-08-10 16:20:11 Notice: Notice (8): MemcachePool::delete() [http://php.net/memcachepool.delete]: Server 127.0.0.1 (tcp 11211, udp 0) failed with: CLIENT_ERROR bad command line format.  Usage: delete <key> [noreply]
- (0) in [/opt/cakephp/cake/libs/cache/memcache.php, line 190]
-2011-08-10 17:07:25 Notice: Notice (8): Undefined variable: valor in [/opt/www/icake/plugins/jcake/views/jcake/listar.ctp, line 129]

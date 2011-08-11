@@ -43,15 +43,22 @@ class UsuariosController extends AppController {
 	public $helpers		= array('Jcake.Visao');
 
 	/**
+	 * Antes de tudo
 	 * 
+	 * Antes de salvar, atualiza alguns dados do formulário, como deixar alguns campos em minúsculo ou maiúsculo e remover máscaras
+	 * 
+	 * @return void
 	 */
 	public function beforeFilter()
 	{
-		if (isset($this->data))
+		if (isset($this->data) && $this->action != 'login')
 		{
+			// configurando a caixa para alguns campos
 			$this->data['Usuario']['nome']	= mb_strtoupper($this->data['Usuario']['nome']);
 			$this->data['Usuario']['email'] = mb_strtolower($this->data['Usuario']['email']);
 			$this->data['Usuario']['login'] = mb_strtolower($this->data['Usuario']['login']);
+
+			// removendo a máscara em alguns campos			
 			$campos = array('celular');
 			foreach($campos as $_campo)
 			{
@@ -60,12 +67,19 @@ class UsuariosController extends AppController {
 					$this->data['Usuario'][$_campo]	= ereg_replace('-','',$this->data['Usuario'][$_campo]);
 				}
 			}
+
+			// se está editando usuário admin, então ele sempre será admin
+			if ($this->data['Usuario']['id']==1)
+			{
+				$this->data['Perfil']['Perfil'][0] = 1;
+			}
 		}
 		parent::beforeFilter();
 	}
 
 	/**
 	 * Executa código antes da renderização da view
+	 * 
 	 * 
 	 * @return	void
 	 */
@@ -120,7 +134,7 @@ class UsuariosController extends AppController {
 
 		if ($this->action=='imprimir')
 		{
-			$edicaoCampos = array('Usuario.login','Usuario.ativo','@','Usuario.nome','#','Usuario.email','@','Perfil.nome','@','Usuario.modified','Usuario.created');
+			$edicaoCampos = array('Usuario.login','Usuario.ativo','@','Usuario.nome','#','Usuario.email','#','Usuario.celular','@','Perfil.nome','@','Usuario.modified','Usuario.created');
 		}
 
 		if (in_array($this->action,array('editar','excluir')))
@@ -147,6 +161,117 @@ class UsuariosController extends AppController {
 
 		// atualizando a view
 		$this->set(compact('perfis','listaCampos','edicaoCampos','campos','camposPesquisa','escreverTitBt','onReadView','listaFerramentas','botoesEdicao'));
+	}
+
+	/**
+	 * Exibe a tela de edição do cadastro de usuários
+	 * 
+	 * Somente o administradores pode editar todos os usuários.
+	 * 
+	 * @param	integer	$id	Id do registro a ser editado
+	 * @return	void
+	 */
+	public function editar($id=0)
+	{
+		$perfis = $this->Session->read('perfis');
+		if (!in_array('ADMINISTRADOR',$perfis)) $this->redirect('acesso_nao_autorizado');
+		parent::editar($id);
+	}
+
+	/**
+	 * Exibe a tela de lista do cadastro de usuários
+	 * 
+	 * Somente o administradores pode listar todos os usuários.
+	 * 
+	 * @return	void
+	 */
+	public function listar()
+	{
+		$perfis = $this->Session->read('perfis');
+		if (!in_array('ADMINISTRADOR',$perfis)) $this->redirect('acesso_nao_autorizado');
+		parent::listar();
+	}
+
+	/**
+	 * Exibe a tela de informação do usúário
+	 * 
+	 * @return void
+	 */
+	public function info()
+	{
+		$msg = '';
+		if ($this->Session->check('msg'))
+		{
+			$msg =  $this->Session->read('msg');
+			$this->Session->delete('msg');
+		}
+		$this->set('msg',$msg);
+	}
+
+	/**
+	 * Exibe a tela de login
+	 * 
+	 * @return		void
+	 */
+	public function login()
+	{
+		$msg = 'Entre com login e senha válido ...';
+		if ($this->data)
+		{
+			$login = $this->data['login']['login'];
+			$senha = Security::hash(Configure::read('Security.salt') . $this->data['login']['senha']);
+			if (!empty($login) && (!empty($senha)))
+			{
+				$opcoes['conditions']['Usuario.login'] = $login;
+				$opcoes['conditions']['Usuario.senha'] = $senha;
+				$dataUsuario = $this->Usuario->find('all',$opcoes);
+				if (count($dataUsuario))
+				{
+					// recuperando os dados do usuário e jogando na sessão
+					$arrUsu['id']  		= $dataUsuario[0]['Usuario']['id'];
+					$arrUsu['login']  	= $dataUsuario[0]['Usuario']['login'];
+					$arrUsu['email']  	= $dataUsuario[0]['Usuario']['email'];
+					$arrUsu['ultimo'] 	= $dataUsuario[0]['Usuario']['ultimo_acesso'];
+					$arrUsu['acessos'] 	= ($dataUsuario[0]['Usuario']['acessos'])+1;
+					$this->Session->write('usuario',$arrUsu);
+					$arrPer = array();
+					foreach($dataUsuario[0]['Perfil'] as $_linha => $_arrCampos) array_push($arrPer,$_arrCampos['nome']);
+					$this->Session->write('perfis',$arrPer);
+
+					// atualizando dados do usuário
+					$this->Usuario->updateAll(array('Usuario.acessos'=>$arrUsu['acessos'],'Usuario.ultimo_acesso'=>'"'.date('Y-m-d H:i:s').'"'),array('Usuario.id'=>$arrUsu['id']));
+
+					// redirecionando para tela de informações
+					$this->Session->setFlash('<span style="color: green;">Login autenticado com sucesso !!!</span>');
+					$this->redirect('info');
+				} else $msg = '<span style="color: red;">Login ou senha inválidos !!!</span>';
+			} else
+			{
+				$msg = 'Preencha todos os campos !!!';
+			}
+		}
+		$this->set('msg',$msg);
+	}
+	
+	/**
+	 * Executa o logOut da sistema
+	 * 
+	 * @return void
+	 */
+	public function sair()
+	{
+		$this->Session->destroy();
+		$this->redirect('/');
+	}
+
+	/**
+	 * Exibe a tela de acesso não autorizado
+	 * 
+	 * @return	void
+	 */
+	public function acesso_nao_autorizado()
+	{
+		
 	}
 }
 ?>

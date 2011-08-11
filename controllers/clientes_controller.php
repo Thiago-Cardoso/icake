@@ -72,6 +72,7 @@ class ClientesController extends AppController {
 				}
 			}
 		}
+		parent::beforeFilter();
 	}
 
 	/**

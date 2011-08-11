@@ -45,6 +45,7 @@ class FerramentasController extends AppController {
 		// alterando layout
 		$this->layout 	= 'jcake';
 		$this->plugin 	= 'jcake';
+		parent::beforeFilter();
 	}
 
 	/**

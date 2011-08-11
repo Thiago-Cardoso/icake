@@ -22,16 +22,9 @@ class AppController extends Controller {
 	 */
 	public function beforeFilter()
 	{
-		// verificando se o usuário está autenticado
-		if (!$this->Session->check('usuario') && $this->name != 'principal')
+		if (!$this->Session->check('usuario') && $this->action != 'login' && $this->name != 'Principal')
 		{
-			foreach($this->components as $_id => $_componente)
-			{
-				if ($_id==='Jcake.Controlador')
-				{
-					$this->redirect(Router::url('/',true).'principal/login');
-				}
-			}
+			$this->redirect(Router::url('/',true).'usuarios/login');
 		}
 
 		// menu para layout jcake

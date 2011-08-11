@@ -126,9 +126,13 @@ br
 }
 
 #editar input:hover {
-    background: #dddddd;
+    background: #ddd;
+    -moz-border-radius: 6px;
+	-webkit-border-radius: 6px;
 }
 
 #editar input:focus {
     background: #C9C9C9;
+    -moz-border-radius: 6px;
+	-webkit-border-radius: 6px;
 }

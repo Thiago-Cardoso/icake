@@ -44,6 +44,7 @@ class RelatoriosController extends AppController {
 	{
 		$this->layout 	= 'jcake';
 		$this->plugin 	= 'jcake';
+		parent::beforeFilter();
 	}
 
 	/**
