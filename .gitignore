@@ -1,1 +1,6 @@
-tmp/*
+tmp/logs/cache/models/*
+tmp/logs/cache/persistent/*
+tmp/logs/cache/views/*
+tmp/logs/cache/logs/*
+tmp/logs/cache/sessions/*
+tmp/logs/cache/tests/*
