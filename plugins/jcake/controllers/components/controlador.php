@@ -2,13 +2,12 @@
 /**
  * Componente para auxiliar no CRUD do plugin jCake
  * 
- * @package		jcake
- * @subpackage	jcake.component
+ * @package		icake
+ * @subpackage	icake.component
  */
-
 /**
- * @package		jcake
- * @subpackage	jcake.component
+ * @package		icake
+ * @subpackage	icake.component
  */
 class ControladorComponent extends Object {
 	/**
@@ -20,10 +19,6 @@ class ControladorComponent extends Object {
 	public function startup(&$controller)
 	{
 		$this->controller =& $controller;
-		$this->controller->plugin 	= 'jcake';
-		$this->controller->layout 	= 'jcake';
-		$this->controller->viewPath	= 'jcake';
-
 		if (in_array($this->controller->action,array('combo','pesquisar'))) $this->controller->layout 	= 'ajax';
 
 		if (isset($this->controller->modelClass))
@@ -43,6 +38,9 @@ class ControladorComponent extends Object {
 	 */
 	public function index()
 	{
+		$this->controller->plugin 	= 'jcake';
+		$this->controller->layout 	= 'jcake';
+		$this->controller->viewPath	= 'jcake';
 		$this->controller->redirect('listar');
 	}
 
@@ -53,6 +51,9 @@ class ControladorComponent extends Object {
 	 */
 	public function listar()
 	{
+		$this->controller->plugin 	= 'jcake';
+		$this->controller->layout 	= 'jcake';
+		$this->controller->viewPath	= 'jcake';
 		if ($this->controller->Session->check($this->controller->name.'.params') && !isset($this->controller->params['named']['page']))
 		{
 			//$this->controller->params['named'] = $this->controller->Session->read($this->controller->name.'.params');
@@ -70,6 +71,9 @@ class ControladorComponent extends Object {
 	 */
 	public function editar($id=0)
 	{
+		$this->controller->plugin 	= 'jcake';
+		$this->controller->layout 	= 'jcake';
+		$this->controller->viewPath	= 'jcake';
 		$modelClass = $this->controller->modelClass;
 		if ($this->controller->data)
 		{
@@ -96,6 +100,9 @@ class ControladorComponent extends Object {
 	 */
 	public function novo()
 	{
+		$this->controller->plugin 	= 'jcake';
+		$this->controller->layout 	= 'jcake';
+		$this->controller->viewPath	= 'jcake';
 		$modelClass = $this->controller->modelClass;
 		if ($this->controller->data)
 		{
@@ -120,6 +127,9 @@ class ControladorComponent extends Object {
 	 */
 	public function delete($id=null, $cascade = true)
 	{
+		$this->controller->plugin 	= 'jcake';
+		$this->controller->layout 	= 'jcake';
+		$this->controller->viewPath	= 'jcake';
 		// recuperando parãmetros
 		$modelClass	= $this->controller->modelClass;
 		$primaryKey	= isset($this->controller->$modelClass->primaryKey) ? $this->controller->$modelClass->primaryKey : 'id';
@@ -148,6 +158,9 @@ class ControladorComponent extends Object {
 	 */
 	public function imprimir($id=0)
 	{
+		$this->controller->plugin 	= 'jcake';
+		$this->controller->layout 	= 'jcake';
+		$this->controller->viewPath	= 'jcake';
 		$modelClass = $this->controller->modelClass;
 		$this->controller->data = $this->controller->$modelClass->read(null,$id);
 		$this->controller->set(compact('id'));
@@ -163,6 +176,9 @@ class ControladorComponent extends Object {
 	 */
 	public function pesquisar($campo=null,$texto=null,$action='editar')
 	{
+		$this->controller->plugin 	= 'jcake';
+		$this->controller->layout 	= 'jcake';
+		$this->controller->viewPath	= 'jcake';
 		$url = Router::url('/',true);
 		if (isset($this->controller->params['plugin']) && !empty($this->controller->params['plugin'])) $url = Router::url('/',true).mb_strtolower($this->controller->params['plugin']).'/';
 		
@@ -191,6 +207,9 @@ class ControladorComponent extends Object {
 	 */
 	public function combo($campo=null,$filtro=null)
 	{
+		$this->controller->plugin 	= 'jcake';
+		$this->controller->layout 	= 'jcake';
+		$this->controller->viewPath	= 'jcake';
 		$modelClass = $this->controller->modelClass;
 		$parametros['conditions'] = (!empty($campo) && !empty($filtro)) ? $campo.'="'.$filtro.'"' : array();
 		$lista = $this->controller->$modelClass->find('list',$parametros);
@@ -205,6 +224,9 @@ class ControladorComponent extends Object {
 	 */
 	private function setRelacionamentos()
 	{
+		$this->controller->plugin 	= 'jcake';
+		$this->controller->layout 	= 'jcake';
+		$this->controller->viewPath	= 'jcake';
 		$modelClass	= $this->controller->modelClass;
 		if (method_exists($this->controller,'beforeSetRelacionamentos'))
 		{

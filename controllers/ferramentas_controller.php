@@ -137,7 +137,8 @@ class FerramentasController extends AppController {
 			$email	= isset($this->data['Ferramenta']['email']) ? $this->data['Ferramenta']['email'] : '';
 			$login	= isset($this->data['Ferramenta']['login']) ? $this->data['Ferramenta']['login'] : '';
 			$senha	= isset($this->data['Ferramenta']['senha']) ? $this->data['Ferramenta']['senha'] : '';
-			if (!empty($nome) && !empty($login) && !empty($senha) && !empty($email))
+			$senha2	= isset($this->data['Ferramenta']['senha2']) ? $this->data['Ferramenta']['senha2'] : '';
+			if (!empty($nome) && !empty($login) && !empty($senha) && !empty($email) && ($senha==$senha2) )
 			{
 				$res = $this->getInstalaTb();
 				if ($res)
@@ -145,13 +146,15 @@ class FerramentasController extends AppController {
 					// atualizando usuário administrador
 					$this->loadModel('Usuario');
 					$this->Usuario->create();
-					$dataUs['Usuario']['nome']		= mb_strtoupper($nome);
-					$dataUs['Usuario']['email']		= mb_strtolower($email);
-					$dataUs['Usuario']['login'] 	= mb_strtolower($login);
-					$dataUs['Usuario']['senha']		= Security::hash(Configure::read('Security.salt') . $senha);
-					$dataUs['Usuario']['modified'] 	= date('Y-m-d h:i:s');
-					$dataUs['Usuario']['created'] 	= date('Y-m-d h:i:s');
-					if ($this->Usuario->save($dataUs, array('fieldList'=>array('login','nome','email','senha','modified','created')) ))
+					$dataUs['Usuario']['nome']			= mb_strtoupper($nome);
+					$dataUs['Usuario']['email']			= mb_strtolower($email);
+					$dataUs['Usuario']['login'] 		= mb_strtolower($login);
+					$dataUs['Usuario']['senha']			= $senha;
+					$dataUs['Usuario']['senha2']		= $senha2;
+					$dataUs['Usuario']['ultimo_acesso']	= date('Y-m-d h:i:s');
+					$dataUs['Usuario']['modified'] 		= date('Y-m-d h:i:s');
+					$dataUs['Usuario']['created'] 		= date('Y-m-d h:i:s');
+					if ($this->Usuario->save($dataUs, array('fieldList'=>array('login','nome','email','senha','ultimo_acesso','modified','created')) ))
 					{
 						$msg = 'Instalação executada com sucesso !';
 						$this->redirect('/');
@@ -167,6 +170,7 @@ class FerramentasController extends AppController {
 			} else
 			{
 				$msg = '<span class="iErro">Preencha todos os campos por favor !!!</span>';
+				if (($senha!=$senha2)) $msg = '<span class="iErro">As senhas estão diferentes !!!</span>';
 			}
 			$this->set('msg',$msg);
 		} else

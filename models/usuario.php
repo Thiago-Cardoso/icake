@@ -104,7 +104,7 @@ class Usuario extends AppModel {
 	 */
 	public function confereSenha()
 	{
-		if (!empty($this->data['Usuario']['senha']))
+		if (!empty($this->data['Usuario']['senha']) && isset($this->data['Usuario']['senha2']))
 		{
 			$senha  = Security::hash(Configure::read('Security.salt') . $this->data['Usuario']['senha']);
 			$senha2 = Security::hash(Configure::read('Security.salt') . $this->data['Usuario']['senha2']);
@@ -127,7 +127,7 @@ class Usuario extends AppModel {
 	 * @param	array	$options
 	 * @return	boolean
 	 */
-	function beforeSave($options = array())
+	public function beforeSave($options = array())
 	{
 		if (isset($this->data))
 		{

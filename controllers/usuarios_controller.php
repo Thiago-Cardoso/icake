@@ -2,12 +2,12 @@
 /**
  * Controller para o cadastro de usuários
  * 
- * @package		exemploApp
- * @subpackage	exemploApp.controller
+ * @package		icake
+ * @subpackage	icake.controller
  */
 /**
- * @package		exemploApp
- * @subpackage	exemploApp.controller
+ * @package		icake
+ * @subpackage	icake.controller
  */
 class UsuariosController extends AppController {
 	/**
@@ -151,20 +151,6 @@ class UsuariosController extends AppController {
 	}
 
 	/**
-	 * Exibe a tela de lista do cadastro de usuários
-	 * 
-	 * Somente o administradores pode listar todos os usuários.
-	 * 
-	 * @return	void
-	 */
-/*	public function listar()
-	{
-		$meusperfis = $this->Session->read('meusperfis');
-		if (!in_array('ADMINISTRADOR',$meusperfis)) $this->redirect('acesso_nao_autorizado');
-		parent::listar();
-	}
-*/
-	/**
 	 * Exibe a tela de informação do usúário
 	 * 
 	 * @return void
@@ -224,7 +210,7 @@ class UsuariosController extends AppController {
 		}
 		$this->set('msg',$msg);
 	}
-	
+
 	/**
 	 * Executa o logOut da sistema
 	 * 

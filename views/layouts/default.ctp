@@ -27,7 +27,7 @@
 	$(document).ready (function()
 	{
 		setTimeout(function(){ $("#msg").fadeOut(4000); },3000);
-		<?php echo $this->Visao->getOnReadView(); ?>
+		<?php if ($this->name != 'CakeError') echo $this->Visao->getOnReadView(); ?>
 	});
 	</script>
 

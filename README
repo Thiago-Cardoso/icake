@@ -5,6 +5,7 @@ contato: adrianodemoura@gmail.com
 
 1 - Considerações
 2 - Instalação
+3 - Requisitos
 
 1 - Considerações
 Esta é uma aplicação exemplo para utilização do Framework cakePHP, e parte do
@@ -31,3 +32,10 @@ Também é preciso configurar o banco de dados no arquivo "/var/www/icake/config
 Depois de copiado e configurado o banco de dados, acesse http://localhost/icake, será exibida uma tela
 de instalação do banco de dados e ainda a instalação dos demais cadastros. O processo é bem fácil e 
 intuitivo, no último passo será solicitado os dados do usuário administrador.
+
+3 - Requisitos
+* Sistema operacional GNU/Linux, debian ou derivado.
+* Apache 2.2 (com módulo rewrite instalado e configurado)
+* PHP 5.3.3 ou superior
+* mysql 5.1.40 ou superior
+* memcache 3.0.4 ou superior

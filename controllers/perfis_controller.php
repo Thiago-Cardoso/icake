@@ -61,6 +61,9 @@ class PerfisController extends AppController {
 	 */
 	public function beforeRender()
 	{
+		$meusperfis = $this->Session->read('meusperfis');
+		if (!in_array('ADMINISTRADOR',$meusperfis)) $this->redirect('../usuarios/acesso_nao_autorizado');
+
 		$campos							= array();
 		$onReadView 					= array();
 		$listaCampos 					= array('Perfil.nome','Perfil.modified','Perfil.created');

@@ -33,13 +33,16 @@ class AppController extends Controller {
 			$this->set(compact('meusperfis'));
 		}
 
-		// menu para layout jcake
+		// menu para o módulo sistema
 		if (in_array($this->name,array('Cidades','Estados','Perfis','Usuarios')))
 		{
 			$listaMenu['Cidades']	= 'cidades';
 			$listaMenu['Estados']	= 'estados';
-			$listaMenu['Perfis']	= 'perfis';
-			$listaMenu['Usuários']	= 'usuarios';
+			if (in_array('ADMINISTRADOR',$meusperfis))
+			{
+				$listaMenu['Usuários']	= 'usuarios';
+				$listaMenu['Perfis']	= 'perfis';
+			}
 			$this->set(compact('listaMenu'));
 		}
 	}
