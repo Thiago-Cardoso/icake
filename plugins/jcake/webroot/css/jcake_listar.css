@@ -155,13 +155,39 @@
 {
 	width: 120px;
 	float: left;
-	margin: 0px 5px 0px 0px;
+	margin: 0px;
 }
 
 .lista #listaMenu ul
 {
 	font-size: 14px;
-	margin: 0px 0px 0px 10px;
-	padding: 4px;
 	list-style: none;
+	margin: 0px 5px 0px 0px;
+	padding: 0px;
+	line-height: 30px;
+}
+
+.lista #listaMenu ul li
+{
+	height: 20px;
+	line-height:20px;
+	border-bottom: 1px dashed #ccc;
+}
+
+.lista #listaMenu a
+{
+	display: block;
+	text-decoration: none;
+	color: #333333;
+}
+
+.lista #listaMenu a:hover
+{
+	color: yellow;
+	background-color: #acc4e6;
+}
+
+.lista .modelAtivo
+{
+	background-color: #ddd;
 }

@@ -60,12 +60,18 @@ if (isset($camposPesquisa))
 <?php if (isset($listaMenu)) : ?>
 <div id='listaMenu'>
 	<ul>
-	<?php foreach($listaMenu as $_menu => $_con) echo '<li>'.$this->Html->link($_menu,array('controller'=>$_con,'action'=>'listar')).'</li>'; ?>
+	<?php 
+		foreach($listaMenu as $_menu => $_con)
+		{
+			$class = (mb_strtolower($_con)==mb_strtolower($this->name)) ? ' class="modelAtivo" ' : '';
+			echo '<li'.$class.'>'.$this->Html->link($_menu,array('controller'=>$_con,'action'=>'listar')).'</li>'."\n";
+		}
+		?>
 	</ul>
 </div>
 <?php endif ?>
 
-<table cellspacing='0px' padding='0px' border='0px'>
+<table cellspacing='0px' padding='0px' border='0px' class='tabLista'>
 
 <?php
 	// atualizando campos, com base nos campos padrão do helper visão
