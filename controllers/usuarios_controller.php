@@ -221,7 +221,7 @@ class UsuariosController extends AppController {
 					$this->Usuario->updateAll(array('Usuario.acessos'=>$arrUsu['acessos'],'Usuario.ultimo_acesso'=>'"'.date('Y-m-d H:i:s').'"'),array('Usuario.id'=>$arrUsu['id']));
 
 					// redirecionando para tela de informações
-					$this->Session->setFlash('<span style="color: #fff;">Login autenticado com sucesso !!!</span>');
+					//$this->Session->setFlash('<span style="color: #fff;">Login autenticado com sucesso !!!</span>');
 					$this->redirect('info');
 				} else $msg = '<span style="color: red;">Login ou senha inválidos !!!</span>';
 			} else

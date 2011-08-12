@@ -196,3 +196,23 @@ a:hover
 {
 	color: red;
 }
+
+#contador
+{
+	float: right;
+	font-size: 10px;
+	margin: 9px 260px 0px 0px;
+}
+#contador #cTxt
+{
+	margin: 0px 10px 0px 0px;
+}
+
+#contador .countdown_section
+{
+	padding: 0px 3px 0px 3px;
+}
+#contador .countdown_amount
+{
+	padding: 0px 2px 0px 2px;
+}

@@ -28,6 +28,9 @@ class ControladorComponent extends Object {
 			$this->controller->set(compact('modelClass','primaryKey','schema'));
 		}
 		$this->controller->set('titulo',$this->controller->name.' - '.$this->controller->action);
+		
+		// jogando na view o tempo de sessão
+		$this->controller->set('tempoOn',Configure::read('Session.timeout')*Security::inactiveMins());
 	}
 
 	/**

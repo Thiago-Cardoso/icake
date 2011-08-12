@@ -20,11 +20,23 @@
 	<?php echo $this->Html->script('/jcake/js/jquery-1.5.1.min')."\n"; ?>
 	<?php echo $this->Html->script('/jcake/js/jquery.maskedinput-1.1.4.pack')."\n"; ?>
 	<?php echo $this->Html->script('/jcake/js/jcake')."\n"; ?>
+	<?php if ($this->Session->check('usuario.id')) 
+	{
+		echo $this->Html->script('countdown/jquery.countdown.js')."\n";
+		echo $this->Html->script('countdown/jquery.countdown-pt-BR.js')."\n";
+	}
+	?>
 
 	<script type="text/javascript">
 	var url = "<?php echo Router::url('/',true); ?>";
 	$(document).ready (function()
 	{
+		<?php if (isset($tempoOn)) : ?>
+
+		$("#regressivo").countdown({until: <?php echo $tempoOn; ?>, format: "MS"});
+		setTimeout(function () { window.location='<?php echo Router::url('/',true).'usuarios/login'; ?>' }, <?php echo ($tempoOn*1000) ?>);
+		<?php endif; ?>
+
 		setTimeout(function(){ $("#flashMessage").fadeOut(4000); },3000);
 		$("#ferramentas img").hover(function() { $(this).css("background-color","#5277AA") }).mouseout(function() { $(this).css("background-color","transparent") }) ;
 		<?php echo $this->Visao->getOnReadView(); ?>
@@ -39,6 +51,12 @@
 
 	<div id="cabecalho">
 		<?php echo $this->Session->flash(); ?>
+
+		<?php if (isset($tempoOn)) : ?>
+		<div id="contador">
+			<span id='cTxt'>sua sessão expira em</span><span id="regressivo"></span>
+		</div>
+		<?php endif ?>
 
 		<div id='sigla'>
 			<a href='<?php echo Router::url('/',true); ?>'><?php echo SISTEMA; ?></a>
