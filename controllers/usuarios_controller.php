@@ -90,8 +90,8 @@ class UsuariosController extends AppController {
 		$campos['Usuario']['senha']['input']['label']['text'] 	= 'Senha';
 		$campos['Usuario']['senha']['input']['type'] 			= 'password';
 		$campos['Usuario']['senha']['input']['maxlength'] 		= 20;
-		$campos['Usuario']['senha']['input']['size']			= 19;
-		$campos['Usuario']['senha2']['input']['label']['text'] 	= 'repita a senha';
+		$campos['Usuario']['senha']['input']['size']			= 18;
+		$campos['Usuario']['senha2']['input']['label']['text'] 	= 'Repita a Senha';
 		$campos['Usuario']['senha2']['input']['type'] 			= 'password';
 		$campos['Usuario']['senha2']['input']['maxlength'] 		= 20;
 		$campos['Usuario']['senha2']['input']['size']			= 19;

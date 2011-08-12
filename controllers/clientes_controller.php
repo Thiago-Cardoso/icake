@@ -85,11 +85,11 @@ class ClientesController extends AppController {
 		// campos padrão
 		$campos				= array();
 		$onReadView 		= array();
-		$edicaoCampos		= array('Cliente.nome','Cliente.aniversario','#','Cliente.endereco','#','Cliente.bairro','Cliente.cep','#','Cliente.estado_id','Cliente.cidade_id','@','Cliente.telefone','Cliente.celular','@','Cliente.email','@','Perfil','@','Cliente.obs','@','Cliente.modified','Cliente.created');
+		$edicaoCampos		= array('Cliente.nome','Cliente.aniversario','#','Cliente.endereco','#','Cliente.bairro','Cliente.cep','#','Cliente.estado_id','Cliente.cidade_id','@','Cliente.telefone','Cliente.celular','@','Cliente.email','@','Cliente.obs','@','Cliente.modified','Cliente.created');
 		$botoesEdicao		= array();
 		$listaCampos 		= array('Cliente.nome','Cliente.bairro','Cidade.nome','Cliente.telefone','Cliente.celular','Cliente.modified','Cliente.created');
 		$listaFerramentas	= array();
-		$escreverTitBt 		= false;
+		$escreverTitBt 		= true;
 
 		// configurando a pesquisa
 		$camposPesquisa['Cliente.nome'] 	= 'Nome';
@@ -97,7 +97,6 @@ class ClientesController extends AppController {
 		$camposPesquisa['Cliente.endereco']	= 'Endereço';
 
 		// recuperando conteúdo de relacionamentos
-		$perfis				= $this->Cliente->Perfil->find('list');
 		$cidades 			= $this->Cliente->Cidade->find('all');
 		$estados 			= $this->Cliente->Cidade->Estado->find('list');
 
@@ -166,15 +165,11 @@ class ClientesController extends AppController {
 		$campos['Cliente']['estado_id']['input']['label']['text'] 	= 'Estado';
 		$campos['Cliente']['estado_id']['input']['default'] 		= 1;
 
-		$campos['Perfil']['perfil']['input']['label']['text']		= 'Perfis';
-		$campos['Perfil']['perfil']['input']['multiple']			= 'checkbox';
-		$campos['Perfil']['perfil']['input']['options']				= $perfis;
-
 		$campos['Estado']['uf']['input']['label']['text'] 			= 'Uf';
 
 		if ($this->action=='imprimir')
 		{
-			$edicaoCampos = array('Cliente.nome','Cliente.aniversario','#','Cliente.endereco','#','Cliente.bairro','#','Cliente.cep','#','Cidade.nome','Estado.uf','@','Cliente.telefone','Cliente.celular','@','Cliente.email','@','Perfil.nome','@','Cliente.obs','@','Cliente.modified','#','Cliente.created');
+			$edicaoCampos = array('Cliente.nome','Cliente.aniversario','#','Cliente.endereco','#','Cliente.bairro','#','Cliente.cep','#','Cidade.nome','Estado.uf','@','Cliente.telefone','Cliente.celular','@','Cliente.email','@','Cliente.obs','@','Cliente.modified','Cliente.created');
 		}
 
 		if ($this->action=='listar')

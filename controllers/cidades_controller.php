@@ -57,6 +57,8 @@ class CidadesController extends AppController {
 	/**
 	 * Executa código antes da renderização da view
 	 * 
+	 * Nenhum registro pode ser editado ou excluído.
+	 * 
 	 * @return	void
 	 */
 	public function beforeRender()
@@ -74,7 +76,7 @@ class CidadesController extends AppController {
 		$botoesEdicao['excluir'] 		= '';
 
 		$camposPesquisa['Cidade.nome'] 	= 'Nome';
-		$escreverTitBt 					= false;
+		$escreverTitBt 					= true;
 
 		$campos['Cidade']['nome']['input']['label']['text'] 	= 'Nome';
 		$campos['Cidade']['nome']['input']['size']				= '60';

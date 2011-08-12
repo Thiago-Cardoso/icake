@@ -66,15 +66,6 @@ class Perfil extends AppModel {
 	 */
 	public $hasAndBelongsToMany	= array
 	(
-		'Cliente' => array
-		(
-			'className'		=> 'Cliente',
-			'joinTable'		=> 'clientes_perfis',
-			'associationForeignKey' => 'cliente_id',
-			'foreignKey'	=> 'perfil_id',
-			'unique'		=> true,
-			'fields' 		=> 'Cliente.id, Cliente.nome'
-		),
 		'Usuario' => array
 		(
 			'className'		=> 'Usuario',

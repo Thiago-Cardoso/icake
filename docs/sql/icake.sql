@@ -117,16 +117,9 @@ COMMENT = 'perfis de usuários' ;
 DROP TABLE IF EXISTS `clientes_perfis` ;
 
 CREATE  TABLE IF NOT EXISTS `clientes_perfis` (
-  `cliente_id` INT NOT NULL ,
   `perfil_id` INT NOT NULL ,
-  PRIMARY KEY (`cliente_id`, `perfil_id`) ,
+  PRIMARY KEY (`perfil_id`) ,
   INDEX `fk_clientes_has_perfis_perfis` (`perfil_id` ASC) ,
-  INDEX `fk_clientes_has_perfis` (`cliente_id` ASC) ,
-  CONSTRAINT `fk_clientes_has_perfis_clientes`
-    FOREIGN KEY (`cliente_id` )
-    REFERENCES `clientes` (`id` )
-    ON DELETE NO ACTION
-    ON UPDATE NO ACTION,
   CONSTRAINT `fk_clientes_has_perfis_perfis`
     FOREIGN KEY (`perfil_id` )
     REFERENCES `perfis` (`id` )

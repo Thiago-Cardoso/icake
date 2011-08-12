@@ -88,22 +88,6 @@ class Cliente extends AppModel {
 			'fields' => 'Estado.id, Estado.uf'
 		)
 	);
-
-	/**
-	 * Relacionamento n para n
-	 */
-	public $hasAndBelongsToMany	= array
-	(
-		'Perfil' => array
-		(
-			'className'		=> 'Perfil',
-			'joinTable'		=> 'clientes_perfis',
-			'associationForeignKey' => 'perfil_id',
-			'foreignKey'	=> 'cliente_id',
-			'unique'		=> true,
-			'fields' 		=> 'Perfil.id, Perfil.nome'
-		),
-	);
 }
 
 ?>
