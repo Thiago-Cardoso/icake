@@ -71,7 +71,7 @@ class UsuariosController extends AppController {
 		$campos				= array();
 		$onReadView 		= array();
 		$listaCampos 		= array('Usuario.login','Usuario.ativo','Usuario.nome','Usuario.celular','Usuario.modified');
-		$edicaoCampos		= array('Usuario.login','Usuario.ativo','@','Usuario.nome','#','Usuario.email','#','Usuario.celular','@','Perfil','@','Usuario.modified','Usuario.created');
+		$edicaoCampos		= array('Usuario.login','Usuario.ativo','Usuario.ultimo_acesso','@','Usuario.nome','#','Usuario.email','#','Usuario.celular','#','@','Perfil','@','Usuario.modified','Usuario.created');
 		$listaFerramentas	= array();
 		$botoesEdicao		= array();
 
@@ -86,6 +86,11 @@ class UsuariosController extends AppController {
 		$campos['Usuario']['nome']['input']['label']['text'] 	= 'Nome';
 		$campos['Usuario']['nome']['input']['size']				= '60';
 		$campos['Usuario']['nome']['th']['width']				= '400px';
+
+		$campos['Usuario']['ultimo_acesso']['input']['label']['text'] = 'Último Acesso';
+		$campos['Usuario']['ultimo_acesso']['input']['disabled']= 'disabled';
+		$campos['Usuario']['ultimo_acesso']['input']['class']   = '';
+		$campos['Usuario']['ultimo_acesso']['mascara'] 			= 'datahora';
 
 		$campos['Usuario']['senha']['input']['label']['text'] 	= 'Senha';
 		$campos['Usuario']['senha']['input']['type'] 			= 'password';
@@ -120,17 +125,17 @@ class UsuariosController extends AppController {
 			{
 				$this->data['Usuario']['senha'] 	= '';
 				$this->data['Usuario']['senha2'] 	= '';
-				$edicaoCampos = array('Usuario.login','Usuario.ativo','@','Usuario.nome','@','Usuario.senha','Usuario.senha2','Usuario.email','#','Usuario.celular','@','Perfil','@','Usuario.modified','Usuario.created');
+				$edicaoCampos = array('Usuario.login','Usuario.ativo','Usuario.ultimo_acesso','@','Usuario.nome','@','Usuario.senha','Usuario.senha2','Usuario.email','#','Usuario.celular','@','Perfil','@','Usuario.modified','Usuario.created');
 			}
 		}
 		if ($this->action=='novo')
 		{
 			array_unshift($onReadView,'$("#UsuarioLogin").focus();');
-			$edicaoCampos = array('Usuario.login','Usuario.ativo','@','Usuario.nome','@','Usuario.senha','Usuario.senha2','Usuario.email','#','Usuario.celular','@','Perfil','@','Usuario.modified','Usuario.created');
+			$edicaoCampos = array('Usuario.login','Usuario.ativo','@','Usuario.nome','@','Usuario.senha','Usuario.senha2','Usuario.email','#','Usuario.celular','@','Perfil');
 		}
 		if ($this->action=='imprimir')
 		{
-			$edicaoCampos = array('Usuario.login','Usuario.ativo','@','Usuario.nome','#','Usuario.email','#','Usuario.celular','@','Perfil.nome','@','Usuario.modified','Usuario.created');
+			$edicaoCampos = array('Usuario.login','Usuario.ativo','Usuario.ultimo_acesso','@','Usuario.nome','#','Usuario.email','#','Usuario.celular','@','Perfil.nome','@','Usuario.modified','Usuario.created');
 		}
 		if (in_array($this->action,array('editar','excluir')))
 		{
@@ -157,7 +162,7 @@ class UsuariosController extends AppController {
 		// definições para que não é administrador
 		if (isset($meusperfis) && !in_array('ADMINISTRADOR',$meusperfis) && ($this->action == 'editar' || $this->action =='novo'))
 		{
-			$edicaoCampos		= array('Usuario.login','Usuario.ativo','@','Usuario.nome','@','Usuario.senha','Usuario.senha2','@','Usuario.email','#','Usuario.celular','@','Usuario.modified','Usuario.created');
+			$edicaoCampos		= array('Usuario.login','Usuario.ativo','Usuario.ultimo_acesso','@','Usuario.nome','@','Usuario.senha','Usuario.senha2','@','Usuario.email','#','Usuario.celular','@','Usuario.modified','Usuario.created');
 			$listaFerramentas['excluir']	= '';
 			$botoesEdicao['novo']	 		= '';
 			$botoesEdicao['excluir'] 		= '';
