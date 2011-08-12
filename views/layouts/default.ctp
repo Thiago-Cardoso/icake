@@ -1,15 +1,3 @@
-<?php
-/**
- * Layout para a página principal
- *
- * @package		exemploApp
- * @subpackage	exemploApp.view
- */
-/**
- * @package		exemploApp
- * @subpackage	exemploApp.view
- */
-?>
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head>
@@ -41,12 +29,12 @@
 		</div>
 
 		<div id="logocake">
-			<a href='http://www.cakephp.org' target='_blanck'><img src="<?php echo Router::url('/',true); ?>jcake/img/cake.power.gif"   border="none" alt="" /></a>
-			<a href='http://www.jquery.com'  target='_blanck'><img src="<?php echo Router::url('/',true); ?>jcake/img/jquery.power.gif" border="none" alt="" /></a>
+			<a href='http://www.cakephp.org' target='_blanck'><img src="<?php echo Router::url('/',true); ?>img/cake.power.gif"   border="none" alt="" /></a>
+			<a href='http://www.jquery.com'  target='_blanck'><img src="<?php echo Router::url('/',true); ?>img/jquery.power.gif" border="none" alt="" /></a>
 		</div>
 
 		<div id='menu'>
-			<?php echo $this->Html->link('Administração',array('plugin'=>null,'controller'=>'cidades','action'=>'listar')); ?>
+			<?php if ($this->Session->check('usuario.id')) echo $this->Html->link('administração',array('plugin'=>null,'controller'=>'cidades','action'=>'listar')); else echo $this->Html->link('login',array('plugin'=>null,'controller'=>'usuarios','action'=>'login')); ?>
 		</div>
 
 	</div>
