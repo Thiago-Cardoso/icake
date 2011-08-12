@@ -448,6 +448,7 @@ class VisaoHelper extends Helper {
 			case 'telefone':
 			case '99 9999-9999':
 				$mascarado = substr($valor,0,2).' '.substr($valor,2,4).'-'.substr($valor,6,4);
+				if ($valor=='') $mascarado = '';
 				break;
 		}
 		if (count($opcoes)>0)
