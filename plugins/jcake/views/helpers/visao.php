@@ -354,8 +354,11 @@ class VisaoHelper extends Helper {
 							}
 						}
 						$htmlCampos .= '<div  class="in_leitura" id="le'.$arrCmp[1].'">';
-						$htmlCampos .= '<span class="ti_leitura" id="le'.$arrCmp[1].'"';
-						foreach($input['label'] as $_tag => $_valor) $htmlCampos .= " $_tag='$_valor'";
+						$htmlCampos .= '<span ';
+						if (!isset($campos[$arrCmp[0]][mb_strtolower($arrCmp[1])]['input']['class'])) $htmlCampos .= 'class="ti_leitura"';
+						if (isset($campos[$arrCmp[0]][mb_strtolower($arrCmp[1])]['input']['class']) && !empty($campos[$arrCmp[0]][mb_strtolower($arrCmp[1])]['input']['class'])) $htmlCampos .= 'class="'.$campos[$arrCmp[0]][mb_strtolower($arrCmp[1])]['input']['class'].'" ';
+						$htmlCampos .= 'id="le'.$arrCmp[1].'"';
+						foreach($input['label'] as $_tag => $_valor) if ($_tag != 'text') $htmlCampos .= " $_tag='$_valor'";
 						$htmlCampos .= '>';
 						$htmlCampos .= $input['label']['text'].': </span>';
 						$htmlCampos .= $valor;
