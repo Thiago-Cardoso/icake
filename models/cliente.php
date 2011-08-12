@@ -2,12 +2,12 @@
 /**
  * Model de clientes
  *
- * @package		exemploApp
- * @subpackage	exemploApp.model
+ * @package		icake
+ * @subpackage	icake.model
  */
 /**
- * @package		exemploApp
- * @subpackage	exemploApp.model
+ * @package		icake
+ * @subpackage	icake.model
  */
 class Cliente extends AppModel {
 	/**

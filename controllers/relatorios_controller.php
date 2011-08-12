@@ -2,12 +2,12 @@
 /**
  * Controller para Relatórios
  * 
- * @package		jcake
- * @subpakage	jcake.controller
+ * @package		icake
+ * @subpakage	icake.controller
  */
 /**
- * @package		jcake
- * @subpakage	jcake.controller
+ * @package		icake
+ * @subpakage	icake.controller
  */
 class RelatoriosController extends AppController {
 	/**

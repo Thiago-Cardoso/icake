@@ -1,12 +1,13 @@
 <?php
 /**
- * @package       exemploApp
- * @subpackage    exemploApp.model
+ * Model pai de todos
+ * 
+ * @package       icake
+ * @subpackage    icake.model
  */
-
 /**
- * @package       exemploApp
- * @subpackage    exemploApp.model
+ * @package       icake
+ * @subpackage    icake.model
  */
 class AppModel extends Model {
 	/**

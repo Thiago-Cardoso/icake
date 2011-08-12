@@ -40,8 +40,8 @@ class AppController extends Controller {
 			$listaMenu['Estados']	= 'estados';
 			if (isset($meusperfis) && in_array('ADMINISTRADOR',$meusperfis))
 			{
-				$listaMenu['Usuários']	= 'usuarios';
 				$listaMenu['Perfis']	= 'perfis';
+				$listaMenu['Usuários']	= 'usuarios';
 			}
 			$this->set(compact('listaMenu'));
 		}

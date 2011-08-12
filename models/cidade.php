@@ -2,12 +2,12 @@
 /**
  * Model com as cidades do Brasil
  *
- * @package		exemploApp
- * @subpackage	exemploApp.model
+ * @package		icake
+ * @subpackage	icake.model
  */
 /**
- * @package		exemploApp
- * @subpackage	exemploApp.model
+ * @package		icake
+ * @subpackage	icake.model
  */
 class Cidade extends AppModel {
 	/**

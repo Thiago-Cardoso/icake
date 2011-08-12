@@ -2,12 +2,12 @@
 /**
  * Controller para o cadastro de cidades
  * 
- * @package		exemploApp
- * @subpackage	exemploApp.controller
+ * @package		icake
+ * @subpackage	icake.controller
  */
 /**
- * @package		exemploApp
- * @subpackage	exemploApp.controller
+ * @package		icake
+ * @subpackage	icake.controller
  */
 class CidadesController extends AppController {
 	/**

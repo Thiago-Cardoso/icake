@@ -47,6 +47,7 @@ class UsuariosController extends AppController {
 	 * 
 	 * Somente administradores pode atualizar todos os registros.
 	 * O Usuario Administrador não poderá acessar as senhas dos demais usuários.
+	 * O Usuário Administrador com id igual 1 não pode ser deletado.
 	 * O Usuário que não é administrador não pode incluir novos usuarios, não pode definir seus perfis
 	 * e ainda só pode editar ele mesmo.
 	 * 

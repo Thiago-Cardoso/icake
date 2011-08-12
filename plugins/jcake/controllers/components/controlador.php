@@ -2,12 +2,12 @@
 /**
  * Componente para auxiliar no CRUD do plugin jCake
  * 
- * @package		icake
- * @subpackage	icake.component
+ * @package		jcake
+ * @subpackage	jcake.component
  */
 /**
- * @package		icake
- * @subpackage	icake.component
+ * @package		jcake
+ * @subpackage	jcake.component
  */
 class ControladorComponent extends Object {
 	/**

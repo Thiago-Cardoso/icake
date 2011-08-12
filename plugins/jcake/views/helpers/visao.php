@@ -5,7 +5,6 @@
  * @package       	jcake
  * @subpackage		jcake.view.helper
  */
-
 /**
  * @package       	jcake
  * @subpackage		jcake.view.helper

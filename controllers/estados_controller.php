@@ -2,12 +2,12 @@
 /**
  * Controller para o cadastro de estados
  * 
- * @package		exemploApp
- * @subpackage	exemploApp.controller
+ * @package		icake
+ * @subpackage	icake.controller
  */
 /**
- * @package		exemploApp
- * @subpackage	exemploApp.controller
+ * @package		icake
+ * @subpackage	icake.controller
  */
 class EstadosController extends AppController {
 	/**

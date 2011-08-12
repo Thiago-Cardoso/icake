@@ -2,12 +2,12 @@
 /**
  * Configuração de rotas
  * 
- * @package 	exemploApp
- * @subpackage	exemploApp.config
+ * @package 	icake
+ * @subpackage	icake.config
  */
 /**
- * @package 	exemploApp
- * @subpackage	exemploApp.config
+ * @package 	icake
+ * @subpackage	icake.config
  */
 	Router::connect('/', array('controller' => 'principal', 'action' => 'index'));
 

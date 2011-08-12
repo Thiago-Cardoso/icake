@@ -3,7 +3,7 @@
  * Controller para Ferramentas
  * 
  * @package		icake
- * @subpakage	jcake.controller
+ * @subpakage	icake.controller
  */
 /**
  * @package		icake
