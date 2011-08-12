@@ -112,26 +112,6 @@ COMMENT = 'perfis de usuários' ;
 
 
 -- -----------------------------------------------------
--- Table `clientes_perfis`
--- -----------------------------------------------------
-DROP TABLE IF EXISTS `clientes_perfis` ;
-
-CREATE  TABLE IF NOT EXISTS `clientes_perfis` (
-  `perfil_id` INT NOT NULL ,
-  PRIMARY KEY (`perfil_id`) ,
-  INDEX `fk_clientes_has_perfis_perfis` (`perfil_id` ASC) ,
-  CONSTRAINT `fk_clientes_has_perfis_perfis`
-    FOREIGN KEY (`perfil_id` )
-    REFERENCES `perfis` (`id` )
-    ON DELETE NO ACTION
-    ON UPDATE NO ACTION)
-ENGINE = MyISAM
-DEFAULT CHARACTER SET = utf8
-COLLATE = utf8_general_ci, 
-COMMENT = 'Tabela de relacionamentos com clientes e perfis' ;
-
-
--- -----------------------------------------------------
 -- Table `usuarios`
 -- -----------------------------------------------------
 DROP TABLE IF EXISTS `usuarios` ;
