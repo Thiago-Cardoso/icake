@@ -76,7 +76,11 @@
 		</div>
 
 		<div id='menu'>
-			<?php echo $this->element('menu'); ?>
+			<?php if (file_exists(APP.'views/elements/menu_admin.ctp'))
+				include_once(APP.'views/elements/menu_admin.ctp'); 
+			else 
+				echo 'menu admin não encontrado em '.APP.'views/elements/menu_admin.ctp';
+			?>
 		</div>
 
 		<div id='menuLogin'>

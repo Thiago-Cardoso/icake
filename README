@@ -38,4 +38,4 @@ intuitivo, no último passo será solicitado os dados do usuário administrador.
 * Apache 2.2 (com módulo rewrite instalado e configurado)
 * PHP 5.3.3 ou superior
 * mysql 5.1.40 ou superior
-* memcache 3.0.4 ou superior
+* memcache 3.0.4 ou superior (recomendado)

@@ -163,8 +163,9 @@ a:hover
 
 #menu
 {
-	padding: 2px;
-	margin-left: 5px;
+	left: 10px;
+	top: 35px;
+	position: absolute;
 	font-size: 12px;
 }
 
@@ -175,11 +176,6 @@ a:hover
 	left: 500px;
 }
 
-/*#ferramentas #ferFer
-{
-	padding: 9px;
-}*/
-
 #ferramentas img
 {
 	padding: 9px;
@@ -187,9 +183,10 @@ a:hover
 
 #menuLogin
 {
-	font-size: 14px;
-	float: right;
-	margin: -16px 5px 0px 0px;
+	position: absolute;
+	font-size: 12px;
+	right: 10px;
+	top: 35px;
 }
 
 #menuLogin a:hover

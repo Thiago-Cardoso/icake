@@ -53,11 +53,15 @@ class Usuario extends AppModel {
 		),
 		'login' => array
 		(
-			1 => array
+			'notEmpty' => array
 			(
 				'rule'		=> 'notEmpty',
 				'required'	=> true,
 				'message'	=> 'É necessário informar o login do Usuário!',
+			),
+			'isUnique' => array(
+				'rule' => 'isUnique', // http://book.cakephp.org/pt/view/1166/isUnique
+				'message' => 'Este login já está sendo usado !'
 			)
 		),
 		'senha'	=> array
@@ -74,8 +78,25 @@ class Usuario extends AppModel {
 					'rule'		=> 'confereSenha', 
 					'message'	=> 'A senhas não estão iguais'
 				)
-				
-            )
+            ),
+		'email' => array(
+			/**
+			 *  Multiplas regras por campo 
+			 *  http://book.cakephp.org/pt/view/1151/Multiple-Rules-per-Field
+			 */
+			'notEmpty' => array(
+				'rule' => 'notEmpty', // http://book.cakephp.org/pt/view/1173/notEmpty
+				'message' => 'Este campo não pode ser vazio.'
+			),
+			'email' => array(
+				'rule' => array('email', false), // http://book.cakephp.org/pt/view/1161/email
+				'message' => 'Insira um email válido.'
+			),
+			'isUnique' => array(
+				'rule' => 'isUnique', // http://book.cakephp.org/pt/view/1166/isUnique
+				'message' => 'Já existe um  usuário com este e-mail.'
+			)
+	    )
 	);
 
 	/**
