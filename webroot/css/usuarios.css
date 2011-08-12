@@ -1,6 +1,6 @@
 #conteudo #listar
 {
-	width: 96%;
+	/*width: 96%;*/
 }
 
 #UsuarioLogin
@@ -22,11 +22,3 @@
 {
 	text-align: center;
 }
-/*
-#ed_Usuario_ativo
-{
-	background-color: #ddd;
-	width: 200px;
-	text-align: right;
-}
-*/

@@ -70,13 +70,14 @@ class UsuariosController extends AppController {
 
 		$campos				= array();
 		$onReadView 		= array();
-		$listaCampos 		= array('Usuario.login','Usuario.ativo','Usuario.nome','Usuario.celular','Usuario.modified','Usuario.created');
+		$listaCampos 		= array('Usuario.login','Usuario.ativo','Usuario.nome','Usuario.celular','Usuario.modified');
 		$edicaoCampos		= array('Usuario.login','Usuario.ativo','@','Usuario.nome','#','Usuario.email','#','Usuario.celular','@','Perfil','@','Usuario.modified','Usuario.created');
 		$listaFerramentas	= array();
 		$botoesEdicao		= array();
 
-		$camposPesquisa['Usuario.login']= 'Login';
-		$camposPesquisa['Usuario.nome']	= 'Nome';
+		$camposPesquisa['Usuario.login']	= 'Login';
+		$camposPesquisa['Usuario.nome']		= 'Nome';
+		$camposPesquisa['Usuario.celular']	= 'Celular';
 
 		$campos['Usuario']['login']['input']['label']['text'] 	= 'Login';
 		$campos['Usuario']['login']['th']['width'] 				= '200px';

@@ -19,7 +19,6 @@ class ControladorComponent extends Object {
 	public function startup(&$controller)
 	{
 		$this->controller =& $controller;
-		if (in_array($this->controller->action,array('combo','pesquisar'))) $this->controller->layout 	= 'ajax';
 
 		if (isset($this->controller->modelClass))
 		{
@@ -177,7 +176,7 @@ class ControladorComponent extends Object {
 	public function pesquisar($campo=null,$texto=null,$action='editar')
 	{
 		$this->controller->plugin 	= 'jcake';
-		$this->controller->layout 	= 'jcake';
+		$this->controller->layout 	= 'ajax';
 		$this->controller->viewPath	= 'jcake';
 		$url = Router::url('/',true);
 		if (isset($this->controller->params['plugin']) && !empty($this->controller->params['plugin'])) $url = Router::url('/',true).mb_strtolower($this->controller->params['plugin']).'/';
@@ -208,7 +207,7 @@ class ControladorComponent extends Object {
 	public function combo($campo=null,$filtro=null)
 	{
 		$this->controller->plugin 	= 'jcake';
-		$this->controller->layout 	= 'jcake';
+		$this->controller->layout 	= 'ajax';
 		$this->controller->viewPath	= 'jcake';
 		$modelClass = $this->controller->modelClass;
 		$parametros['conditions'] = (!empty($campo) && !empty($filtro)) ? $campo.'="'.$filtro.'"' : array();
