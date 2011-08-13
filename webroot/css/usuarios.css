@@ -27,3 +27,12 @@
 {
 	font-weight: none;
 }
+
+.leAtivo
+{
+	display: block;
+	float: left;
+	width: 80px;
+	text-align: right;
+	margin: 0px 4px 0px 0px;
+}

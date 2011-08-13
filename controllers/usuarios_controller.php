@@ -48,8 +48,8 @@ class UsuariosController extends AppController {
 	 * Somente administradores pode atualizar todos os registros.
 	 * O Usuario Administrador não poderá acessar as senhas dos demais usuários.
 	 * O Usuário Administrador com id igual 1 não pode ser deletado.
-	 * O Usuário que não é administrador não pode incluir novos usuarios, não pode definir seus perfis
-	 * e ainda só pode editar ele mesmo.
+	 * O Usuário que não é administrador não pode incluir novos usuarios, não pode definir seus perfis,
+	 * não pode ativar e desativar a si próprio e ainda só pode editar ele mesmo.
 	 * 
 	 * @return	void
 	 */
@@ -71,7 +71,7 @@ class UsuariosController extends AppController {
 		$campos				= array();
 		$onReadView 		= array();
 		$listaCampos 		= array('Usuario.login','Usuario.ativo','Usuario.nome','Usuario.celular','Usuario.modified');
-		$edicaoCampos		= array('Usuario.login','Usuario.ativo','Usuario.ultimo_acesso','@','Usuario.nome','#','Usuario.email','#','Usuario.celular','#','@','Perfil','@','Usuario.modified','Usuario.created');
+		$edicaoCampos		= array('Usuario.login','Usuario.ativo','Usuario.trocar_senha','Usuario.ultimo_acesso','@','Usuario.nome','#','Usuario.email','#','Usuario.celular','#','@','Perfil','@','Usuario.modified','Usuario.created');
 		$listaFerramentas	= array();
 		$botoesEdicao		= array();
 
@@ -109,9 +109,14 @@ class UsuariosController extends AppController {
 		$campos['Usuario']['celular']['mascara']				= '99 9999-9999';
 
 		$campos['Usuario']['ativo']['input']['label']['text'] 	= 'Ativo';
+		$campos['Usuario']['ativo']['input']['label']['class'] 	= 'leAtivo';
 		$campos['Usuario']['ativo']['th']['width'] 				= '100px';
 		$campos['Usuario']['ativo']['td']['align'] 				= 'center';
 		$campos['Usuario']['ativo']['input']['options']			= array('1'=>'Sim','0'=>'Não');
+
+		$campos['Usuario']['trocar_senha']['input']['label']['text']= 'Trocar Senha';
+		$campos['Usuario']['trocar_senha']['input']['options']		= array('1'=>'Sim','0'=>'Não');
+		$campos['Usuario']['trocar_senha']['input']['default']		= 0;
 
 		$perfis	= $this->Usuario->Perfil->find('list');
 		$campos['Perfil']['perfil']['input']['label']['text']	= 'Perfis';
@@ -125,13 +130,13 @@ class UsuariosController extends AppController {
 			{
 				$this->data['Usuario']['senha'] 	= '';
 				$this->data['Usuario']['senha2'] 	= '';
-				$edicaoCampos = array('Usuario.login','Usuario.ativo','Usuario.ultimo_acesso','@','Usuario.nome','@','Usuario.senha','Usuario.senha2','Usuario.email','#','Usuario.celular','@','Perfil','@','Usuario.modified','Usuario.created');
+				$edicaoCampos = array('Usuario.login','Usuario.ativo','Usuario.trocar_senha','Usuario.ultimo_acesso','@','Usuario.nome','@','Usuario.senha','Usuario.senha2','Usuario.email','#','Usuario.celular','@','Perfil','@','Usuario.modified','Usuario.created');
 			}
 		}
 		if ($this->action=='novo')
 		{
 			array_unshift($onReadView,'$("#UsuarioLogin").focus();');
-			$edicaoCampos = array('Usuario.login','Usuario.ativo','@','Usuario.nome','@','Usuario.senha','Usuario.senha2','Usuario.email','#','Usuario.celular','@','Perfil');
+			$edicaoCampos = array('Usuario.login','Usuario.ativo','Usuario.trocar_senha','@','Usuario.nome','@','Usuario.senha','Usuario.senha2','Usuario.email','#','Usuario.celular','@','Perfil');
 		}
 		if ($this->action=='imprimir')
 		{
@@ -159,10 +164,11 @@ class UsuariosController extends AppController {
 			$listaFerramentas['excluir']['off']['1']= true;
 		}
 
-		// definições para que não é administrador
+		// definições para quem não é administrador
 		if (isset($meusperfis) && !in_array('ADMINISTRADOR',$meusperfis) && ($this->action == 'editar' || $this->action =='novo'))
 		{
 			$edicaoCampos		= array('Usuario.login','Usuario.ativo','Usuario.ultimo_acesso','@','Usuario.nome','@','Usuario.senha','Usuario.senha2','@','Usuario.email','#','Usuario.celular','@','Usuario.modified','Usuario.created');
+			$campos['Usuario']['ativo']['input']['disabled'] = 'disabled';
 			$listaFerramentas['excluir']	= '';
 			$botoesEdicao['novo']	 		= '';
 			$botoesEdicao['excluir'] 		= '';
