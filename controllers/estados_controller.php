@@ -43,18 +43,6 @@ class EstadosController extends AppController {
 	public $helpers		= array('Jcake.Visao');
 
 	/**
-	 * 
-	 */
-	public function beforeFilter()
-	{
-		if (isset($this->data))
-		{
-			$this->data['Estado']['nome'] = mb_strtoupper($this->data['Estado']['nome']);
-		}
-		parent::beforeFilter();
-	}
-
-	/**
 	 * Executa código antes da renderização da view
 	 * 
 	 * @return	void
@@ -93,8 +81,7 @@ class EstadosController extends AppController {
 		{
 			array_unshift($onReadView,'$("#EstadoNome").focus();');
 		}
-//$lista = Cache::read('all_Estado');
-//pr($lista.' *');
+
 		$this->set(compact('listaCampos','edicaoCampos','campos','camposPesquisa','escreverTitBt','onReadView','listaFerramentas','botoesEdicao'));
 	}
 }

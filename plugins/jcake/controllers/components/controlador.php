@@ -58,7 +58,7 @@ class ControladorComponent extends Object {
 		$this->controller->viewPath	= 'jcake';
 		if ($this->controller->Session->check($this->controller->name.'.params') && !isset($this->controller->params['named']['page']))
 		{
-			//$this->controller->params['named'] = $this->controller->Session->read($this->controller->name.'.params');
+			$this->controller->params['named'] = $this->controller->Session->read($this->controller->name.'.params');
 			//pr($this->controller->Session->read($this->controller->name.'.params'));
 		}
 		$this->controller->data = $this->getPagCache();

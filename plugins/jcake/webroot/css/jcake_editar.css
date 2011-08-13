@@ -96,6 +96,11 @@ br
 	background: #cacaca url('../img/bt_listar.png') no-repeat 5px;
 }
 
+#editar #btFechar
+{
+	background: #cacaca url('../img/bt_fechar.png') no-repeat 5px;
+}
+
 #editar .linhaHr
 {
 	width: 96%;

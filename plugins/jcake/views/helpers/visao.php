@@ -192,8 +192,8 @@ class VisaoHelper extends Helper {
 			if (!isset($botoesEdicao['listar']))
 			{
 				$_botoesEdicao['listar']['type'] 	= 'button';
-				$_botoesEdicao['listar']['value']	= 'Listar';
-				$_botoesEdicao['listar']['title'] 	= 'clique aqui para listar em tabela';
+				$_botoesEdicao['listar']['value']	= 'Fechar';
+				$_botoesEdicao['listar']['title'] 	= 'clique aqui para voltar a lista';
 				$_botoesEdicao['listar']['onclick']	= 'javascript:document.location.href=\''.Router::url('/',true).mb_strtolower($controlador).'/listar';
 				if ($this->Session->check($controlador.'.params'))
 				{

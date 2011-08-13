@@ -183,11 +183,11 @@
 
 .lista #listaMenu a:hover
 {
-	color: yellow;
-	background-color: #acc4e6;
+	color: #000;
+	background-color: #ddd;
 }
 
 .lista .modelAtivo
 {
-	background-color: #ddd;
+	background-color: #ACC4E6;
 }
