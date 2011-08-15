@@ -132,7 +132,11 @@ class Usuario extends AppModel {
 			if ($senha != $senha2)
 			{
 				return false;
-			} else $this->data['Usuario']['senha'] = $senha;
+			} else 
+			{
+				$this->data['Usuario']['senha'] 		= $senha;
+				$this->data['Usuario']['trocar_senha'] 	= false;
+			}
 		} else
 		{
 			unset($this->data['Usuario']['senha']);
@@ -143,7 +147,9 @@ class Usuario extends AppModel {
 	/**
 	 * Executa código antes de salvar e depois de validar
 	 * 
-	 * Re-configura alguns campos do cadastro de usuários, como a caixa, usuário administrador sempre administrador
+	 * Re-configura alguns campos do cadastro de usuários, como caixa alta ou baixa.
+	 * 
+	 * O Usuário administrador sempre será administrador, não pode tirá-lo deste perfil.
 	 * 
 	 * @param	array	$options
 	 * @return	boolean

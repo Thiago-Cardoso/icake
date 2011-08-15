@@ -43,13 +43,34 @@ class UsuariosController extends AppController {
 	public $helpers		= array('Jcake.Visao');
 
 	/**
+	 * Executa código antes de tudo
+	 * 
+	 * Se veio de uma edição e a senha foi trocada deve-se desligar troca obrigatória.
+	 * 
+	 */
+	public function beforeFilter()
+	{
+		if ($this->action=='editar')
+		{
+			if ($this->data)
+			{
+				if ($this->Usuario->confereSenha() && !empty($this->data['Usuario']['senha']))
+				{
+					$this->Session->write('usuario.trocar',0);
+				}
+			}
+		}
+		parent::beforeFilter();
+	}
+
+	/**
 	 * Executa código antes da renderização da view
 	 * 
 	 * Somente administradores pode atualizar todos os registros.
 	 * O Usuario Administrador não poderá acessar as senhas dos demais usuários.
-	 * O Usuário Administrador com id igual 1 não pode ser deletado.
-	 * O Usuário que não é administrador não pode incluir novos usuarios, não pode definir seus perfis,
-	 * não pode ativar e desativar a si próprio e ainda só pode editar ele mesmo.
+	 * O Usuário Administrador com id igual 1 não pode ser deletado e não pode ser questinado a troca de senha.
+	 * O Usuário que não é administrador não pode incluir novos usuarios e não pode definir seus perfis.
+	 * Não pode ativar e desativar a si próprio e ainda só pode editar ele mesmo.
 	 * 
 	 * @return	void
 	 */
@@ -126,11 +147,19 @@ class UsuariosController extends AppController {
 		if ($this->action=='editar')
 		{
 			array_unshift($onReadView,'$("#UsuarioNome").focus();');
+			
+			// se estiver editando a si mesmo, arescentar campos de senha.
 			if (isset($this->data['Usuario']['id']) && $this->data['Usuario']['id']==$this->Session->read('usuario.id'))
 			{
 				$this->data['Usuario']['senha'] 	= '';
 				$this->data['Usuario']['senha2'] 	= '';
 				$edicaoCampos = array('Usuario.login','Usuario.ativo','Usuario.trocar_senha','Usuario.ultimo_acesso','@','Usuario.nome','@','Usuario.senha','Usuario.senha2','Usuario.email','#','Usuario.celular','@','Perfil','@','Usuario.modified','Usuario.created');
+			}
+			
+			// se o usuário é o administrador, remover o campo trocar senha da edição
+			if (isset($this->data['Usuario']['id']) && $this->data['Usuario']['id']==1)
+			{
+				$edicaoCampos = array('Usuario.login','Usuario.ativo','Usuario.ultimo_acesso','@','Usuario.nome','@','Usuario.senha','Usuario.senha2','Usuario.email','#','Usuario.celular','@','Perfil','@','Usuario.modified','Usuario.created');
 			}
 		}
 		if ($this->action=='novo')
@@ -140,7 +169,7 @@ class UsuariosController extends AppController {
 		}
 		if ($this->action=='imprimir')
 		{
-			$edicaoCampos = array('Usuario.login','Usuario.ativo','Usuario.ultimo_acesso','@','Usuario.nome','#','Usuario.email','#','Usuario.celular','@','Perfil.nome','@','Usuario.modified','Usuario.created');
+			$edicaoCampos = array('Usuario.login','Usuario.ativo','Usuario.trocar_senha','Usuario.ultimo_acesso','@','Usuario.nome','#','Usuario.email','#','Usuario.celular','@','Perfil.nome','@','Usuario.modified','Usuario.created');
 		}
 		if (in_array($this->action,array('editar','excluir')))
 		{
@@ -201,6 +230,9 @@ class UsuariosController extends AppController {
 	/**
 	 * Exibe a tela de login
 	 * 
+	 * Ao executar o login, será necessário atualizar último acesso e número de acessos, após atualização redirecionar 
+	 * para página info, caso seja obrigatório a mudança de senha, redirecionar para edição.
+	 * 
 	 * @return		void
 	 */
 	public function login()
@@ -221,6 +253,7 @@ class UsuariosController extends AppController {
 					$arrUsu['id']  		= $dataUsuario[0]['Usuario']['id'];
 					$arrUsu['login']  	= $dataUsuario[0]['Usuario']['login'];
 					$arrUsu['email']  	= $dataUsuario[0]['Usuario']['email'];
+					$arrUsu['trocar']  	= $dataUsuario[0]['Usuario']['trocar_senha'];
 					$arrUsu['ultimo'] 	= $dataUsuario[0]['Usuario']['ultimo_acesso'];
 					$arrUsu['acessos'] 	= ($dataUsuario[0]['Usuario']['acessos'])+1;
 					$this->Session->write('usuario',$arrUsu);
@@ -230,6 +263,13 @@ class UsuariosController extends AppController {
 
 					// atualizando dados do usuário
 					$this->Usuario->updateAll(array('Usuario.acessos'=>$arrUsu['acessos'],'Usuario.ultimo_acesso'=>'"'.date('Y-m-d H:i:s').'"'),array('Usuario.id'=>$arrUsu['id']));
+
+					// se tem que trocar a senha
+					if ($dataUsuario[0]['Usuario']['trocar_senha'])
+					{
+						$this->Session->setFlash('<span style="color: #fff;">Necessário trocar a senha !!!</span>');
+						$this->redirect('editar/'.$arrUsu['id']);
+					}
 
 					// redirecionando para tela de informações
 					//$this->Session->setFlash('<span style="color: #fff;">Login autenticado com sucesso !!!</span>');

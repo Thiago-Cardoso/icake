@@ -16,6 +16,8 @@ class AppController extends Controller {
 	 * 
 	 * Se o usuário não está autenticado é redirecionado para a tela de login, caso não esteja na tela principal
 	 * 
+	 * Se a troca de senha é obrigatória o usuário só acessa a página de edição
+	 * 
 	 * Atualiza objeto View com as opções de menu que serão usadas na lista, somente para cadastros de Cidades, Estados e Perfis
 	 * 
 	 * @return	void
@@ -26,7 +28,16 @@ class AppController extends Controller {
 		{
 			$this->redirect(Router::url('/',true).'usuarios/login');
 		}
-		
+
+		if ($this->Session->check('usuario'))
+		{
+			if ($this->Session->read('usuario.trocar') && ($this->action != 'editar' && $this->action != 'sair') && $this->name != 'Usuario')
+			{
+				$this->Session->setFlash('<span style="color: #FF9191;">Vocẽ não vai a lugar algum se não trocar a senha !!!</span>');
+				$this->redirect(array('controller'=>'usuarios','action' => 'editar', $this->Session->read('usuario.id') ));
+			}
+		}
+
 		if ($this->Session->check('meusperfis'))
 		{
 			$meusperfis = $this->Session->read('meusperfis');
