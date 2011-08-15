@@ -76,10 +76,10 @@
 		</div>
 
 		<div id='menu'>
-			<?php if (file_exists(APP.'views/elements/menu_admin.ctp'))
-				include_once(APP.'views/elements/menu_admin.ctp'); 
+			<?php if (file_exists(APP.'views/elements/menu_modulos.ctp'))
+				include_once(APP.'views/elements/menu_modulos.ctp'); 
 			else 
-				echo 'menu admin não encontrado em '.APP.'views/elements/menu_admin.ctp';
+				echo 'menu admin não encontrado em '.APP.'views/elements/menu_modulos.ctp';
 			?>
 		</div>
 
