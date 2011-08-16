@@ -13,7 +13,7 @@
 						if ($_valor!='0000-00-00 00:00:00') echo '<label>Último Acesso: </label> '.$this->Time->format('d/m/Y h:i:s',$_valor).'<br /><br />';
 						break;
 					default:
-						if ($_campo!='id') echo '<label>'.$_campo.': </label> '.$_valor.'<br /><br />';
+						if (!in_array($_campo,array('id','trocar')) ) echo '<label>'.$_campo.': </label> '.$_valor.'<br /><br />';
 				}
 			}
 			?>

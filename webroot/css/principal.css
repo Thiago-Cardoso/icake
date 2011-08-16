@@ -19,7 +19,6 @@
 #login label
 {
 	margin: 0px 9px 0px 0px;
-	line-height: 24px;
 	display: block;
 	float: left;
 	text-align: right;
@@ -43,12 +42,8 @@
 	padding: 0px;
 }
 
-#info label
+#login #loginLogin,
+#login #loginSenha
 {
-	font-weight: bold;
-	margin: 0px 5px 0px 0px;
-	display: block;
-	float: left;
-	width: 180px;
-	text-align: right;
+	width: 120px;
 }

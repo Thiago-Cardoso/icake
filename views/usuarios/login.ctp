@@ -1,4 +1,4 @@
-<?php echo $this->Html->css('principal'); ?>
+<?php echo $this->Html->css('principal', null, array('inline' => false)); ?>
 <?php echo $this->Visao->setOnReadView('$("#'.$this->Form->domId('loginLogin').'").focus();'); ?>
 <div id='login'>
 	<?php echo $this->Form->create('login',array('url'=>'login')); ?>
