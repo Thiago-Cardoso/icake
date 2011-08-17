@@ -6,7 +6,8 @@
  * @subpackage	jcake.view.elements
  */
 
-if (!class_exists('ConnectionManager') || Configure::read('debug') < 2) {
+if (!class_exists('ConnectionManager') || Configure::read('debug') < 2  ) 
+{
 	return false;
 }
 $noLogs = !isset($logs);
@@ -22,6 +23,9 @@ if ($noLogs):
 		$logs[$source] = $db->getLog();
 	endforeach;
 endif;
+
+// se não executou nenhuma sql, então não continua.
+foreach($logs as $_origem => $_arrProp) if (empty($_arrProp['count'])) return false;
 
 if ($noLogs || isset($_forced_from_dbo_)):
 	foreach ($logs as $source => $logInfo):
