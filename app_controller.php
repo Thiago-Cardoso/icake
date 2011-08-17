@@ -41,6 +41,11 @@ class AppController extends Controller {
 		if ($this->Session->check('meusperfis'))
 		{
 			$meusperfis = $this->Session->read('meusperfis');
+			// verificação de segurança, se está tentando acessar o cadastro de permissões ou perfis e NÃO é administrador, sem chance.
+			if (in_array($this->name,array('Permissoes','Perfis')))
+			{
+				if (!in_array('ADMINISTRADOR',$meusperfis)) $this->redirect(array('controller'=>'usuarios','action'=>'acesso_nao_autorizado'));
+			}
 			$this->set(compact('meusperfis'));
 		}
 
@@ -53,6 +58,7 @@ class AppController extends Controller {
 			{
 				$listaMenu['Perfis']	= 'perfis';
 				$listaMenu['Usuários']	= 'usuarios';
+				$listaMenu['Permissões']= 'permissoes';
 			}
 			$this->set(compact('listaMenu'));
 		}

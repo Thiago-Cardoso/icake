@@ -163,6 +163,77 @@ CREATE  TABLE IF NOT EXISTS `usuarios_perfis` (
 ENGINE = MyISAM;
 
 
+-- -----------------------------------------------------
+-- Table `permissoes`
+-- -----------------------------------------------------
+DROP TABLE IF EXISTS `permissoes` ;
+
+CREATE  TABLE IF NOT EXISTS `permissoes` (
+  `id` INT NOT NULL AUTO_INCREMENT ,
+  `controlador` VARCHAR(50) NOT NULL ,
+  `acao` VARCHAR(99) NOT NULL ,
+  `acesso` TINYINT(1)  NOT NULL DEFAULT true ,
+  `created` DATETIME NOT NULL ,
+  `modified` DATETIME NOT NULL ,
+  PRIMARY KEY (`id`) ,
+  INDEX `i_controlador` (`controlador` ASC) ,
+  INDEX `i_acao` (`acao` ASC) )
+ENGINE = MyISAM
+DEFAULT CHARACTER SET = utf8
+COLLATE = utf8_general_ci, 
+COMMENT = 'Cadastro de permissões, grava o nome do controlador, nome do' /* comment truncated */ ;
+
+
+-- -----------------------------------------------------
+-- Table `permissoes_perfis`
+-- -----------------------------------------------------
+DROP TABLE IF EXISTS `permissoes_perfis` ;
+
+CREATE  TABLE IF NOT EXISTS `permissoes_perfis` (
+  `permissao_id` INT NOT NULL ,
+  `perfil_id` INT NOT NULL ,
+  PRIMARY KEY (`permissao_id`, `perfil_id`) ,
+  INDEX `fk_permissoes_perfis_perfis1` (`perfil_id` ASC) ,
+  INDEX `fk_permissoes_perfis_permissoes1` (`permissao_id` ASC) ,
+  CONSTRAINT `fk_permissoes_has_perfis_permissoes1`
+    FOREIGN KEY (`permissao_id` )
+    REFERENCES `permissoes` (`id` )
+    ON DELETE NO ACTION
+    ON UPDATE NO ACTION,
+  CONSTRAINT `fk_permissoes_has_perfis_perfis1`
+    FOREIGN KEY (`perfil_id` )
+    REFERENCES `perfis` (`id` )
+    ON DELETE NO ACTION
+    ON UPDATE NO ACTION)
+ENGINE = MyISAM
+DEFAULT CHARACTER SET = utf8
+COLLATE = utf8_general_ci;
+
+
+-- -----------------------------------------------------
+-- Table `usuarios_permissoes`
+-- -----------------------------------------------------
+DROP TABLE IF EXISTS `usuarios_permissoes` ;
+
+CREATE  TABLE IF NOT EXISTS `usuarios_permissoes` (
+  `usuario_id` INT NOT NULL ,
+  `permissao_id` INT NOT NULL ,
+  PRIMARY KEY (`usuario_id`, `permissao_id`) ,
+  INDEX `fk_usuarios_permissoes_permissoes1` (`permissao_id` ASC) ,
+  INDEX `fk_usuarios_permissoes_usuarios1` (`usuario_id` ASC) ,
+  CONSTRAINT `fk_usuarios_has_permissoes_usuarios1`
+    FOREIGN KEY (`usuario_id` )
+    REFERENCES `usuarios` (`id` )
+    ON DELETE NO ACTION
+    ON UPDATE NO ACTION,
+  CONSTRAINT `fk_usuarios_has_permissoes_permissoes1`
+    FOREIGN KEY (`permissao_id` )
+    REFERENCES `permissoes` (`id` )
+    ON DELETE NO ACTION
+    ON UPDATE NO ACTION)
+ENGINE = MyISAM;
+
+
 
 SET SQL_MODE=@OLD_SQL_MODE;
 SET FOREIGN_KEY_CHECKS=@OLD_FOREIGN_KEY_CHECKS;

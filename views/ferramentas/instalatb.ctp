@@ -12,7 +12,7 @@ Clique em <strong>enviar</strong> para executar a instalação da aplicação ex
 <?php echo $this->Form->input('email' ,array('div'=>null, 'label'=>'e-mail Administrador')); ?>
 <?php echo $this->Form->input('login',array('div'=>null, 'label'=>'Login Administrador', 'value'=>'admin')); ?>
 <?php echo $this->Form->input('senha',array('div'=>null, 'label'=>'Senha Administrador', 'type'=>'password')); ?>
-<?php echo $this->Form->input('senha2',array('div'=>null, 'label'=>'redigite a senha', 'type'=>'password')); ?>
+<?php echo $this->Form->input('senha2',array('div'=>null, 'label'=>'Confirme a senha', 'type'=>'password')); ?>
 </p>
 <br /><br /><br /><br /><br /><br />
 
