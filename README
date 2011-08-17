@@ -1,35 +1,39 @@
 Aplicação Exemplo iCake
 autor: Adriano C. de Moura
 contato: adrianodemoura@gmail.com
-última atualização: 10/08/2011
+última atualização: 17/08/2011
 
 1 - Considerações
 2 - Instalação
 3 - Requisitos
 
 1 - Considerações
-Esta é uma aplicação exemplo para utilização do Framework cakePHP, e parte do
-princípio de que seu diretório de instalação é "/var/www/icake" e que o core do cakephp
-está em "/opt/cakephp/cake". O cakePHP pode ser baixado aqui https://github.com/cakephp/cakephp.
+O icake é uma aplicação exemplo para utilização do Framework cakePHP, ele já possui um módulo
+chamado 'sistema', aonde existem cadastros de 'cidades', 'estados', 'perfis', 'usuarios' e 
+'permissões', e ainda um segundo módulo nomeado de 'clientes'. Todos os cadastros estão funcionando
+perfeitamente e serverm de exemplo para os demais módulos.
 
-Se o core estiver em algum diretório diferente, edite o arquivo "/var/www/icake/webroot/index.php"
-e configure o caminho correto. Fique atento as estas configurações se houver algum erro
-o icake não irá funcionar.
+Este sistema parte do principio de que o diretório de instalação é "/var/www/icake" e que o core do cakephp
+está em "/opt/cakephp/cake". Se o core estiver em algum diretório diferente, edite o arquivo
+"/var/www/icake/webroot/index.php" e configure o caminho correto. Fique atento as estas configurações 
+se houver algum erro o icake não irá funcionar.
 
 Afim de agilizar ainda mais a manutenção do cadastros existentes foi usado o plugin jCake, que
-possui uma integração com o jquery.
+possui uma fácil integração com o jquery.
 
 2 - Instalação
 Copie todo o diretório icake para dentro do diretório de aplicações do apache. 
 O padrão para distribuições debian e derivados fica em "/var/www", portanto 
 seu diretório deve ficar algo como "/var/www/icake". É preciso que seu usuário 
-tenha permissão sobre o diretório.
+tenha permissão de escrita neste diretório.
 
 Também é preciso configurar o banco de dados no arquivo "/var/www/icake/config/database.php".
 
 Depois de copiado e configurado o banco de dados, acesse http://localhost/icake, será exibida uma tela
-de instalação do banco de dados e ainda a instalação dos demais cadastros. O processo é bem fácil e 
-intuitivo, no último passo será solicitado os dados do usuário administrador.
+de instalação do banco de dados e logo depois a instalação dos módulos nativos do sistema, o processo é bem 
+fácil e intuitivo, no último passo será solicitado os dados do usuário administrador.
+
+Após conclusão dos módulos, o sistema será redirecionado a página principal.
 
 3 - Requisitos
 * Sistema operacional GNU/Linux, debian ou derivado.
