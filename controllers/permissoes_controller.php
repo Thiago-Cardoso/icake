@@ -70,7 +70,7 @@ class PermissoesController extends AppController {
 		$campos['Permissao']['controlador']['input']['size']			= '60';
 		$campos['Permissao']['controlador']['th']['width']				= '400px';
 
-		$campos['Permissao']['acao']['input']['label']['text'] 			= 'Ação';
+		$campos['Permissao']['acao']['input']['label']['text'] 			= 'Método';
 		$campos['Permissao']['acao']['input']['size']					= '60';
 		$campos['Permissao']['acao']['th']['width']						= '400px';
 

@@ -50,7 +50,7 @@ class AppController extends Controller {
 		}
 
 		// menu para o módulo sistema
-		if (in_array($this->name,array('Cidades','Estados','Perfis','Usuarios')))
+		if (in_array($this->name,array('Cidades','Estados','Perfis','Usuarios','Permissoes')))
 		{
 			$listaMenu['Cidades']	= 'cidades';
 			$listaMenu['Estados']	= 'estados';
