@@ -1,3 +1,4 @@
+<?php $this->Visao->setOnReadView('$("#cabecalho").css("background","url(\'../img/bg3.gif\') repeat");'); ?>
 <br /><br />
 <center>
 Você não tem acesso autorizado para acessar a página específica.

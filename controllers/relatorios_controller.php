@@ -48,6 +48,18 @@ class RelatoriosController extends AppController {
 	}
 
 	/**
+	 * Executa código antes da renderização da view
+	 * 
+	 * @return	void
+	 */
+	public function beforeRender()
+	{
+		// título link
+		$linkTit[1] = 'Relatórios';
+		$this->set(compact('linkTit'));
+	}
+
+	/**
 	 * Método start
 	 * 
 	 * @return void
