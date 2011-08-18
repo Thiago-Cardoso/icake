@@ -1,11 +1,3 @@
-<?php
-/**
- * View para exibir o formulário de edição do plugin jCake
- * 
- * @package		jcake
- * @subpackage	jcake.view
- */
-?>
 <?php if (!isset($edicaoCampos)) die('É preciso definir quais campos serão editados. Crie a variável <strong>$edicaoCampos</strong> no evento <strong>beforeRender</strong> do seu controlador <strong>'.$this->name.'</strong>.'); ?>
 <?php $this->Visao->escreverTitBt = isset($escreverTitBt) ? $escreverTitBt : $this->Visao->escreverTitBt; ?>
 <?php echo $this->Form->create($modelClass, array('url'=>str_replace($this->base,'',$this->here)))."\n"; ?>

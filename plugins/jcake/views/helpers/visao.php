@@ -94,7 +94,7 @@ class VisaoHelper extends Helper {
 	 */
 	public function setHeaderCssJs($texto=null,$separador='/')
 	{
-		if ($this->action=='editar' || $this->action=='novo')
+		if (in_array($this->action,array('editar','excluir','novo')))
 		{
 			$this->Html->css('/jcake/css/jcake_editar.css', null, array('inline' => false));
 		}

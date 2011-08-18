@@ -172,15 +172,6 @@ class ClientesController extends AppController {
 			$edicaoCampos = array('Cliente.nome','Cliente.aniversario','#','Cliente.endereco','#','Cliente.bairro','#','Cliente.cep','#','Cidade.nome','Estado.uf','@','Cliente.telefone','Cliente.celular','@','Cliente.email','@','Cliente.obs','@','Cliente.modified','Cliente.created');
 		}
 
-		if ($this->action=='listar')
-		{
-			foreach($this->data as $_linha => $_arrModel)
-			{
-				if ($_arrModel['Cliente']['id']==2) array_unshift($onReadView,'$("#tr2").css("background-color","#D7F725")');
-				$this->data[$_linha]['tr']['title'] = 'clique aqui para editar '.$_arrModel['Cliente']['nome'];
-			}
-		}
-
 		if (in_array($this->action,array('editar','novo')))
 		{
 			array_unshift($onReadView,'$("#ClienteNome").focus();');

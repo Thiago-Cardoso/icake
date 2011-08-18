@@ -187,7 +187,7 @@ class MemcacheEngine extends CacheEngine {
  * @access public
  */
 	function delete($key) {
-		return $this->__Memcache->delete($key);
+		return $this->__Memcache->delete($key, 0);
 	}
 
 /**

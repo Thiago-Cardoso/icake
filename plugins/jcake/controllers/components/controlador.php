@@ -66,7 +66,7 @@ class ControladorComponent extends Object {
 	}
 
 	/**
-	 * Executa a tela de edição do cadastro
+	 * Exibe a tela de edição de um registro
 	 * 
 	 * @parameter	float	$id		Id do registro a ser editado
 	 * @return		void
@@ -156,7 +156,10 @@ class ControladorComponent extends Object {
 	}
 
 	/**
+	 * Exibe a tela de impressão do registro passado no parâmetro
 	 * 
+	 * @param	integer	$id	id do registro a ser impresso
+	 * @return	void
 	 */
 	public function imprimir($id=0)
 	{

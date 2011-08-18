@@ -103,6 +103,7 @@ class AppController extends Controller {
 	 */
 	public function excluir($id=0)
 	{
+		$this->set('excluir',true);
 		$this->Controlador->editar($id);
 	}
 
