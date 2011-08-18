@@ -58,7 +58,7 @@ if (!defined('SISTEMA')) {
  *
  */
 	if (!defined('CAKE_CORE_INCLUDE_PATH')) {
-		define('CAKE_CORE_INCLUDE_PATH',  DS . 'opt' . DS . 'cakephp');
+		define('CAKE_CORE_INCLUDE_PATH',  ROOT . DS . APP_DIR . DS . 'libs' . DS );
 	}
 
 /**
