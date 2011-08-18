@@ -1,8 +1,4 @@
 	/**
-	 * 
-	 */
-
-	/**
 	 * Atualiza o comboPesquisa com a resposta ajax
 	 * resposta:
 	 * item1,valor1;

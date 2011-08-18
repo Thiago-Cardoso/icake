@@ -135,12 +135,12 @@ class ClientesController extends AppController {
 		
 		$campos['Cliente']['telefone']['input']['label']['text']	= 'Telefone';
 		$campos['Cliente']['telefone']['th']['width']				= '120px';
-		$campos['Cliente']['telefone']['mascara']					= ' 99 9999-9999';
+		$campos['Cliente']['telefone']['mascara']					= '99 9999-9999';
 		$campos['Cliente']['telefone']['td']['align']				= 'center';
 
 		$campos['Cliente']['celular']['input']['label']['text']		= 'Celular';
 		$campos['Cliente']['celular']['th']['width']				= '120px';
-		$campos['Cliente']['celular']['mascara']					= ' 99 9999-9999';
+		$campos['Cliente']['celular']['mascara']					= '99 9999-9999';
 		$campos['Cliente']['celular']['td']['align']				= 'center';
 
 		$campos['Cliente']['cep']['input']['label']['text']			= 'Cep';

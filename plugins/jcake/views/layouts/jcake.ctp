@@ -1,11 +1,3 @@
-<?php
-/**
- * Layout de administração do plugin jCake
- * 
- * @package		jcake
- * @subpackage	jcake.view.layouts
- */
-?>
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head>
@@ -20,10 +12,11 @@
 	<?php echo $this->Html->script('/jcake/js/jquery-1.5.1.min')."\n"; ?>
 	<?php echo $this->Html->script('/jcake/js/jquery.maskedinput-1.1.4.pack')."\n"; ?>
 	<?php echo $this->Html->script('/jcake/js/jcake')."\n"; ?>
+	<?php echo $this->Html->script('tiny_mce/tiny_mce_src')."\n"; ?>
 	<?php if ($this->Session->check('usuario.id')) 
 	{
 		echo $this->Html->script('countdown/jquery.countdown.js')."\n";
-		echo $this->Html->script('countdown/jquery.countdown-pt-BR.js')."\n";
+		echo "\t".$this->Html->script('countdown/jquery.countdown-pt-BR.js')."\n";
 	}
 	?>
 
@@ -41,6 +34,38 @@
 		$("#ferramentas img").hover(function() { $(this).css("background-color","#5277AA") }).mouseout(function() { $(this).css("background-color","transparent") }) ;
 		<?php echo $this->Visao->getOnReadView(); ?>
 	});
+
+	tinyMCE.init({
+		// Opções gerais
+		language : "pt",
+		mode : "textareas",
+		theme : "advanced",
+		plugins : "safari,pagebreak,style,layer,table,save,advhr,advimage,advlink,emotions,iespell,inlinepopups,insertdatetime,preview,media,searchreplace,print,contextmenu,paste,directionality,fullscreen,noneditable,visualchars,nonbreaking,xhtmlxtras,template",
+
+		// Opções do tema
+		theme_advanced_buttons1: "code,bold,italic,underline,strikethrough,justifyleft,justifycenter,justifyright,justifyfull,cleanup,link,unlink,image,table,formatselect,fontselect,fontsizeselect,forecolor,backcolor,fullscreen",
+		theme_advanced_buttons2 : "",
+		theme_advanced_buttons3 : "",
+		theme_advanced_buttons4 : "",
+		theme_advanced_toolbar_location : "top",
+		theme_advanced_toolbar_align : "left",
+		theme_advanced_statusbar_location : "bottom",
+		theme_advanced_resizing : true,
+/*
+		// Example content CSS (should be your site CSS)
+		content_css : "css/content.css",
+
+		// Drop lists for link/image/media/template dialogs
+		template_external_list_url : "<?php echo Router::url('/',true); ?>js/tiny_mce/template_list.js",
+		external_link_list_url : "<?php echo Router::url('/',true); ?>js/tiny_mce/link_list.js",
+		external_image_list_url : "<?php echo Router::url('/',true); ?>js/tiny_mce/image_list.js",
+		media_external_list_url : "<?php echo Router::url('/',true); ?>js/tiny_mce/media_list.js",
+		file_browser_callback : "tinyBrowser",
+
+		// Replace values for the template plugin
+		template_replace_values : { username : "Some User", staffid : "991234" }
+*/
+		});
 	</script>
 
 	<?php echo $scripts_for_layout; ?>

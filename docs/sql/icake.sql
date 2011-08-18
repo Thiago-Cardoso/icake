@@ -64,7 +64,7 @@ CREATE  TABLE IF NOT EXISTS `clientes` (
   `telefone` VARCHAR(13) NOT NULL ,
   `celular` VARCHAR(13) NOT NULL ,
   `email` VARCHAR(90) NOT NULL ,
-  `obs` VARCHAR(45) NULL ,
+  `obs` TEXT NOT NULL ,
   `created` DATETIME NOT NULL ,
   `modified` DATETIME NOT NULL ,
   `cidade_id` INT NOT NULL DEFAULT 2302 ,
