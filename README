@@ -1,7 +1,7 @@
 Aplicação Exemplo iCake
 autor: Adriano C. de Moura
 contato: adrianodemoura@gmail.com
-última atualização: 17/08/2011
+última atualização: 18/08/2011
 
 1 - Considerações
 2 - Instalação
@@ -10,13 +10,9 @@ contato: adrianodemoura@gmail.com
 1 - Considerações
 O icake é uma aplicação exemplo para utilização do Framework cakePHP, ele já possui um módulo
 chamado 'sistema', aonde existem cadastros de 'cidades', 'estados', 'perfis', 'usuarios' e 
-'permissões', e ainda um segundo módulo nomeado de 'clientes'. Todos os cadastros estão funcionando
-perfeitamente e serverm de exemplo para os demais módulos.
+'permissões', e ainda um outro módulo 'clientes'.
 
-Este sistema parte do principio de que o diretório de instalação é "/var/www/icake" e que o core do cakephp
-está em "/opt/cakephp/cake". Se o core estiver em algum diretório diferente, edite o arquivo
-"/var/www/icake/webroot/index.php" e configure o caminho correto. Fique atento as estas configurações 
-se houver algum erro o icake não irá funcionar.
+Todos os cadastros estão funcionando perfeitamente e serverm de exemplo para os demais módulos.
 
 Afim de agilizar ainda mais a manutenção do cadastros existentes foi usado o plugin jCake, que
 possui uma fácil integração com o jquery.
@@ -33,7 +29,7 @@ Depois de copiado e configurado o banco de dados, acesse http://localhost/icake,
 de instalação do banco de dados e logo depois a instalação dos módulos nativos do sistema, o processo é bem 
 fácil e intuitivo, no último passo será solicitado os dados do usuário administrador.
 
-Após conclusão dos módulos, o sistema será redirecionado a página principal.
+Após a conclusão da instalação dos dois módulos, o sistema será redirecionado a página principal.
 
 3 - Requisitos
 * Sistema operacional GNU/Linux, debian ou derivado.
