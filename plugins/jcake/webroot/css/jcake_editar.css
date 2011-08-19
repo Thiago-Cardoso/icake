@@ -122,6 +122,14 @@ br
 	display: block;
 	float: left;
 	margin-right: 10px;
+	/*border: 1px solid #ccc;*/
+}
+
+.in_leitura p
+{
+	float: right;
+	margin: 0px;
+	padding: 0px;
 }
 
 .checkbox
@@ -140,4 +148,9 @@ br
     background: #F9F95C;
     -moz-border-radius: 6px;
 	-webkit-border-radius: 6px;
+}
+
+.txtObrigaSenha
+{
+	color: #FF9191;
 }

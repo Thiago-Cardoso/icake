@@ -5,7 +5,6 @@
  * @package       icake
  * @subpackage    icake.app
  */
-
 /**
  * @package       icake
  * @subpackage    icake.app
@@ -24,24 +23,26 @@ class AppController extends Controller {
 	 */
 	public function beforeFilter()
 	{
-		if (!$this->Session->check('usuario') && $this->action != 'login' && $this->name != 'Principal' && $this->name != 'Ferramentas')
+		// se não está logado, redireciona pra login
+		if (!$this->Session->check('usuario.id') && $this->action != 'login' && $this->name != 'Principal' && $this->name != 'Ferramentas')
 		{
 			$this->redirect(Router::url('/',true).'usuarios/login');
 		}
 
-		if ($this->Session->check('usuario'))
+		// verificando obrigatoriedade de senha
+		if ($this->Session->check('usuario.id'))
 		{
 			if ($this->Session->read('usuario.trocar') && ($this->action != 'editar' && $this->action != 'sair') && $this->name != 'Usuario')
 			{
-				$this->Session->setFlash('<span style="color: #FF9191;">Vocẽ não vai a lugar algum se não trocar a senha !!!</span>');
+				$this->Session->setFlash('<span class="txtObrigaSenha">Vocẽ não vai a lugar nenhum sem trocar a senha !!!</span>');
 				$this->redirect(array('controller'=>'usuarios','action' => 'editar', $this->Session->read('usuario.id') ));
 			}
 		}
 
+		// verificação de segurança, se está tentando acessar o cadastro de permissões ou perfis e NÃO é administrador, sem chance.
 		if ($this->Session->check('meusperfis'))
 		{
 			$meusperfis = $this->Session->read('meusperfis');
-			// verificação de segurança, se está tentando acessar o cadastro de permissões ou perfis e NÃO é administrador, sem chance.
 			if (in_array($this->name,array('Permissoes','Perfis')))
 			{
 				if (!in_array('ADMINISTRADOR',$meusperfis)) $this->redirect(array('controller'=>'usuarios','action'=>'acesso_nao_autorizado'));
@@ -49,7 +50,7 @@ class AppController extends Controller {
 			$this->set(compact('meusperfis'));
 		}
 
-		// menu para o módulo sistema
+		// menu-lista para o módulo sistema
 		if (in_array($this->name,array('Cidades','Estados','Perfis','Usuarios','Permissoes')))
 		{
 			$listaMenu['Cidades']	= 'cidades';

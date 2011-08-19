@@ -40,9 +40,6 @@ class ControladorComponent extends Object {
 	 */
 	public function index()
 	{
-		$this->controller->plugin 	= 'jcake';
-		$this->controller->layout 	= 'jcake';
-		$this->controller->viewPath	= 'jcake';
 		$this->controller->redirect('listar');
 	}
 

@@ -114,7 +114,7 @@ class Permissao extends AppModel {
 		{
 			// reconfigurando perfil, não restring perfil administrador de jeito nenhum
 			$novoPerfil = array();
-			if (is_array($this->data['Perfil']['Perfil']))
+			if (isset($this->data['Perfil']['Perfil']) && is_array($this->data['Perfil']['Perfil']))
 			{
 				$dataPerfil = $this->data['Perfil']['Perfil'];
 				foreach($dataPerfil as $_linha => $_codPerfil)
@@ -126,10 +126,10 @@ class Permissao extends AppModel {
 
 			// reconfigurando usuarios, não restringe usuário administrador de jeito nenhum
 			$novoUsuario = array();
-			if (is_array($this->data['Usuario']['Usuario']))
+			if (isset($this->data['Usuario']['Usuario']) && is_array($this->data['Usuario']['Usuario']))
 			{
-				$novoUsuario = $this->data['Usuario']['Usuario'];
-				foreach($novoUsuario as $_linha => $_codUsuario)
+				$dataUsuario = $this->data['Usuario']['Usuario'];
+				foreach($dataUsuario as $_linha => $_codUsuario)
 				{
 					if ($_codUsuario != '1') array_push($novoUsuario,$_codUsuario);
 				}

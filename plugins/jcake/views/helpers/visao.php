@@ -208,6 +208,8 @@ class VisaoHelper extends Helper {
 			{
 				unset($_botoesEdicao['novo']);
 				unset($_botoesEdicao['salvar']);
+				unset($_botoesEdicao['imprimir']);
+				unset($_botoesEdicao['atualizar']);
 			}
 		}
 

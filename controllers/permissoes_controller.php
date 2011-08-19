@@ -94,7 +94,7 @@ class PermissoesController extends AppController {
 		}
 		if ($this->action=='novo')
 		{
-			$edicaoCampos = array('Permissao.controlador','#','Permissao.acao','#','Permissao.acesso');
+			$edicaoCampos = array('Permissao.controlador','#','Permissao.acao','#','Permissao.acesso','@','Perfil','#','Usuario');
 		}
 
 		// título link
