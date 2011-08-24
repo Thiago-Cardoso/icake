@@ -19,10 +19,14 @@
 		{
 			if(tam>2)
 			{
+				$("#inPesquisa").css('disabled',true);
+				$("#inPesquisa").css('background-color','#ddd');
 				$(jId).load(jUrl, function(resposta, status, xhr)
 				{
 					if (status=='success')
 					{
+						$("#inPesquisa").css('disabled',false);
+						$("#inPesquisa").css('background-color','#fff');
 						$(jId).fadeIn();
 						$(jId).html(resposta);
 					}

@@ -23,13 +23,12 @@ class AppController extends Controller {
 	 */
 	public function beforeFilter()
 	{
-		// forçando layot ajax para pesquisa e combo
+		// forçando layout para algumas ações
 		if (in_array($this->action,array('pesquisar','combo'))) $this->layout = 'ajax';
 
 		// se está logado
 		if ($this->Session->check('usuario.id'))
 		{
-
 			// verificando obrigatoriedade de senha
 			if ($this->Session->read('usuario.trocar') && ($this->action != 'editar' && $this->action != 'sair') && $this->name != 'Usuario')
 			{
@@ -50,7 +49,7 @@ class AppController extends Controller {
 		} else
 		{
 			// se já não está na tela de login, redireciona para lá.
-			if ($this->action != 'login' && $this->name != 'Principal' && $this->name != 'Ferramentas')
+			if ($this->action != 'login' && $this->name != 'Principal' && $this->name != 'Ferramentas' && $this->layout != 'ajax')
 			{
 				$this->redirect(Router::url('/',true).'usuarios/login');
 			}
