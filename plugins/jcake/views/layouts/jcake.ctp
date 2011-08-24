@@ -1,3 +1,18 @@
+<?php
+	// menu-lista para o módulo sistema
+	if (in_array($this->name,array('Cidades','Estados','Perfis','Usuarios','Permissoes')))
+	{
+		$listaMenu['Cidades']	= 'cidades';
+		$listaMenu['Estados']	= 'estados';
+		if (isset($meusperfis) && in_array('ADMINISTRADOR',$meusperfis))
+		{
+			$listaMenu['Perfis']	= 'perfis';
+			$listaMenu['Usuários']	= 'usuarios';
+			$listaMenu['Permissões']= 'permissoes';
+		}
+		$this->set(compact('listaMenu'));
+	}
+?>
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head>

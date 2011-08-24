@@ -23,45 +23,37 @@ class AppController extends Controller {
 	 */
 	public function beforeFilter()
 	{
-		// se não está logado, redireciona pra login
-		if (!$this->Session->check('usuario.id') && $this->action != 'login' && $this->name != 'Principal' && $this->name != 'Ferramentas')
-		{
-			$this->redirect(Router::url('/',true).'usuarios/login');
-		}
+		// forçando layot ajax para pesquisa e combo
+		if (in_array($this->action,array('pesquisar','combo'))) $this->layout = 'ajax';
 
-		// verificando obrigatoriedade de senha
+		// se está logado
 		if ($this->Session->check('usuario.id'))
 		{
+
+			// verificando obrigatoriedade de senha
 			if ($this->Session->read('usuario.trocar') && ($this->action != 'editar' && $this->action != 'sair') && $this->name != 'Usuario')
 			{
 				$this->Session->setFlash('<span class="txtObrigaSenha">Vocẽ não vai a lugar nenhum sem trocar a senha !!!</span>');
 				$this->redirect(array('controller'=>'usuarios','action' => 'editar', $this->Session->read('usuario.id') ));
 			}
-		}
 
-		// verificação de segurança, se está tentando acessar o cadastro de permissões ou perfis e NÃO é administrador, sem chance.
-		if ($this->Session->check('meusperfis'))
-		{
-			$meusperfis = $this->Session->read('meusperfis');
-			if (in_array($this->name,array('Permissoes','Perfis')))
+			// verificação de segurança, se está tentando acessar o cadastro de permissões ou perfis e NÃO é administrador, sem chance.
+			if ($this->Session->check('meusperfis'))
 			{
-				if (!in_array('ADMINISTRADOR',$meusperfis)) $this->redirect(array('controller'=>'usuarios','action'=>'acesso_nao_autorizado'));
+				$meusperfis = $this->Session->read('meusperfis');
+				if (in_array($this->name,array('Permissoes','Perfis')))
+				{
+					if (!in_array('ADMINISTRADOR',$meusperfis)) $this->redirect(array('controller'=>'usuarios','action'=>'acesso_nao_autorizado'));
+				}
+				$this->set(compact('meusperfis'));
 			}
-			$this->set(compact('meusperfis'));
-		}
-
-		// menu-lista para o módulo sistema
-		if (in_array($this->name,array('Cidades','Estados','Perfis','Usuarios','Permissoes')))
+		} else
 		{
-			$listaMenu['Cidades']	= 'cidades';
-			$listaMenu['Estados']	= 'estados';
-			if (isset($meusperfis) && in_array('ADMINISTRADOR',$meusperfis))
+			// se já não está na tela de login, redireciona para lá.
+			if ($this->action != 'login' && $this->name != 'Principal' && $this->name != 'Ferramentas')
 			{
-				$listaMenu['Perfis']	= 'perfis';
-				$listaMenu['Usuários']	= 'usuarios';
-				$listaMenu['Permissões']= 'permissoes';
+				$this->redirect(Router::url('/',true).'usuarios/login');
 			}
-			$this->set(compact('listaMenu'));
 		}
 	}
 
