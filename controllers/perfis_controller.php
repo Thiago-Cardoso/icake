@@ -86,6 +86,8 @@ class PerfisController extends AppController {
 		$campos['Usuario']['usuario']['input']['label']['style'] 	= 'min-height: 200px;';
 		$campos['Usuario']['usuario']['input']['style']				= 'min-height: 100px;';
 
+		if ($this->action=='listar') $this->setMenuLista('default');
+
 		if ($this->action=='editar' || $this->action=='novo')
 		{
 			$usuarios = $this->Perfil->Usuario->find('list');

@@ -189,6 +189,7 @@ class UsuariosController extends AppController {
 		// refatorando o botão excluir para o usuário admin
 		if ($this->action=='listar')
 		{
+			$this->setMenuLista('default');
 			$listaFerramentas['excluir']['icone'] 	= 'bt_excluir.png';
 			$listaFerramentas['excluir']['off']['1']= true;
 		}

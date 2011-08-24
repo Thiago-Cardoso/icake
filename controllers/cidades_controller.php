@@ -99,6 +99,7 @@ class CidadesController extends AppController {
 
 		if ($this->action=='listar')
 		{
+			$this->setMenuLista('default');
 			foreach($this->data as $_linha => $_arrModel)
 			{
 				$id = $_arrModel['Cidade']['id'];

@@ -134,9 +134,9 @@ class AppController extends Controller {
 	/**
 	 * Realiza uma pesquisa no banco de dados
 	 * 
-	 * @parameter 	string 	$texto 	Texto de pesquisa
-	 * @parameter 	string 	$campo 	Campo de pesquisa
-	 * @parameter	string 	$action	Action para onde será redirecionado ao clicar na resposta
+	 * @param 	string 	$texto 	Texto de pesquisa
+	 * @param 	string 	$campo 	Campo de pesquisa
+	 * @param	string 	$action	Action para onde será redirecionado ao clicar na resposta
 	 * @return 		array 	$lista 	Array com lista de retorno
 	 */
 	public function pesquisar($campo=null,$texto=null,$action='editar')
@@ -149,14 +149,40 @@ class AppController extends Controller {
 	 * 
 	 * exemplo: http://localhost/sistema/controle/combo/campo/filtro
 	 * 
-	 * @parameter	string	$campo		Campo a sofrer o filtro
-	 * @parameter	string	$filtro		Texto a ser aplicado no filtro
-	 * @access		public
-	 * @return 		string
+	 * @param	string	$campo		Campo a sofrer o filtro
+	 * @param	string	$filtro		Texto a ser aplicado no filtro
+	 * @access	public
+	 * @return 	string
 	 */
 	public function combo($campo=null,$filtro=null)
 	{
 		$this->Controlador->combo($campo, $filtro);
+	}
+
+	/**
+	 * Configura o menu tipo lista para o layout passado no parâmetros
+	 * 
+	 * @param	string	$layout	Nome do layout
+	 * @access	public
+	 * @return	void
+	 */
+	public function setMenuLista($layout='')
+	{
+		if ($this->Session->check('meusperfis')) $meusperfis = $this->Session->read('meusperfis');
+		switch($layout)
+		{
+			case 'default':
+				$listaMenu['Cidades']	= 'cidades';
+				$listaMenu['Estados']	= 'estados';
+				if (isset($meusperfis) && in_array('ADMINISTRADOR',$meusperfis))
+				{
+					$listaMenu['Perfis']	= 'perfis';
+					$listaMenu['Usuários']	= 'usuarios';
+					$listaMenu['Permissões']= 'permissoes';
+				}
+				$this->set(compact('listaMenu'));
+				break;
+		}
 	}
 }
 

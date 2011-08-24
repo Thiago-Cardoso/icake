@@ -88,6 +88,8 @@ class PermissoesController extends AppController {
 		$campos['Usuario']['usuario']['input']['multiple']				= 'checkbox';
 		$campos['Usuario']['usuario']['input']['options']				= $usuarios;
 
+		if ($this->action=='listar') $this->setMenuLista('default');
+
 		if ($this->action=='editar')
 		{
 			array_unshift($onReadView,'$("#UsuarioControlador").focus();');

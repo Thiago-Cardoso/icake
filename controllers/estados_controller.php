@@ -82,6 +82,8 @@ class EstadosController extends AppController {
 			array_unshift($onReadView,'$("#EstadoNome").focus();');
 		}
 
+		if ($this->action=='listar') $this->setMenuLista('default');
+
 		$this->set(compact('listaCampos','edicaoCampos','campos','camposPesquisa','escreverTitBt','onReadView','listaFerramentas','botoesEdicao'));
 	}
 }
