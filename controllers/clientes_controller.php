@@ -63,12 +63,12 @@ class ClientesController extends AppController {
 			{
 				if (isset($this->data['Cliente'][$_campo])) $this->data['Cliente'][$_campo]	= ereg_replace('[./-]','',$this->data['Cliente'][$_campo]);
 			}
-			$campos = array('telefone','celular');
+			$campos = array('telefone','celular','cpf','cnpj');
 			foreach($campos as $_campo)
 			{
 				if (isset($this->data['Cliente'][$_campo]))
 				{
-					$this->data['Cliente'][$_campo]	= ereg_replace('- ','',$this->data['Cliente'][$_campo]);
+					$this->data['Cliente'][$_campo]	= ereg_replace('[- ./]','',$this->data['Cliente'][$_campo]);
 				}
 			}
 		}
@@ -85,7 +85,7 @@ class ClientesController extends AppController {
 		// campos padrão
 		$campos				= array();
 		$onReadView 		= array();
-		$edicaoCampos		= array('Cliente.nome','Cliente.aniversario','#','Cliente.endereco','#','Cliente.bairro','Cliente.cep','#','Cliente.estado_id','Cliente.cidade_id','@','Cliente.telefone','Cliente.celular','@','Cliente.email','@','Cliente.obs','@','Cliente.modified','Cliente.created');
+		$edicaoCampos		= array('Cliente.nome','Cliente.aniversario','#','Cliente.endereco','#','Cliente.bairro','Cliente.cep','#','Cliente.estado_id','Cliente.cidade_id','@','Cliente.telefone','Cliente.celular','#','Cliente.cpf','Cliente.cnpj','#','Cliente.email','@','Cliente.obs','@','Cliente.modified','Cliente.created');
 		$botoesEdicao		= array();
 		$listaCampos 		= array('Cliente.nome','Cliente.bairro','Cidade.nome','Cliente.telefone','Cliente.celular','Cliente.modified','Cliente.created');
 		$listaFerramentas	= array();
@@ -139,11 +139,22 @@ class ClientesController extends AppController {
 		$campos['Cliente']['telefone']['td']['align']				= 'center';
 
 		$campos['Cliente']['celular']['input']['label']['text']		= 'Celular';
+		$campos['Cliente']['celular']['input']['label']['class']	= '';
 		$campos['Cliente']['celular']['th']['width']				= '120px';
 		$campos['Cliente']['celular']['mascara']					= '99 9999-9999';
 		$campos['Cliente']['celular']['td']['align']				= 'center';
 
+		$campos['Cliente']['cpf']['input']['label']['text']			= 'Cpf';
+		$campos['Cliente']['cpf']['mascara']						= '999.999.999-99';
+		$campos['Cliente']['cpf']['input']['size']					= 11;
+
+		$campos['Cliente']['cnpj']['input']['label']['text']		= 'Cnpj';
+		$campos['Cliente']['cnpj']['input']['label']['class']		= '';
+		$campos['Cliente']['cnpj']['mascara']						= '99.999.999/9999-99';
+		$campos['Cliente']['cnpj']['input']['size']					= 16;
+
 		$campos['Cliente']['cep']['input']['label']['text']			= 'Cep';
+		$campos['Cliente']['cep']['input']['label']['class']		= '';
 		$campos['Cliente']['cep']['input']['style']					= 'width: 90px; text-align: center;';
 		$campos['Cliente']['cep']['mascara']						= '99.999-999';
 
@@ -169,7 +180,7 @@ class ClientesController extends AppController {
 
 		if ($this->action=='imprimir')
 		{
-			$edicaoCampos = array('Cliente.nome','Cliente.aniversario','#','Cliente.endereco','#','Cliente.bairro','#','Cliente.cep','#','Cidade.nome','Estado.uf','@','Cliente.telefone','Cliente.celular','@','Cliente.email','@','Cliente.obs','@','Cliente.modified','Cliente.created');
+			$edicaoCampos = array('Cliente.nome','Cliente.aniversario','#','Cliente.endereco','#','Cliente.bairro','#','Cliente.cep','#','Cidade.nome','Estado.uf','@','Cliente.telefone','Cliente.celular','#','Cliente.cpf','Cliente.cnpj','#','Cliente.email','@','Cliente.obs','@','Cliente.modified','Cliente.created');
 		}
 
 		if (in_array($this->action,array('editar','novo')))

@@ -326,6 +326,7 @@ class VisaoHelper extends Helper {
 				if (empty($input['label']['class'])) 	unset($input['label']['class']);
 				if (empty($input['div']['class'])) 		unset($input['div']['class']);
 				if (empty($input['div']['id'])) 		unset($input['div']['id']);
+				if (!isset($input['label']['id'])) 		$input['label']['id'] 		= 'lb'.$arrCmp[0].$arrCmp[1];
 
 				// escrevendo o input
 				if (!$leitura && !isset($input['disabled']))
@@ -437,7 +438,12 @@ class VisaoHelper extends Helper {
 				if ($valor=='00:00:00') $mascarado = '';
 				break;
 			case 'cpf':
+			case '999.999.999-99':
 				$mascarado = substr($valor,0,3).'.'.substr($valor,3,3).'.'.substr($valor,6,3).'-'.substr($valor,9,2);
+				break;
+			case 'cnpj':
+			case '99.999.999/9999-99':
+				$mascarado = substr($valor,0,2).'.'.substr($valor,2,3).'.'.substr($valor,5,3).'/'.substr($valor,8,4).'-'.substr($valor,12,2);
 				break;
 			case 'aniversario':
 			case '99/99':

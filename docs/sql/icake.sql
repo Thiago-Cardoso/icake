@@ -69,6 +69,8 @@ CREATE  TABLE IF NOT EXISTS `clientes` (
   `modified` DATETIME NOT NULL ,
   `cidade_id` INT NOT NULL DEFAULT 2302 ,
   `estado_id` INT NOT NULL DEFAULT 1 ,
+  `cpf` INT(11) NOT NULL DEFAULT 0 ,
+  `cnpj` INT(14) NOT NULL DEFAULT 0 ,
   PRIMARY KEY (`id`) ,
   INDEX `i_nome` (`nome` ASC) ,
   INDEX `i_email` (`email` ASC) ,
@@ -77,6 +79,8 @@ CREATE  TABLE IF NOT EXISTS `clientes` (
   INDEX `i_tel` (`celular` ASC, `telefone` ASC) ,
   INDEX `fk_clientes_cidades1` (`cidade_id` ASC) ,
   INDEX `fk_clientes_estados1` (`estado_id` ASC) ,
+  INDEX `i_cpf` (`cpf` ASC) ,
+  INDEX `i_cnpj` (`cnpj` ASC) ,
   CONSTRAINT `fk_clientes_cidades1`
     FOREIGN KEY (`cidade_id` )
     REFERENCES `cidades` (`id` )

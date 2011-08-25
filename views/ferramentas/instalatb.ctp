@@ -1,7 +1,9 @@
 <?php $this->Visao->setOnReadView('$("#FerramentaNome").focus();'); ?>
+<?php $this->Visao->setOnReadView('$("#formInstala").submit(function(){ $("#instala").fadeOut(1000); $("#aguarde").show(); });'); ?>
+
 <div id='instala'>
 
-<?php echo $this->Form->create(null,array('url'=>Router::url('/',true).'ferramentas/instalatb')); ?>
+<?php echo $this->Form->create(null,array('id'=>'formInstala', 'url'=>Router::url('/',true).'ferramentas/instalatb')); ?>
 <input type="hidden" name="data[Ferramenta][tipo]" id="tipo" />
 
 <p class='txtFer'>
