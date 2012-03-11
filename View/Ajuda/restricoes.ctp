@@ -4,6 +4,7 @@
 As restrições do sistema podem ser configuradas pelo <strong>Perfil</strong> e pode ser acessada em 'Sistema/Perfis'.
 Cada cadastro que existe no <strong>Sistema <?= $SISTEMA ?></strong>, pode ter as seguintes <strong>ações NEGADAS</strong>:
 Tipo de restrições:
+F - Ferramentas
 G - Gravar
 I - Imprimir
 As restrição é configurada no perfil.
