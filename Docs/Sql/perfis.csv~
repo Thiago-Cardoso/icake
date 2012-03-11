@@ -1,0 +1,5 @@
+"id";"nome";"restricao"
+"1";"ADMINISTRADOR";""
+"2";"GERENTE";""
+"3";"USUÁRIO";"G"
+"4";"VISITANTE";"G,I"

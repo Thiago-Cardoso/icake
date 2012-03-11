@@ -1,0 +1,156 @@
+/* menu styles */
+
+ul.menuh 
+{
+	font-size: 12px;
+	margin: 0px;
+	padding: 0px; 
+}
+
+.menu_usuarios
+{
+	background: transparent url(../../img/ico_uss.png) 3px center no-repeat;
+}
+
+.menu_relatorios
+{
+	background: transparent url(../../img/ico_res.png) 3px center no-repeat;
+}
+.menu_listas
+{
+	background: transparent url(../../img/ico_lis.png) 3px center no-repeat;
+}
+.menu_importar
+{
+	background: transparent url(../../img/ico_imo.png) 3px center no-repeat;
+}
+.menu_sistema
+{
+	background: transparent url(../../img/ico_sis.png) 3px center no-repeat;
+}
+.menu_ferramenta
+{
+	background: transparent url(../../img/ico_fer.png) 3px center no-repeat;
+}
+.menu_cadastro 
+{
+	background: transparent url(../../img/ico_cad.png) 3px center no-repeat;
+	border-left: none;
+}
+.menu_ajuda 
+{
+	background: transparent url(../../img/ico_aju.png) 5px center no-repeat;
+}
+.menu_sair 
+{
+	background: transparent url(../../img/ico_sai.gif) 3px center no-repeat;
+	border-right: none;
+}
+
+
+ul.menuh li.subv 
+{
+	margin: 0px; 
+	padding: 0px;
+	float: left; 
+	list-style: none;
+	border-right: 1px solid #ccc;
+	border-bottom: 1px solid #ddd;
+	background-color:#ddd;
+	height: 24px;
+	min-width: 100px;
+}
+
+ul.menuh ul.menuv 
+{
+	display: none; 
+	position: absolute; 
+	margin-left: -1px;
+}            
+
+ul.menuh ul.menuv ul 
+{
+	left: 150px;
+}            
+
+ul.menuh a 
+{
+	padding: 5px;
+	padding-left: 24px;
+	display: block; 
+	text-decoration: none; 
+	color: #000000;
+}            
+
+ul.menuh li a:hover 
+{
+	color: #000; 
+	background-color: #f0f0f0;
+}            
+
+ul.menuv, ul.menuv ul 
+{
+	margin: 0; 
+	padding: 0; 
+	border: 0px; 
+	min-width: 250px;
+	background-color: #fff;
+	z-index: 10000; 
+	/*border-top: 1px solid #000000;*/
+}            
+ul.menuv li 
+{
+	position: relative; 
+	list-style: none; border: 0px;
+	background-color: #E6F0F7;
+}            
+ul.menuv li a 
+{
+	display: block; 
+	text-decoration: none; 
+	/*border: 1px solid #000000;*/ 
+	color: #000; 
+	padding: 5px 10px 5px 5px;
+}
+
+/* Fix IE. Hide from IE Mac \*/
+* html ul.menuv li 
+{
+	float: left; height: 1%;
+}            
+* ul.menuv li a 
+{
+	height: 1%;
+}
+* ul.menuh 
+{
+	height: 20px;
+}   
+/* End */
+
+ul.menuv ul 
+{
+	position: absolute; 
+	z-index: 10000; 
+	display: none; 
+	left: 149px; 
+	top: -1px;
+}            
+ul.menuv li.submenu ul 
+{
+	display: none;
+}
+ul.menuv li a:hover 
+{
+	color: #fff; 
+	background-color: #aaa;
+}
+div.hr 
+{
+	height: 1px;
+	background-color: #aaa;
+}
+div.hr hr
+{
+	display: none;
+}

@@ -1,0 +1,70 @@
+======================================================================
+SISTEMA DE OCORRENCIAS ESCOLAR
+======================================================================
+1 - Instalação
+2 - Sistema Básico
+3 - Restrições
+4 - Plugins
+5 - Suporte
+6 - Considerações
+======================================================================
+
+1 - Instalação
+	Levando em consideração que o sistema vai ficar no diretório /var/www/sistema
+	Descompacte o arquivo sistema.zip, no diretório do seu servidor web
+	no Sistema Operacional GNU/Linux fica em /var/www
+	no Sistema Operaconal Windows, se tiver instalado o XAMPP, deve estar em c:\xampp\htdcos
+	Verifique a instalação do seu servidor web.
+
+	Ainda no caso do Linux é necessário que o diretório /var/www/sistema/tmp tem permissão de escrita
+	você pode executar, como root, o comando:
+	# chown www-data.www-data -R /var/www/sistema/tmp
+	ou
+	# chmod 1777 -R /var/www/sistema/tmp
+	* Recomendamos a primeira opção por questões de segurança.
+
+	Uma vez descompactado o sistema, acesse "http://localhost/sistema". Depois da primeira tentativa
+	de login, o sistema irá mostra os passos necessários para instalação, que é basicamente:
+	- Criar banco de dados e Usuário
+	- Definir senha do administrador e instalar o sistema básico.
+	- Instalar plugin OCR
+	- Importar Alunos e Professores da base do SGE
+
+2 - Sistema Básico
+	O Sistema básico consiste nos seguintes cadastros:
+	- Usuários
+	- Cidades
+	- Estado
+	- Perfis
+	É possível que um usuário possua vários perfis. Fique atento a isso pois as RESTRIÇÔES de castrado são 
+	configurado pelo perfil.
+	Parar cada controlador existe um arquivo CSS e JS correspondente, o layout 'default' configura isso no 
+	cabeçalho automaticamente, então fique atento ao querer personalizar as visões e criar seus códigos JS.
+
+3 - Restrições
+	Inicialmente todo novo usuário e/ou perfil não possui nenhuma restrição, o acesso é totalmente liberado.
+	Mas é possível, caso deseja, configurar o que um perfil NÃO PODE FAZER.
+	As restrições podem ser (estas opções estão configurada em APP/config/core.php):
+	G - Gravar
+	I - Imprimir
+	
+	Estas restrições são aplicadas, automaticamente, a todos os cadastros existente no sistema, nada impede de você possa implementar
+	manualmente no código.
+
+	Importante lembrar também de que o usuário quando logado, possui suas informações na sessão, então é possível implementar o código
+	levando em consideração estas informações. Estas informações são basicamente o nome, id, perfis e as restrições.
+
+4 - Plugins
+	Os plugins no sistema podem ser vistos como módulos, muito útil para se criar vários cadastro por categoria.
+	Eles podem ser implementados como qualquer plugin do cakePHP, mas recomendo que se use as classes existentes do 
+	sistema básico.
+
+5 - Suporte
+	http://github.com/adrianodemoura
+	Qualquer crítica construtiva é bem vinda no meu e-mail adrianodemoura@gmail.com
+
+6 - Considerações
+	Este sistema é licenciado sobre os termos da GPL, Licença Públic Geral.
+	Se você teve acesso a este código e realizou alguma boa implementação, reporte as mudança ao mantenedor do projeto.
+	Desta forma o projeto pode crescer e beneficiar a um número maior de usuarios.
+

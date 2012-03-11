@@ -1,0 +1,66 @@
+#lista
+{
+	margin: 10px auto;
+	width: 90%;
+	/*border:1px solid #000;*/
+}
+
+#botoes
+{
+	float: left;
+	min-width: 160px;
+	text-align: center;
+}
+
+#botoes input
+{
+	width: 100px;
+}
+
+table
+{
+	border-top: 1px solid #ccc;
+	border-left: 1px solid #ccc;
+	border-bottom: 1px solid #ccc;
+	clear: both;
+	margin: 10px 0px 0px 0px;
+	font-size: 11px;
+}
+
+table tr:hover
+{
+	background-color: #cbdeec;
+}
+
+table tr th
+{
+	background-color: #94adc3;
+	border-right: 1px solid #ccc;
+	height: 20px;
+	line-height: 20px;
+	color: #eee;
+}
+
+table tr th a
+{
+	color: #fff;
+	display: block;
+	height: 20px;
+}
+table tr th a:hover
+{
+	background-color: #333;
+}
+
+table tr td
+{
+	padding: 1px;
+	border-bottom: 1px solid #ddd;
+	border-right: 1px solid #ccc;
+}
+
+#tableRodape
+{
+	line-height: 20px;
+	margin: 5px 0px 0px 0px;
+}

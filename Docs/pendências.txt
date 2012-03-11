@@ -1,0 +1,6 @@
+- Configurar label de checkBox
+
+- Tornar menu mais dinâmico, é preciso que cada opção de menu fique num arquivo 
+	de configuração, atualmente está sendo escrito direto em APP/View/Elements/menu.ctp
+
+- Criar JS para validar os campos no formulário de edição com base na validações do model.

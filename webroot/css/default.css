@@ -1,0 +1,356 @@
+body 
+{
+	margin: 0;
+	font-size: 14px;
+	font-family: Verdana, Arial, Helvetica, Tahoma;
+	background-color: #fff;
+}
+a
+{
+	text-decoration: none;
+}
+input,
+button,
+select
+{
+	margin: 0px;
+	padding: 0px;
+	font-size: 14px;
+}
+#corpo 
+{
+	width: 100%;
+}
+
+#cabecalho
+{
+	background: #94ADC3;
+	height: 30px;
+	color: #fff;
+	border-bottom: 5px solid #ccc;
+}
+
+#cabecalho #menu_escola {
+	margin: 5px auto;
+	width: 600px;
+	text-align: center;
+	position: absolute;
+	left: 50%;
+	margin-left: -310px;
+}
+#cabecalho #titulo
+{
+	font-size: 20px;
+	text-align : center;
+	font-weight: bold;
+	color: #fff;
+	position: absolute;
+	margin: 2px 0px 0px -250px;
+	min-width: 500px;
+	left: 50%;
+}
+#cabecalho #titulo a
+{
+	color: #fff;
+}
+#cabecalho #titulo a:hover
+{
+	color: #0D821E;
+}
+#cabecalho #tit_cadastro
+{
+	margin: 7px 0px 0px 10px;
+	float: left;
+	text-transform: uppercase;
+	letter-spacing: 2px;
+	font-weight: bold;
+}
+
+#cabecalho #flash
+{
+	position: absolute;
+	width: 100%;
+	height: 30px;
+	line-height: 30px;
+	color: #333;
+	background-color: #ddd;
+	/*-moz-border-radius: 6px;
+	-webkit-border-radius: 6px;
+	border-radius: 6px;*/
+	color: #fff;
+	text-align: center;
+	font-weight: bold;
+	font-size: 14px;
+	background-color: red;
+}
+.erro
+{
+	color: red;
+}
+#pagina
+{
+	padding: 30px 10px 0px 10px;
+	min-height: 300px;
+}
+
+#pagina h2
+{
+	margin: 0px;
+}
+
+#menu_admin
+{
+	width: 200px;
+	height: 20px;
+	position: absolute;
+	right: 10px;
+	top: 7px;
+	text-align: right;
+	color: #fff;
+}
+#menu_admin a
+{
+	color: #fff;
+}
+#menu_admin a:hover
+{
+	color: #0D821E;
+}
+#menu_admin ul
+{
+	margin: 0px;
+	padding: 0px;
+	list-style: none;
+}
+#menu_admin li
+{
+	display: inline-block;
+}
+
+#menu
+{
+	margin: 35px 0px 0px 5px;
+	position: absolute;
+}
+
+#barra
+{
+	padding: 5px;
+	height: 30px;
+	margin: 0px 0px 0px 0px;
+	-moz-border-radius: 6px;
+	-webkit-border-radius: 6px;
+	border-radius: 6px;
+	background-color: #cbdeec;
+}
+#editar #barra button,
+#lista #barra button
+{
+	min-width: 70px;
+}
+
+#pesquisa
+{
+	float: right;
+	line-height: 30px;
+}
+
+#rePesquisa
+{
+	position: absolute;
+	z-index: 999;
+	background-color: #cad8ec;
+	min-width: 300px;
+	padding: 0px 0px 0px 3px;
+	line-height: 24px;
+	border: 2px solid #8994a6;
+	display: none;
+	-moz-border-radius: 3px;
+	-webkit-border-radius: 3px;
+	text-align: left;
+	font-size: 10px;
+}
+
+#rePesquisa ul
+{
+	list-style: none;
+	margin: 0px;
+	padding: 0px;
+}
+#rePesquisa ul li:hover
+{
+	cursor: pointer;
+	background-color: #ddd;
+}
+
+#slPesquisa
+{
+	min-width: 120px;
+}
+#edPesquisa
+{
+	width: 120px;
+}
+
+#botoes
+{
+	float: left;
+	margin: 3px 0px 0px 0px;
+}
+#botoes .botao
+{
+	min-width: 30px;
+}
+
+#paginacao
+{
+	float: left;
+	/*background-color: #ddd;*/
+}
+
+#paginacao ul
+{
+	margin: 0px 10px 0px 0px;
+	padding: 0px;
+	list-style: none;
+}
+
+#paginacao ul li
+{
+	display: inline-block;
+	min-width: 26px;
+	height: 30px;
+	line-height: 30px;
+	text-align: center;
+}
+#paginacao ul li a
+{
+	display: block;
+	color: #333;
+}
+#paginacao ul li a:hover
+{
+	background-color: #94adc3;
+	-moz-border-radius: 6px;
+	-webkit-border-radius: 6px;
+	border-radius: 6px;
+	color: #fff;
+	font-weight: bold;
+}
+
+.spanLeitura
+{
+	padding: 0px 5px 5px 5px;
+	-moz-border-radius: 6px;
+	-webkit-border-radius: 6px;
+	border-radius: 6px;
+}
+
+
+#rodape
+{
+	padding: 5px 0px 0px 0px;
+	border-top: 1px solid #ddd;
+	background-color: #fff;
+	clear: both;
+	min-height: 40px;
+	line-height: 20px;
+	text-align: center;
+	margin: 0px auto;
+	background-color: #C9D9E8;
+	bottom: 0px;
+	width: 100%;
+	position: fixed;
+	color: #333;
+	font-size: 10px;
+}
+
+.th_created,
+.th_modified
+{
+	width: 140px;
+}
+.th_uf
+{
+	width: 50px;
+}
+.th_nome
+{
+	width: 400px;
+}
+
+.td_created,
+.td_modified,
+.td_uf
+{
+	text-align: center;
+}
+
+.msgOk
+{
+	background-color: green;
+}
+
+.divCampo
+{
+	/*background-color: #eee;*/
+	margin: 0px;
+	vertical-align: top;
+	line-height: 26px;
+	min-height: 26px;
+	height: auto;
+}
+
+#paginaId
+{
+	margin: 0px auto;
+	width: 800px;
+	-moz-border-radius: 6px;
+	-webkit-border-radius: 6px;
+	border-radius: 6px;
+	border: 1px solid #ccc;
+	padding: 5px;
+}
+#paginaId h1
+{
+	text-align: center;
+}
+
+#paginaId .labelClass
+{
+	display: block;
+	width: 120px;
+	text-align: right;
+	margin: 0px 5px 0px 0px;
+	float: left;
+	line-height: 26px;
+}
+
+#sqlDump
+{
+	position: absolute;
+	z-index: 1001;
+	background-color: #fff;
+	font-size: 10px;
+	font-family: arial;
+}
+
+#editar #subFormHBTM
+{
+	border-top: 1px solid #ccc;
+	padding: 10px 0px 0px 0px;
+	margin: 10px 0px 0px 0px;
+}
+
+#editar #subFormHBTM table th
+{
+	background-color: #CBDEEC;
+}
+
+#cab_escola
+{
+	color: #333;
+	position: absolute;
+	top: 38px;
+	right: 5px;
+}

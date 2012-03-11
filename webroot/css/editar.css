@@ -1,0 +1,108 @@
+#editar
+{
+	margin: 10px auto;
+	width: 90%;
+	min-height: 500px;
+}
+
+#editar #edicaoCampos .labelEdicao
+{
+	float: left;
+	display: block-inline;
+	min-width: 150px;
+	text-align: right;
+	font-weight: bold;
+	/*background-color: #ddd;*/
+}
+/*
+#editar #edicaoCampos select
+{
+	min-width: 30px;
+}*/
+
+#editar h2
+{
+	margin: 0px;
+	padding: 0px;
+	float: left;
+	line-height: 30px;
+	color: red;
+}
+#editar #erroSimNao
+{
+	line-height: 30px;
+	margin: 0px 0px 0px 10px;
+	float: left;
+}
+
+#editar #erroSimNao a
+{
+	color: #333;
+	font-weight: bold;
+	padding: 10px;
+}
+#editar #erroSimNao a:hover
+{
+	background-color: red;
+	-moz-border-radius: 6px;
+	-webkit-border-radius: 6px;
+	border-radius: 6px;
+}
+
+#edicaoErros
+{
+	background-color: #fff;
+	color: red;
+	padding: 5px;
+}
+
+.checkbox
+{
+	display: inline;
+}
+
+#editar #subForm
+{
+	font-size: 11px;
+	margin: 10px auto;
+}
+
+#editar .btSalvarSF
+{
+	width: 20px;
+	height: 20px;
+	background: #cacaca url('../img/bt_inserir.png') no-repeat 0px;
+}
+
+#editar .btExcluirSF
+{
+	width: 20px;
+	height: 20px;
+	background: #cacaca url('../img/bt_excluir.png') no-repeat 0px;
+}
+
+#editar #subForm table
+{
+	border-top: 1px solid #ccc;
+	border-bottom: 1px solid #ccc;
+	border-left: 1px solid #ccc;
+}
+#editar #subForm table tr td
+{
+	border-right: 1px solid #ccc;
+	border-top: 1px solid #ccc;
+	padding: 2px;
+}
+
+#editar #subForm table th
+{
+	background-color: #CBDEEC;
+}
+
+#editar .subFormTitulo
+{
+	font-size: 18px;
+	font-weight: bold;
+	padding: 5px 0px 5px 0px;
+	/*background-color: #eee;*/
+}

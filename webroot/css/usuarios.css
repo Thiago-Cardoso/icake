@@ -1,0 +1,86 @@
+#login,
+#login_botoes
+{
+	margin: 0px auto;
+	width: 400px;
+}
+#login
+{
+	margin-top: 50px;
+	border: 1px solid #ccc;
+	padding: 15px 5px 5px 5px;
+	-moz-border-radius: 6px;
+	-webkit-border-radius: 6px;
+	border-radius: 6px; 
+}
+
+#login label
+{
+	display: block-inline;
+	float: left;
+	min-width: 150px;
+	text-align: right;
+	margin: 0px 5px 0px 0px;
+	line-height: 24px;
+}
+
+#login input
+{
+	margin: 0px 0px 10px 0px;
+	width: 120px;
+}
+
+#login_botoes
+{
+	margin-top: 10px;
+	width: 100px;
+	text-align: center;
+}
+
+.loginOk
+{
+	color: green;
+}
+
+.loginErro
+{
+	color: red;
+}
+
+#info
+{
+	margin: 50px auto;
+	padding: 10px;
+	width: 800px;
+	border: 3px solid #ccc;
+	-moz-border-radius: 16px;
+	-webkit-border-radius: 16px;
+	border-radius: 16px;
+	background-color: #D2E2EF;
+	font-size: 14px;
+}
+
+#info .tit
+{
+	margin: 5px;
+	padding: 0px;
+	text-align: center;
+}
+#info h2
+{
+	margin: 15px;
+}
+
+#info label
+{
+	display: block-inline;
+	float: left;
+	width: 200px;
+	text-align: right;
+	margin: 0px 5px 0px 0px;
+}
+
+.td_trocar_senha
+{
+	text-align: center;
+}
