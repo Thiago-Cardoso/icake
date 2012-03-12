@@ -87,7 +87,7 @@ class FerramentasController extends AppController {
 		{
 			$dirCache	= APP . 'tmp' . DS . 'cache' . DS . 'models'. DS;
 			$ponteiro	= opendir($dirCache);
-			while ($nome_itens = readdir($ponteiro)) if (!in_array($nome_itens,array('.','..'))) unlink($dirCache.$nome_itens);
+			while ($nome_itens = readdir($ponteiro)) if (!in_array($nome_itens,array('.','..','vazio'))) unlink($dirCache.$nome_itens);
 		}
 
 		// Incluindo Model
@@ -227,7 +227,7 @@ class FerramentasController extends AppController {
 		{
 			$dirCache	= APP . 'tmp' . DS . 'cache' . DS . 'models'. DS;
 			$ponteiro	= opendir($dirCache);
-			while ($nome_itens = readdir($ponteiro)) if (!in_array($nome_itens,array('.','..'))) unlink($dirCache.$nome_itens);
+			while ($nome_itens = readdir($ponteiro)) if (!in_array($nome_itens,array('.','..','vazio'))) unlink($dirCache.$nome_itens);
 		}
 
 		// arquivo
@@ -295,7 +295,7 @@ class FerramentasController extends AppController {
 		{
 			$dirCache	= APP . 'tmp' . DS . 'cache' . DS . 'models'. DS;
 			$ponteiro	= opendir($dirCache);
-			while ($nome_itens = readdir($ponteiro)) if (!in_array($nome_itens,array('.','..'))) unlink($dirCache.$nome_itens);
+			while ($nome_itens = readdir($ponteiro)) if (!in_array($nome_itens,array('.','..','vazio'))) unlink($dirCache.$nome_itens);
 		}
 
 		// mandando bala se o csv existe

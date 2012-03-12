@@ -50,15 +50,19 @@ class AppController extends Controller {
 			if (!$this->Session->check('menus'))
 			{
 				$menus 		= array();
-				$ponteiro	= opendir(APP . DS .'Plugin' . DS);
-				while ($nome_dir = readdir($ponteiro))
-				if (!in_array($nome_dir,array('.','..')))
+				$dirPlugin	= APP . 'Plugin' . DS;
+				if (is_dir($dirPlugin))
 				{
-					$arq = APP . DS . 'Plugin' . DS . $nome_dir . DS . 'Config' . DS . 'menu.php';
-					if (file_exists($arq))
+					$ponteiro	= opendir($dirPlugin);
+					while ($nome_dir = readdir($ponteiro))
+					if (!in_array($nome_dir,array('.','..')))
 					{
-						require_once($arq);
-						array_push($menus,$menu);
+						$arq = $dirPlugin . DS . $nome_dir . DS . 'Config' . DS . 'menu.php';
+						if (file_exists($arq))
+						{
+							require_once($arq);
+							array_push($menus,$menu);
+						}
 					}
 				}
 				$this->Session->write('menus',$menus);
