@@ -9,22 +9,25 @@
 	if (!isset($edicaoCampos)) die('Você não definiu quais campos serão editados ...<br />Você deve criar o array $edicaoCampos = array("Model.campo1","Model.campo2"), dentro do arquivo editar.ctp<br />Veja os exemplo dentro de '. APP . 'View');
 	
 	// botões de ferramentas
-	if (!isset($botoes))
+	if (!isset($botoesOff))
 	{
 		if (!in_array('G',$this->Session->read('Usuario.Restricoes')) && in_array($this->action,array('editar','novo')))
 		{
-			if ($this->action=='editar')
+			if ($this->action=='editar' && !isset($botoes['0']['value']))
 			{
 				$botoes['0']['value'] 	= 'Novo';
 				$botoes['0']['class'] 	= 'botao';
 				$botoes['0']['onclick']= "document.location.href='".$url.'novo'."'";
 			}
 
-			$botoes['1']['value'] 	= 'Salvar';
-			$botoes['1']['class'] 	= 'botao';
-			$botoes['1']['onclick']= "javascript:edicaoForm.submit();";
+			if (!isset($botoes['1']['value']))
+			{
+				$botoes['1']['value'] 	= 'Salvar';
+				$botoes['1']['class'] 	= 'botao';
+				$botoes['1']['onclick']= "javascript:edicaoForm.submit();";
+			}
 			
-			if ($this->action=='editar')
+			if ($this->action=='editar' && !isset($botoes['2']['value']))
 			{
 				$botoes['2']['value'] 	= 'Excluir';
 				$botoes['2']['class'] 	= 'botao';
@@ -34,20 +37,29 @@
 		
 		if ($this->action=='editar')
 		{
-			$botoes['3']['value'] 	= 'Atualizar';
-			$botoes['3']['class'] 	= 'botao';
-			$botoes['3']['onclick']= "document.location.href='".$url.'editar/'.$id."'";
+			if (!isset($botoes['3']['value']))
+			{
+				$botoes['3']['value'] 	= 'Atualizar';
+				$botoes['3']['class'] 	= 'botao';
+				$botoes['3']['onclick']= "document.location.href='".$url.'editar/'.$id."'";
+			}
 
 			if (!in_array('I',$this->Session->read('Usuario.Restricoes')) && $this->action != 'imprimir')
 			{
-				$botoes['4']['value'] 	= 'Imprimir';
-				$botoes['4']['class'] 	= 'botao';
-				$botoes['4']['onclick']= "document.location.href='".$url.'imprimir/'.$id."'";
+				if (!isset($botoes['4']['value']))
+				{
+					$botoes['4']['value'] 	= 'Imprimir';
+					$botoes['4']['class'] 	= 'botao';
+					$botoes['4']['onclick']= "document.location.href='".$url.'imprimir/'.$id."'";
+				}
 			}
 		}
-		$botoes['9']['value'] 	= 'Fechar';
-		$botoes['9']['class'] 	= 'botao';
-		$botoes['9']['onclick']= "document.location.href='".$url."listar'";
+		if (!isset($botoes['9']['value']))
+		{
+			$botoes['9']['value'] 	= 'Fechar';
+			$botoes['9']['class'] 	= 'botao';
+			$botoes['9']['onclick']= "document.location.href='".$url."listar'";
+		}
 	}
 	
 ?>
