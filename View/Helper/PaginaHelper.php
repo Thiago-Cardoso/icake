@@ -118,7 +118,44 @@ class PaginaHelper extends AppHelper {
 
 		// incluindo formulário de edição
 		$subForm .= '<table class="sbTable" id="sbTable'.$nome.'" border="0" cellspacing="0" cellpadding="0">';
-		
+
+		// incluindo select
+		if (!in_array($sb['action'],array('imprimir','excluir')) )
+		{
+			$subForm .= '<tr>';
+			foreach($sb['campos_edicao'] as $_campo)
+			{
+				// quebrando o nome do campo
+				$a		= explode('.',$_campo);
+				$cmp	= isset($sb['campos'][$a['0']][$a['1']]) ? $sb['campos'][$a['0']][$a['1']] : array();
+
+				// opções padrão
+				$cmp['input']['empty'] 	= isset($cmp['input']['empty']) ? $cmp['input']['empty'] : ' -- Escolha um '.$a['0'].' --';
+				$cmp['input']['format'] = array('input');
+				$cmp['input']['div'] 	= null;
+
+				// definindo o type
+				$cmp['input']['type']	= isset($cmp['input']['type']) ? $cmp['input']['type'] : 'text';
+				if (isset($cmp['input']['options']) && isset($sb['data'])) // mas sem option, então vira select
+				{
+					$cmp['input']['type'] = 'select';
+					foreach($sb['data'] as $_linha => $_arrCampos) unset($cmp['input']['options'][$_arrCampos['id']]);
+				}
+
+				$subForm .= "\t".'<td align="center" ';
+				if (isset($cmp['td'])) foreach($cmp['td'] as $_tag => $_valor) $subForm .= " $tag='$_valor' ";
+				$subForm .= '>'.$this->Form->input($a['0'].'.'.$a['0'].'.0',$cmp['input']);
+				$subForm .= '</td>'."\n";
+			}
+			if (!in_array($sb['action'],array('imprimir','excluir'))) // ferramentas
+			{
+				$subForm .= '<td colspan="'.$totF.'">';
+				$subForm .= $this->Form->button('*',array('class'=>'btSalvarSF','type'=>'submit'));
+				$subForm .= '</td>'."\n";
+			}
+			$subForm .= '</tr>'."\n";
+		}
+
 		// incluindo cabeçalho
 		$subForm .= '<tr>';
 		foreach($sb['campos_edicao'] as $_campo)
@@ -172,43 +209,6 @@ class PaginaHelper extends AppHelper {
 				$subForm .= '</tr>';
 				$l++;
 			}
-		}
-		
-		// incluindo select
-		if (!in_array($sb['action'],array('imprimir','excluir')) )
-		{
-			$subForm .= '<tr>';
-			foreach($sb['campos_edicao'] as $_campo)
-			{
-				// quebrando o nome do campo
-				$a		= explode('.',$_campo);
-				$cmp	= isset($sb['campos'][$a['0']][$a['1']]) ? $sb['campos'][$a['0']][$a['1']] : array();
-
-				// opções padrão
-				$cmp['input']['empty'] 	= isset($cmp['input']['empty']) ? $cmp['input']['empty'] : ' -- Escolha um '.$a['0'].' --';
-				$cmp['input']['format'] = array('input');
-				$cmp['input']['div'] 	= null;
-
-				// definindo o type
-				$cmp['input']['type']	= isset($cmp['input']['type']) ? $cmp['input']['type'] : 'text';
-				if (isset($cmp['input']['options']) && isset($sb['data'])) // mas sem option, então vira select
-				{
-					$cmp['input']['type'] = 'select';
-					foreach($sb['data'] as $_linha => $_arrCampos) unset($cmp['input']['options'][$_arrCampos['id']]);
-				}
-
-				$subForm .= "\t".'<td align="center" ';
-				if (isset($cmp['td'])) foreach($cmp['td'] as $_tag => $_valor) $subForm .= " $tag='$_valor' ";
-				$subForm .= '>'.$this->Form->input($a['0'].'.'.$a['0'].'.0',$cmp['input']);
-				$subForm .= '</td>'."\n";
-			}
-			if (!in_array($sb['action'],array('imprimir','excluir'))) // ferramentas
-			{
-				$subForm .= '<td colspan="'.$totF.'">';
-				$subForm .= $this->Form->button('*',array('class'=>'btSalvarSF','type'=>'submit'));
-				$subForm .= '</td>'."\n";
-			}
-			$subForm .= '</tr>'."\n";
 		}
 
 		$subForm .= '</table>'."\n";
