@@ -13,21 +13,21 @@
 	{
 		if (!in_array('G',$this->Session->read('Usuario.Restricoes')) && in_array($this->action,array('editar','novo')))
 		{
-			if ($this->action=='editar' && !isset($botoes['0']['value']))
+			if ($this->action=='editar' && !isset($botoes['0']))
 			{
 				$botoes['0']['value'] 	= 'Novo';
 				$botoes['0']['class'] 	= 'botao';
 				$botoes['0']['onclick']= "document.location.href='".$url.'novo'."'";
 			}
 
-			if (!isset($botoes['1']['value']))
+			if (!isset($botoes['1']))
 			{
 				$botoes['1']['value'] 	= 'Salvar';
 				$botoes['1']['class'] 	= 'botao';
 				$botoes['1']['onclick']= "javascript:edicaoForm.submit();";
 			}
 			
-			if ($this->action=='editar' && !isset($botoes['2']['value']))
+			if ($this->action=='editar' && !isset($botoes['2']))
 			{
 				$botoes['2']['value'] 	= 'Excluir';
 				$botoes['2']['class'] 	= 'botao';
@@ -37,7 +37,7 @@
 		
 		if ($this->action=='editar')
 		{
-			if (!isset($botoes['3']['value']))
+			if (!isset($botoes['3']))
 			{
 				$botoes['3']['value'] 	= 'Atualizar';
 				$botoes['3']['class'] 	= 'botao';
@@ -46,7 +46,7 @@
 
 			if (!in_array('I',$this->Session->read('Usuario.Restricoes')) && $this->action != 'imprimir')
 			{
-				if (!isset($botoes['4']['value']))
+				if (!isset($botoes['4']))
 				{
 					$botoes['4']['value'] 	= 'Imprimir';
 					$botoes['4']['class'] 	= 'botao';
@@ -54,7 +54,7 @@
 				}
 			}
 		}
-		if (!isset($botoes['9']['value']))
+		if (!isset($botoes['9']))
 		{
 			$botoes['9']['value'] 	= 'Fechar';
 			$botoes['9']['class'] 	= 'botao';

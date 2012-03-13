@@ -22,7 +22,10 @@ Clique em <strong>enviar</strong> para executar a instalação da aplicação ex
 <br /><br />
 
 <div id='enviar'>
-<center><?php echo $this->Form->end('Enviar'); ?></center>
+	<center>
+		<input type='submit' name='btEnviar' value='Enviar' onclick='javascript: $("#instala").fadeOut(); $("#msg").fadeIn();' />
+	</center>
 </div>
 
 </div>
+<div id='msg' style='text-decoration: blink; display: none; text-align: center; margin: 50px auto; width: 500px;'>*** AGUARDE ***</div>
