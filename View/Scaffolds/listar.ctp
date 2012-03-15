@@ -154,7 +154,7 @@
 
 <!-- RODAPÉ DA LISTA -->
 <div id='tableRodape'>
-	Página: <?= $paginacao['page'] ?> de <?= $paginacao['pageCount'] ?>
+	Total: <?= number_format($paginacao['count'],0,',','.') ?> Página: <?= $paginacao['page'] ?> de <?= $paginacao['pageCount'] ?>
 
 </div>
 
