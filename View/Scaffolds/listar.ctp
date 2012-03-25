@@ -18,28 +18,28 @@
 	}
 
 	// botões de ferramentas
-	if (!isset($ferramentas))
+	if (!isset($botoesFerramentasOff))
 	{
-		if (!in_array('G',$this->Session->read('Usuario.Restricoes')))
+		if (!isset($ferramentas['0']) && !in_array('G',$this->Session->read('Usuario.Restricoes')))
 		{
 			$ferramentas['0']['link'] 	= $url.'editar/{id}';
 			$ferramentas['0']['img'] 	= 'bt_editar.png';
 			$ferramentas['0']['title']	= 'Clique aqui para editar ...';
 		}
-		if (!in_array('I',$this->Session->read('Usuario.Restricoes')))
+		if (!isset($ferramentas['1']) &&!in_array('I',$this->Session->read('Usuario.Restricoes')))
 		{
 			$ferramentas['1']['link'] 	= $url.'imprimir/{id}';
 			$ferramentas['1']['img'] 	= 'bt_imprimir.png';
 			$ferramentas['1']['title']	= 'Clique aqui para imprimir ...';
 		}
-		if (!in_array('G',$this->Session->read('Usuario.Restricoes')))
+		if (!isset($ferramentas['2']) &&!in_array('G',$this->Session->read('Usuario.Restricoes')))
 		{
 			$ferramentas['2']['link'] 	= $url.'excluir/{id}';
 			$ferramentas['2']['img'] 	= 'bt_excluir.png';
 			$ferramentas['2']['title']	= 'Clique aqui para excluir ...';
 		}
 	}
-
+	if (isset($ferramentas)) asort($ferramentas);
 ?>
 <div id='lista'>
 
@@ -58,6 +58,9 @@
 
 	<!-- botões -->
 	<?php if (isset($botoes)) echo $this->element('botoes',array('botoes'=>$botoes)); ?>
+
+	<!-- mensagens -->
+	<?php if (isset($listaMsg)) echo '<div id="listaMsg">'.$listaMsg.'</div>'; ?>
 
 	<?php if (!in_array('G',$this->Session->read('Usuario.Restricoes'))) : ?>
 	<!-- pesquisa -->
@@ -134,12 +137,18 @@
 <!-- FERRAMENTAS -->
 <?php if (isset($ferramentas)) : ?>
 <?php foreach($ferramentas as $_item => $_arrProp) :  ?>
-<?php if (!isset($off[$_item][$id])) : ?>
+<?php if (!isset($off[$_item][$id]) ) : ?>
+<?php if (isset($_arrProp['link']) && isset($_arrProp['img'])) : ?>
 <td>
 	<a href='<?= str_replace('{id}',$id,$_arrProp['link']) ?>' <?= (isset($_arrProp['title'])?'title="'.$_arrProp['title'].'"':null) ?> >
+	<?php if (!strpos($_arrProp['img'],'ttp://')) : ?>
 	<img src='<?= Router::url('/',true).'img/'.$_arrProp['img'] ?>' border='0px' />
+	<?php else : ?>
+	<img src='<?= $_arrProp['img'] ?>' border='0px' />
+	<?php endif ?>
 	</a>
 </td>
+<?php endif ?>
 <? else : ?>
 <td align='center'><img src='<?= Router::url('/',true).'img/bt_excluir_off.png' ?>' border='0px' /></td>
 <?php endif ?>
@@ -154,8 +163,7 @@
 
 <!-- RODAPÉ DA LISTA -->
 <div id='tableRodape'>
-	Total: <?= number_format($paginacao['count'],0,',','.') ?> Página: <?= $paginacao['page'] ?> de <?= $paginacao['pageCount'] ?>
-
+	Total: <?= number_format($paginacao['count'],0,',','.') ?> - Página: <?= $paginacao['page'] ?> de <?= $paginacao['pageCount'] ?>
 </div>
 
 </div>
@@ -167,7 +175,7 @@
 //debug($schema);
 //echo '<br /><br /><br /><br /><br /><br />';
 //debug($this->Session->read('Usuario'));
-//debug($this->data);
+//debug($this->viewVars['paginacao']);
 //debug($camposPesquisa);
 ?>
 

@@ -54,11 +54,11 @@
 				}
 			}
 		}
-		if (!isset($botoes['9']))
+		if (!isset($botoes['15']))
 		{
-			$botoes['9']['value'] 	= 'Fechar';
-			$botoes['9']['class'] 	= 'botao';
-			$botoes['9']['onclick']= "document.location.href='".$url."listar'";
+			$botoes['15']['value'] 	= 'Fechar';
+			$botoes['15']['class'] 	= 'botao';
+			$botoes['15']['onclick']= "document.location.href='".$url."listar'";
 		}
 	}
 	

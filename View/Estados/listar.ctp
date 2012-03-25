@@ -6,7 +6,7 @@
 	$campos['Estado']['nome']['tit'] = 'Estado';
 
 	$botoes['0'] 		= array();
-	$ferramentas		= array();
+	$ferramentas['2']	= '';
 
 	require_once('../View/Scaffolds/listar.ctp');
 ?>

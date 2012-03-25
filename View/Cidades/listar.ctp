@@ -5,8 +5,8 @@
 	$campos['Cidade']['nome']['tit'] 	= 'Nome';
 	$campos['Estado']['uf']['tit'] 		= 'Estado';
 
-	$botoes			= array();
-	$ferramentas	= array();
+	$botoes['0'] 		= array();
+	$ferramentas['2']	= '';
 
 	require_once('../View/Scaffolds/listar.ctp');
 ?>
