@@ -4,3 +4,9 @@
 	de configuração, atualmente está sendo escrito direto em APP/View/Elements/menu.ctp
 
 - Criar JS para validar os campos no formulário de edição com base na validações do model.
+
+- Melhorar o schema de tabelas do postgreSQL, acontece que o schema da tabela não está vindo com o campo KEY
+	Isso é ruim pois a indexação da paginação não funciona sem o campo key, como acontece beleza no mysql.
+	
+- Resolver problema de acentuação no postgreSQL, a busca não funciona como no mysql, ver mais detalhes no post 
+	do google groups https://groups.google.com/forum/?hl=pt-BR&fromgroups#!topic/cakephp-pt/QPtgcaHcKmA
