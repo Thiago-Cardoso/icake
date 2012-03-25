@@ -197,7 +197,7 @@ class UsuariosController extends AppController {
 					$arrPer = array();
 
 					// atualizando dados do usuário
-					$this->Usuario->updateAll(array('Usuario.acessos'=>$arrUsu['acessos'],'Usuario.ultimo_acesso'=>'"'.date('Y-m-d H:i:s').'"'),array('Usuario.id'=>$arrUsu['id']));
+					$this->Usuario->updateAll(array('Usuario.acessos'=>$arrUsu['acessos'],'Usuario.ultimo_acesso'=>"'".date('Y-m-d H:i:s')."'"),array('Usuario.id'=>$arrUsu['id']));
 
 					// se tem que trocar a senha
 					if ($dataUsuario[0]['Usuario']['trocar_senha'])

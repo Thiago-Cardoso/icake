@@ -6,9 +6,9 @@
 
 	<select name='slPesquisa' id='slPesquisa'>
 		<?php foreach($camposPesquisa as $_campo) : $arrCmp = explode('.',$_campo) ?>
-		<?php if (isset($schema[$arrCmp['0']][$arrCmp['1']]['key']) && $arrCmp['1']!='id') : ?>
+		<?php //if (isset($schema[$arrCmp['0']][$arrCmp['1']]['key']) && $arrCmp['1']!='id') : ?>
 		<option value='<?= $arrCmp['1'] ?>'><?= ucfirst($arrCmp['1']) ?></option>
-		<?php endif ?>
+		<?php //endif ?>
 		<?php endforeach ?>
 	</select>
 

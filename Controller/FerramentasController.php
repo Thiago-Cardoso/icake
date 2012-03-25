@@ -118,12 +118,14 @@ class FerramentasController extends AppController {
 				include_once(APP . DS . 'Config' . DS . 'database.php');
 				$dbConf = new DATABASE_CONFIG();
 			}
-			$bd 	= $dbConf->default;
-			$banco 	= $bd['database'];
-			$login	= $bd['login'];
-			$senha	= $bd['password'];
-			$host	= $bd['host'];
-			$this->set(compact('banco','login','senha','host'));
+			$bd 			= $dbConf->default;
+			$banco 			= $bd['database'];
+			$login			= $bd['login'];
+			$senha			= $bd['password'];
+			$host			= $bd['host'];
+			$data_source	= $bd['datasource'];
+			$encoding		= $bd['encoding'];
+			$this->set(compact('banco','login','senha','host','data_source','encoding'));
 		}
 	}
 
@@ -159,8 +161,14 @@ class FerramentasController extends AppController {
 			$senha2	= isset($this->data['Ferramenta']['senha2']) ? $this->data['Ferramenta']['senha2'] : '';
 			if (!empty($nome) && !empty($login) && !empty($senha) && !empty($email) && ($senha==$senha2) )
 			{
-				//$res = $this->getInstalaTb();
-				$res = $this->getInstalaSql(APP . DS . 'Docs' . DS . 'Sql' . DS, 'icake');
+				$arqSql = 'icake';
+				if ($bd->config['datasource'] != 'Database/Mysql')
+				{
+					$t = strtolower(str_replace('Database/','',$bd->config['datasource']));
+					$arqSql .= '_'.$t;
+				}
+
+				$res = $this->getInstalaSql(APP . 'Docs' . DS . 'Sql' . DS, $arqSql);
 				if ($res)
 				{
 					/*App::uses('Security', 'Utility');
@@ -288,7 +296,7 @@ class FerramentasController extends AppController {
 	 * @parameter	$db		object	Instancia de banco de dados
 	 * @return		boolean
 	 */
-	private function setPopulaTabela($arq='',$tabela='',$db=null)
+	private function setPopulaTabela($arq='',$tabela='',$bd=null)
 	{
 		// limpando o cache model na marra
 		if(!in_array(strtolower(PHP_OS),array('winnt','windows','win','w')))
@@ -298,6 +306,10 @@ class FerramentasController extends AppController {
 			while ($nome_itens = readdir($ponteiro)) if (!in_array($nome_itens,array('.','..','vazio'))) unlink($dirCache.$nome_itens);
 		}
 
+		// importando o database pra saber com qual banco estamos lidando.
+/*		App::uses('ConnectionManager', 'Model');
+		$bd = ConnectionManager::getDataSource('default');
+*/
 		// mandando bala se o csv existe
 		if (file_exists($arq))
 		{
@@ -330,6 +342,7 @@ class FerramentasController extends AppController {
 					foreach($linha as $valor)
 					{
 						if ($arr_campos[$i]=='created' || $arr_campos[$i]=='modified') $valor = date("Y-m-d H:i:s");
+						$valor = str_replace("'",'',$valor);
 						$valores .= "'".str_replace("'","\'",$valor)."'";
 						$i++;
 						if ($i!=$t) $valores .= ',';
@@ -348,18 +361,40 @@ class FerramentasController extends AppController {
 			fclose($handle);
 
 			// verificando se a tabela possui created e modified
-			try
+			if ($bd->config['datasource'] == 'Database/Mysql')
 			{
-				$res = $this->Ferramenta->query('SHOW FULL COLUMNS FROM '.$tabela, $cachequeries=false);
-			} catch (exception $ex)
-			{
-				die('erro ao executar: recuperar lista de tabelas<br />'.$ex->getMessage());
+				try
+				{
+					$res = $this->Ferramenta->query('SHOW FULL COLUMNS FROM '.$tabela, $cachequeries=false);
+
+				} catch (exception $ex)
+				{
+					die('erro ao executar: recuperar lista de tabelas<br />'.$ex->getMessage());
+				}
+				foreach($res as $_linha => $_arrColunas)
+				{
+					if ($_arrColunas['COLUMNS']['Field']=='modified')	array_push($cmps,'modified');
+					if ($_arrColunas['COLUMNS']['Field']=='created')	array_push($cmps,'created');
+				}
 			}
-			foreach($res as $_linha => $_arrColunas)
+			
+			if ($bd->config['datasource'] == 'Database/Postgres')
 			{
-				if ($_arrColunas['COLUMNS']['Field']=='modified')	array_push($cmps,'modified');
-				if ($_arrColunas['COLUMNS']['Field']=='created')	array_push($cmps,'created');
+				try
+				{
+					$res = $this->Ferramenta->query('SELECT column_name FROM information_schema.columns WHERE table_name =\''.$tabela.'\'', $cachequeries=false);
+				} catch (exception $ex)
+				{
+					echo '<pre>'.print_r($ex,true).'</pre>';
+					die('erro ao executar: recuperar lista de tabelas<br />'.$ex->getMessage());
+				}
+				foreach($res as $_linha => $_arrColunas)
+				{
+					if ($_arrColunas['0']['column_name']=='modified')	array_push($cmps,'modified');
+					if ($_arrColunas['0']['column_name']=='created')	array_push($cmps,'created');
+				}
 			}
+			
 			if (count($cmps))
 			{
 				$sql = '';

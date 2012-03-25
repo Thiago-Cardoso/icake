@@ -7,7 +7,7 @@ autor: Adriano Carneiro de Moura - adrianodemoura@gmail.com
 
 Tecnologia: 
 - framework cakePHP
-- banco de dados Mysql
+- banco de dados Mysql OU PostgreSQL (escolha na configuração do banco de dados, APP/Config/database.php)
 - jQuery
 
 * Recomendável Sistema Operacional GNU/Linux.
