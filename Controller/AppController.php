@@ -493,7 +493,7 @@ class AppController extends Controller {
 		$pluralHumanName 								= Inflector::humanize(Inflector::underscore($this->name));
 		$modelClass 									= $this->modelClass;
 		$id												= isset($this->modelClass->primaryKey) ? $this->modelClass->primaryKey : 'id';
-		if (!empty($campo)) $parametros['conditions'] 	= $campo.' like "%'.$texto.'%"';
+		if (!empty($campo)) $parametros['conditions'] 	= $campo." like '%$texto%'";
 		if (!empty($campo)) $parametros['order'] 		= $campo;
 		if (!empty($campo)) $parametros['limit'] 		= 20;
 		$parametros['fields'] 							= array($id,$campo);
