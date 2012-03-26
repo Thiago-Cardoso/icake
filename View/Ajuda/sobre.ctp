@@ -7,7 +7,8 @@ autor: Adriano Carneiro de Moura - adrianodemoura@gmail.com
 
 Tecnologia: 
 - framework cakePHP
-- banco de dados Mysql OU PostgreSQL (escolha na configuração do banco de dados, APP/Config/database.php)
+- banco de dados <strong><?= $this->Session->read('Banco').'</strong>.'; ?>
+
 - jQuery
 
 * Recomendável Sistema Operacional GNU/Linux.

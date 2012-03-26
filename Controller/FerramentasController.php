@@ -136,7 +136,6 @@ class FerramentasController extends AppController {
 	 */
 	public function erro()
 	{
-		echo '<pre>fudeu !!!</pre>';
 	}
 
 	/**

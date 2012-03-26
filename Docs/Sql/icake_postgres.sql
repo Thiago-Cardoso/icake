@@ -8,7 +8,7 @@ CREATE TABLE estados
 	modified 		TIMESTAMP 	NOT NULL DEFAULT current_timestamp,
 	PRIMARY KEY (id)
 );
-CREATE INDEX i_estados_nome ON estados(nome);
+CREATE INDEX i_estados_nome ON estados(unaccent(lower(nome)));
 
 DROP TABLE IF EXISTS cidades CASCADE;
 CREATE TABLE cidades
@@ -20,7 +20,7 @@ CREATE TABLE cidades
 	modified 	TIMESTAMP 	NOT NULL DEFAULT current_timestamp,
 	PRIMARY KEY (id) 
 );
-CREATE INDEX i_cidades_nome ON cidades(nome);
+CREATE INDEX i_cidades_nome ON cidades(unaccent(lower(nome)));
 
 DROP TABLE IF EXISTS usuarios CASCADE;
 CREATE TABLE usuarios 

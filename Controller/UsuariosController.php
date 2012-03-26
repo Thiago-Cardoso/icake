@@ -209,6 +209,12 @@ class UsuariosController extends AppController {
 						$this->Session->setFlash('Usuário autenticado com sucesso !!!','default', array('class'=>'msgOk'));
 					}
 
+					// descobrindo qual é o banco de dados e jogando seu nome na sessão.
+					include_once(APP . DS . 'Config' . DS . 'database.php');
+					$dbConf 	= new DATABASE_CONFIG();
+					$bd 		= $dbConf->default;
+					$this->Session->write('Banco',strtolower(str_replace('Database/','',$bd['datasource'])));
+
 					// redirecionando para tela de informações
 					$this->redirect('info');exit();
 				} elseif(empty($msg)) $msg = 'Login ou senha inválidos !!!';

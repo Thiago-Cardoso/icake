@@ -489,17 +489,37 @@ class AppController extends Controller {
 		$url 			= Router::url('/',true);
 		if (!empty($this->request->params['plugin'])) $url .= $this->request->params['plugin'].'/';
 
+		// descobrindo o banco de dados
+		$banco = $this->Session->check('Banco') ? $this->Session->read('Banco') : 'mysql';
+
+		//
 		$parametros										= array();
 		$pluralHumanName 								= Inflector::humanize(Inflector::underscore($this->name));
 		$modelClass 									= $this->modelClass;
 		$id												= isset($this->modelClass->primaryKey) ? $this->modelClass->primaryKey : 'id';
-		if (!empty($campo)) $parametros['conditions'] 	= $campo." like '%$texto%'";
+		
+		// montando o like conforme o banco de dados
+		switch($banco)
+		{
+			case 'postgres':
+				if (!empty($campo)) $parametros['conditions'] 	= "unaccent(lower($campo)) like '%'||unaccent('".mb_strtolower($texto,'UTF8')."')||'%'";
+				break;
+			default:
+				if (!empty($campo)) $parametros['conditions'] 	= $campo." like '%$texto%'";
+		}
+		
+		// configurando ordem, limite e campos que serão retornados
 		if (!empty($campo)) $parametros['order'] 		= $campo;
 		if (!empty($campo)) $parametros['limit'] 		= 20;
 		$parametros['fields'] 							= array($id,$campo);
+		
+		// executa a pesquisa
 		$pesquisa 										= $this->$modelClass->find('list',$parametros);
 
+		// jogando o campo na sessão, assim posso voltar aqui mesmo.
 		$this->Session->write('campoPesquisa'.$this->name,$campo);
+		
+		// atualizando a view, para formatar o resultado
 		$this->set('link',$url.mb_strtolower(str_replace(' ','_',$pluralHumanName)).'/'.$action);
 		$this->set('pesquisa',$pesquisa);
 	}
