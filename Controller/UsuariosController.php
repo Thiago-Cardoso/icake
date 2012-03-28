@@ -93,12 +93,10 @@ class UsuariosController extends AppController {
 	 */
 	public function sair()
 	{
-		$this->Usuario->updateAll
-		(
-			array(
-				'Usuario.online'=>'0',
-				),array('Usuario.id'=>$this->Session->check('Usuario.id'))
-		);
+		if (!$this->Usuario->updateAll(array('Usuario.online'=>'0',),array('Usuario.id'=>$this->Session->read('Usuario.id'))))
+		{
+			die('Erro ao tornar status do usuário off-line');
+		}
 		$this->Session->destroy();
 		$this->Session->destroy();
 		$this->redirect('/');
