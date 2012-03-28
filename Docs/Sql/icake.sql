@@ -73,15 +73,17 @@ CREATE  TABLE IF NOT EXISTS `usuarios` (
   `id` INT NOT NULL AUTO_INCREMENT ,
   `login` VARCHAR(45) NOT NULL ,
   `senha` VARCHAR(45) NOT NULL ,
-  `created` DATETIME NOT NULL ,
-  `modified` DATETIME NOT NULL ,
   `ativo` TINYINT(1) NOT NULL DEFAULT true ,
   `nome` VARCHAR(60) NOT NULL ,
   `email` VARCHAR(45) NOT NULL ,
   `celular` VARCHAR(13) NOT NULL ,
-  `ultimo_acesso` DATETIME NOT NULL ,
   `acessos` INT NOT NULL DEFAULT 0 ,
   `trocar_senha` TINYINT(1) NOT NULL DEFAULT false ,
+  `ultimo_acesso` DATETIME NOT NULL ,
+  `modified` DATETIME NOT NULL ,
+  `created` DATETIME NOT NULL ,
+  `ultimo_click` DATETIME NOT NULL ,
+  `online` TINYINT(1) NOT NULL DEFAULT false ,
   `cidade_id` INT NOT NULL DEFAULT 2302 ,
   `estado_id` INT NOT NULL DEFAULT 1 ,
   PRIMARY KEY (`id`) ,
@@ -92,7 +94,9 @@ CREATE  TABLE IF NOT EXISTS `usuarios` (
   INDEX `i_ultimo_acesso` (`ultimo_acesso` ASC) ,
   INDEX `i_acessos` (`acessos` ASC) ,
   INDEX `fk_usuarios_cidades1` (`cidade_id` ASC) ,
-  INDEX `fk_usuarios_estados1` (`estado_id` ASC) )
+  INDEX `fk_usuarios_estados1` (`estado_id` ASC) ,
+  INDEX `i_ultimo_click` (`ultimo_click` ASC) ,
+  INDEX `i_online` (`online` ASC) )
 ENGINE = MyISAM;
 
 

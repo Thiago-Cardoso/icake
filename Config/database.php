@@ -52,7 +52,7 @@ class DATABASE_CONFIG {
 	 */
 	public function __construct()
 	{
-		//$this->default = $this->mysql;
-		$this->default = $this->postgre;
+		$this->default = $this->mysql;
+		//$this->default = $this->postgre;
 	}
 }

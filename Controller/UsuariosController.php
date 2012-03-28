@@ -86,12 +86,19 @@ class UsuariosController extends AppController {
 	}
 
 	/**
+	 * Muda o status de online e 
 	 * Executa o logOut da sistema
 	 * 
 	 * @return void
 	 */
 	public function sair()
 	{
+		$this->Usuario->updateAll
+		(
+			array(
+				'Usuario.online'=>'0',
+				),array('Usuario.id'=>$this->Session->check('Usuario.id'))
+		);
 		$this->Session->destroy();
 		$this->Session->destroy();
 		$this->redirect('/');
@@ -146,11 +153,30 @@ class UsuariosController extends AppController {
 						die();
 					}
 				}
+				
+				// se está configurando os status do usuários e ele talvez esteja online, verifica pela data
+				$limite = Configure::read('ONLINE');
+				if ($limite && $dataUsuario[0]['Usuario']['online'])
+				{
+					$agora 					= mktime();
+					$data					= $dataUsuario[0]['Usuario']['ultimo_click'];
+					list($ano,$mes,$dia)	= explode("-",$data); // separamos as partes da data 
+					list($dia,$hora)		= explode(" ",$dia);
+					list($hora,$min,$seg)	= explode(":",$hora); // transformamos a data do banco em segundos usando a função mktime()
+					$ultimoClick			= mktime($hora,$min,$seg,$mes,$dia,$ano);
+					$diferenca				= $agora - $ultimoClick;
+					$minutos				= $diferenca/60;
+					$horas					= $diferenca/3600;
+					$dias					= $diferenca/86400;
+					
+					if ($minutos<=5) $msg = 'O Usuário '.$dataUsuario[0]['Usuario']['nome'].' já está logado !!!';
+				}
+				
 				if (isset($dataUsuario[0]['Usuario']['ativo']) && !$dataUsuario[0]['Usuario']['ativo'])
 				{
 					$msg = 'Usuário desativado !!!';
 				}
-				if (isset($dataUsuario[0]['Usuario']['ativo']) && $dataUsuario[0]['Usuario']['ativo'])
+				if (empty($msg) && isset($dataUsuario[0]['Usuario']['ativo']) && $dataUsuario[0]['Usuario']['ativo'])
 				{
 					// recuperando os dados do usuário e jogando na sessão
 					$arrUsu['id']  		= $dataUsuario[0]['Usuario']['id'];
@@ -197,7 +223,13 @@ class UsuariosController extends AppController {
 					$arrPer = array();
 
 					// atualizando dados do usuário
-					$this->Usuario->updateAll(array('Usuario.acessos'=>$arrUsu['acessos'],'Usuario.ultimo_acesso'=>"'".date('Y-m-d H:i:s')."'"),array('Usuario.id'=>$arrUsu['id']));
+					$this->Usuario->updateAll(
+					array(
+						'Usuario.acessos'=>$arrUsu['acessos'],
+						'Usuario.ultimo_acesso'=>"'".date('Y-m-d H:i:s')."'",
+						'Usuario.ultimo_click'=>"'".date('Y-m-d H:i:s')."'",
+						'Usuario.online'=>'1',
+						),array('Usuario.id'=>$arrUsu['id']));
 
 					// se tem que trocar a senha
 					if ($dataUsuario[0]['Usuario']['trocar_senha'])

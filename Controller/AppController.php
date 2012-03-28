@@ -47,6 +47,7 @@ class AppController extends Controller {
 		// se está logado vamos configurar o menu
 		if ($this->Session->check('Usuario.id'))
 		{
+			// vamos configurar o menu e jogar na sessão
 			if (!$this->Session->check('menus'))
 			{
 				$menus 		= array();
@@ -67,6 +68,25 @@ class AppController extends Controller {
 				}
 				$this->Session->write('menus',$menus);
 			}
+			
+			// vamos atualizar o status de online, caso o core esteja configura para tal
+			$online = Configure::read('ONLINE');
+			if ($online)
+			{
+				$this->loadModel('Usuario');
+				$Usuario = new Usuario();
+				$Usuario->belongsTo = array();
+				$Usuario->hasAndBelongsToMany = array();
+				$Usuario->updateAll
+				(
+					array(
+						'Usuario.ultimo_click'=>"'".date('Y-m-d H:i:s')."'",
+						'Usuario.online'=>'1',
+						),array('Usuario.id'=>$this->Session->read('Usuario.id'))
+				);
+				unset($Usuario);
+			}
+			
 		}
 
 		// jogando as variáveis de ambiente na view

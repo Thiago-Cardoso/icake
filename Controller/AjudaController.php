@@ -32,6 +32,21 @@ class AjudaController extends AppController {
 		$pagina 		= 'pag';
 		$arrParams 		= func_get_args();
 		$pagina 		= $arrParams['0'];
+		if ($pagina=='online') $this->onLine();
 		$this->render($pagina);
+	}
+
+	/**
+	 * Exibe a tela com usuários online
+	 */
+	public function onLine()
+	{
+		$this->loadModel('Usuario');
+		$Usuario = new Usuario();
+		$Usuario->belongsTo = array();
+		$Usuario->hasAndBelongsToMany = array();
+		$online = Configure::read('ONLINE');
+		$usuarios = $Usuario->find('list',array('conditions'=>array('Usuario.online=true','Usuario.ultimo_click>DATE_SUB(NOW(), INTERVAL '.$online.' MINUTE)')));
+		$this->set(compact('usuarios'));
 	}
 }

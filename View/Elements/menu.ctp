@@ -101,6 +101,8 @@
 			<li id="submenu-<?= $l+1 ?>" class="submenu"><a href="<?= Router::url('/',true).'ajuda/restricoes' ?>">Restrições</a></li>
 			<li id="submenu-<?= $l+2 ?>" class="submenu"><a href="<?= Router::url('/',true).'ajuda/perfis' ?>">Perfis</a></li>
 			<li><div class='hr'><hr></div></li>
+			<li id="submenu-<?= $l+3 ?>" class="submenu"><a href="<?= Router::url('/',true).'ajuda/online' ?>">Usuários on-line</a></li>
+			<li><div class='hr'><hr></div></li>
 			<li id="submenu-<?= $l+4 ?>" class="submenu"><a href="<?= Router::url('/',true).'ajuda/sobre' ?>">Sobre o <?= Configure::read('SISTEMA') ?></a></li>
 		</ul>
 	</li>

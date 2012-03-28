@@ -35,6 +35,11 @@ Configure::write('SIGLA','iCake');
 Configure::write('RESTRICOES',array('F'=>'Ferramentas', 'G'=>'Gravar', 'I'=>'Imprimir'));
 
 /**
+ * Tempo em que o usuário fica oline, se setar como zero, o sistema não vai atualizar o status.
+ */
+Configure::write('ONLINE','5');
+
+/**
  * CakePHP Debug Level:
  *
  * Production Mode:
