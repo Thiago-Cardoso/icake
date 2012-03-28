@@ -413,4 +413,42 @@ class FerramentasController extends AppController {
 
 		return true;
 	}
+
+	/**
+	 * Exibe a de instalação de um plugin
+	 * 
+	 * @return void
+	 */
+	public function instalar_plugin()
+	{
+		if ($this->data)
+		{
+			//debug($this->data);
+			$msg = '';
+			switch($this->data['Ferramenta']['tipo'])
+			{
+				case 'instalarPlugin':
+					if (!$this->getInstalaPlugin($this->data['plugin']))
+					{
+						$msg = $this->erroPlugin;
+					}
+					break;
+			}
+			$this->set(compact('msg'));
+		}
+		
+		// se enviou o nome do plugin a ser instalado
+		if ($this->Session->check('nomePlugin'))
+		{
+			$this->set('nomePlugin',$this->Session->read('nomePlugin'));
+			$this->Session->delete('nomePlugin');
+		}
+		
+		// se enviou o erro de plugin
+		if ($this->Session->check('erroPlugin'))
+		{
+			$this->set('msg',$this->Session->read('erroPlugin'));
+			$this->Session->delete('erroPlugin');
+		}
+	}
 }

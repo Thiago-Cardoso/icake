@@ -4,81 +4,50 @@
 <?php $l = 10; ?>
 <ul class="menuh">
 
-	<li id="submenu-1" class="subv"><a  href="#"  class="menu_cadastro" >Cadastros</a>
-		<ul class="menuv">
-			<?php 
-			if ($this->Session->check('menus.0.cadastro'))
+	<?php
+		if ($this->Session->check('menus'))
+		{
+			$menu 	= $this->Session->read('menus');
+			$itens	= array('cadastro'=>'Cadastro','relatorios'=>'Relatórios','ferramentas'=>'Ferramentas','ajuda'=>'Ajuda');
+			$l		= 1;
+			foreach($menu as $_nome => $_arrOpcoes)
 			{
-				$menu = $this->Session->read('menus.0.cadastro');
-				foreach($menu as $_tit => $_link)
+				$tit = isset($_arrOpcoes['tit']) ? $_arrOpcoes['tit'] : $_nome;
+				echo "<li id='submen-$l' class='subv'><a href='#' class='menu_cadastro'>".$tit."</a>\n";
+				echo "<ul class='menuv'>\n";
+				$m = $l;
+				foreach($itens as $_item => $_titItem)
 				{
-					$l++;
-					if ($_tit=='-') echo '<li><div class="hr"><hr></div></li>'."\n"; else echo '<li id="submenu-'.$l.'" class="submenu"><a href="'.$_link.'">'.$_tit.'</a></li>'."\n";
+					if (isset($_arrOpcoes[$_item]))
+					{
+						echo "<li id='submenu-".($l*10+$m)."' class='submenu'>\n\t<a href='#' class='menu_$_item'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;$_titItem</a>\n";
+						echo "\t<ul class='menuv'>\n";
+						$n = $l;
+						foreach($_arrOpcoes[$_item] as $_subItem => $_subLink)
+						{
+							echo "\t\t<li id='submenu-".($l*100+$n)."' class='submenu'><a href='$_subLink'>$_subItem</a></li>\n";
+							$n++;
+						}
+						echo "\t</ul>\n";
+						echo "</li>\n\n";
+					}
+					$m++;
 				}
+				$l++;
+				echo "</ul>\n\n";
+				echo "</li>\n\n";
 			}
-			$l++;
-			?>
-		</ul>
-	</li>
-	
-	<?php if (!in_array('I',$this->Session->read('Usuario.Restricoes'))) : ?>
-	<li id="submenu-2" class="subv"><a href="#" class="menu_relatorios">Relatórios</a>
-		<ul class="menuv">
-			<?php 
-			$l = 20;
-			if ($this->Session->check('menus.0.relatorios'))
-			{
-				$menu = $this->Session->read('menus.0.relatorios');
-				foreach($menu as $_tit => $_link)
-				{
-					$l++;
-					if ($_tit=='-') echo '<li><div class="hr"><hr></div></li>'."\n"; else echo '<li id="submenu-'.$l.'" class="submenu"><a href="'.$_link.'">'.$_tit.'</a></li>'."\n";
-				}
-			}
-			$l++;
-			?>
-			<li id="submenu-<?= $l ?>" class="submenu"><a href="">Listas</a>
-			<ul class="menuv">
-				<li id="submenu-321" class="submenu"><a href="<?= Router::url('/',true).'usuarios' ?>/rel_lista">Usuários</a>
-				<li id="submenu-322" class="submenu"><a href="<?= Router::url('/',true).'cidades' ?>/rel_lista">Cidades</a></li>
-				<li id="submenu-323" class="submenu"><a href="<?= Router::url('/',true).'estados' ?>/rel_lista">Estados</a></li>
-				<li id="submenu-324" class="submenu"><a href="<?= Router::url('/',true).'perfis' ?>/rel_lista">Perfis</a></li>
-			</ul>
-		</ul>
-	</li>
-	<?php endif ?>
-
-	<!-- FERRAMENTAS -->
-	<?php if (!in_array('F',$this->Session->read('Usuario.Restricoes'))) : ?>
-	<li id="submenu-3" class="subv"><a href="#" class="menu_ferramenta">Ferramentas</a>
-		<ul class="menuv">
-			<?php 
-			$l = 30;
-			if ($this->Session->check('menus.0.ferramentas'))
-			{
-				$menu = $this->Session->read('menus.0.ferramentas');
-				foreach($menu as $_tit => $_link)
-				{
-					$l++;
-					if ($_tit=='-') echo '<li><div class="hr"><hr></div></li>'."\n"; else echo '<li id="submenu-'.$l.'" class="submenu"><a href="'.$_link.'">'.$_tit.'</a></li>'."\n";
-				}
-			}
-			$l++;
-			?>
-		<?php if (in_array('ADMINISTRADOR',$this->Session->read('Usuario.Perfis'))) : ?>
-		<li id="submenu-39" class="submenu"><a href="<?= Router::url('/',true).'ferramentas' ?>">Instalar Plugin</a></li>
-		<?php endif ?>
-		</ul>
-	</li>
-	<?php endif ?>
-
+		}
+	?>
 	<?php if (in_array('ADMINISTRADOR',$this->Session->read('Usuario.Perfis'))) : ?>
 	<li id="submenu-6" class="subv"><a href="#" class="menu_sistema">Sistema</a>
 		<ul class="menuv">
-			<li id="submenu-61" class="submenu"><a href="<?= Router::url('/',true).'usuarios' ?>">Usuários</a></li>
-			<li id="submenu-62" class="submenu"><a href="<?= Router::url('/',true).'cidades' ?>">Cidades</a></li>
-			<li id="submenu-63" class="submenu"><a href="<?= Router::url('/',true).'estados' ?>">Estados</a></li>
-			<li id="submenu-64" class="submenu"><a href="<?= Router::url('/',true).'perfis' ?>">Perfis</a></li>
+			<li id="submenu-61" class="submenu"><a href="<?= Router::url('/',true).'usuarios' ?>">Cadastro de Usuários</a></li>
+			<li id="submenu-62" class="submenu"><a href="<?= Router::url('/',true).'cidades' ?>">Cadastro de Cidades</a></li>
+			<li id="submenu-63" class="submenu"><a href="<?= Router::url('/',true).'estados' ?>">Cadastro de Estados</a></li>
+			<li id="submenu-64" class="submenu"><a href="<?= Router::url('/',true).'perfis' ?>">Cadastro de Perfis</a></li>
+			<li><div class='hr'><hr></div></li>
+			<li id="submenu-65" class="submenu"><a href="<?= Router::url('/',true).'ferramentas/instalar_plugin' ?>">Instalar Plugin</a></li>
 		</ul>
 	</li>
 	<?php endif ?>
