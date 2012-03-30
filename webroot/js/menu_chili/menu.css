@@ -28,7 +28,7 @@ ul.menuh
 {
 	background: transparent url(../../img/ico_sis.png) 3px center no-repeat;
 }
-.menu_ferramenta
+.menu_ferramentas
 {
 	background: transparent url(../../img/ico_fer.png) 3px center no-repeat;
 }
@@ -88,12 +88,13 @@ ul.menuh li a:hover
 	background-color: #f0f0f0;
 }            
 
-ul.menuv, ul.menuv ul 
+ul.menuv, 
+ul.menuv ul 
 {
 	margin: 0; 
 	padding: 0; 
 	border: 0px; 
-	min-width: 250px;
+	min-width: 150px;
 	background-color: #fff;
 	z-index: 10000; 
 	/*border-top: 1px solid #000000;*/
@@ -103,7 +104,11 @@ ul.menuv li
 	position: relative; 
 	list-style: none; border: 0px;
 	background-color: #E6F0F7;
-}            
+}
+ul.menuv ul li 
+{
+	min-width: 200px;
+}
 ul.menuv li a 
 {
 	display: block; 
