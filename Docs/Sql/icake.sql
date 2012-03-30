@@ -114,6 +114,21 @@ CREATE  TABLE IF NOT EXISTS `usuarios_perfis` (
 ENGINE = MyISAM;
 
 
+-- -----------------------------------------------------
+-- Table `plugins`
+-- -----------------------------------------------------
+DROP TABLE IF EXISTS `plugins` ;
+
+CREATE  TABLE IF NOT EXISTS `plugins` (
+  `id` INT NOT NULL AUTO_INCREMENT ,
+  `nome` VARCHAR(45) NOT NULL ,
+  `ativo` TINYINT(1) NOT NULL DEFAULT false ,
+  PRIMARY KEY (`id`) ,
+  INDEX `i_nome` (`nome` ASC) ,
+  INDEX `i_ativo` (`ativo` ASC) )
+ENGINE = MyISAM;
+
+
 
 SET SQL_MODE=@OLD_SQL_MODE;
 SET FOREIGN_KEY_CHECKS=@OLD_FOREIGN_KEY_CHECKS;
