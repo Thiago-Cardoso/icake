@@ -47,22 +47,35 @@ class AppController extends Controller {
 		// se está logado vamos configurar o menu
 		if ($this->Session->check('Usuario.id'))
 		{
-			// vamos configurar o menu e jogar na sessão
+			// configurando os menus
 			if (!$this->Session->check('menus'))
 			{
+				// recuperando todo os plugins ativos, pois só mostra menu de quem está ativo.
+				$Plugin = $this->loadModel('Plugin');
+				$Plugin = new Plugin();
+				$opcoes = array();
+				$opcoes['fields'] = array('nome');
+				$opcoes['conditions']['Plugin.ativo'] = true;
+				$plugins = $Plugin->find('list',$opcoes);
+				
+				// configurando o menu
 				$menus 		= array();
 				$dirPlugin	= APP . 'Plugin' . DS;
 				if (is_dir($dirPlugin))
 				{
 					$ponteiro	= opendir($dirPlugin);
 					while ($nome_dir = readdir($ponteiro))
-					if (!in_array($nome_dir,array('.','..')))
 					{
-						$arq = $dirPlugin . DS . $nome_dir . DS . 'Config' . DS . 'menu.php';
-						if (file_exists($arq))
+						if (!in_array($nome_dir,array('.','..')))
 						{
-							require_once($arq);
-							array_push($menus,$menu);
+							$arq = $dirPlugin . DS . $nome_dir . DS . 'Config' . DS . 'menu.php';
+							if (file_exists($arq) && in_array(strtoupper($nome_dir),$plugins))
+							{
+								$menu = array();
+								require_once($arq);
+								$titPlugin = isset($nome) ? $nome : $nome_dir;
+								$menus[$titPlugin] = $menu;
+							}
 						}
 					}
 				}

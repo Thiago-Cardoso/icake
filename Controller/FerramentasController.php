@@ -74,6 +74,42 @@ class FerramentasController extends AppController {
 	}
 
 	/**
+	 * Executa a instalação do plugin
+	 * 
+	 * @param	string	$plugin	Nome do Plugin
+	 * @return	boolean
+	 */
+	private function getInstalaPlugin($plugin='')
+	{
+		$dir 	= APP . 'Plugin'. DS . ucfirst(strtolower($plugin)). DS . 'Docs' . DS . 'Sql'. DS;
+		$arq	= $dir.strtolower($plugin).'.sql';
+		if (file_exists($arq))
+		{
+			if ($this->getInstalaSql($dir,strtolower($plugin)))
+			{
+				$this->loadModel('Plugin');
+				$Plugin = new Plugin();
+				$data['id'] 	= '0';
+				$data['nome']	= $plugin;
+				$data['ativo']	= true;
+				if (!$Plugin->save($data)) die('Erro ao Salvar Plugin '.$plugin);
+				$this->Session->delete('menus'); // limpando o menu corrente.
+				return true;
+			} else
+			{
+				$this->erroPlugin = 'Não foi possível executar o sql do plugin';
+				return false;
+			}
+		} else
+		{
+			$this->erroPlugin = 'Não foi possível localizar o arquivo '.$arq;
+			return false;
+		}
+
+		return true;
+	}
+
+	/**
 	 * Exibe a tela de instalação do banco de dados
 	 * 
 	 * Se o banco existir testa as tabelas, caso cliente não tenha sido instalada redireciona para tela de insalação das tabelas
