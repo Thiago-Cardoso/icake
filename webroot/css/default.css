@@ -370,3 +370,27 @@ select
 	padding: 5px;
 	background-color: #B6D2EA;
 }
+
+.botao
+{
+	min-width: 100px;
+	-moz-border-radius: 6px;
+	-webkit-border-radius: 6px;
+	border-radius: 6px;
+	min-height: 26px;
+}
+
+#btPdf
+{
+	background: #cacaca url('../img/bt_pdf.png') no-repeat 6px 4px;
+}
+
+#btTel
+{
+	background: #cacaca url('../img/bt_tel.png') no-repeat 6px 4px;
+}
+
+#btCsv
+{
+	background: #cacaca url('../img/bt_csv.png') no-repeat 6px 4px;
+}
