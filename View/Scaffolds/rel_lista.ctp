@@ -1,6 +1,6 @@
 <?php
 	// definindo as configurações obrigatórias do relatório lista
-	$arquivo 		= isset($arquivo) 		? str_replace(' ','_',$arquivo)	: 'Lista de '.$this->name;
+	$arquivo 		= isset($arquivo) 		? str_replace(' ','_',$arquivo)	: 'Relatório de '.$this->name;
 	$cabecalho		= isset($cabecalho) 	? $cabecalho 	: 'cabecalho';
 	$rodape			= isset($rodape)		? $rodape	 	: 'rodape';
 	$reg_por_linha	= isset($reg_por_linha) ? $reg_por_linha: 30;
@@ -8,6 +8,41 @@
 	$pag_formato	= isset($pag_formato)	? $pag_formato	: 'a4';
 	$font_size		= isset($font_size)		? $font_size	: '7';
 	if (isset($config['titulo']) && $arquivo=='relatorio') $arquivo = str_replace(' ','_',$config['titulo']);
+	$rel_titulos['0']= isset($rel_titulos['0']) ? $rel_titulos['0'] : 'Relatório';
+
+	// usando a bola de cristal pra criar os parâmetros obrigatórios
+	if (!isset($colunas))
+	{
+		$colunas = array();
+	}
+	
+	// adivinhando os campos, caso o oreia não tenha informado
+	if (!isset($rel_campos))
+	{
+		$rel_campos = array();
+		if (isset($this->data))
+		{
+			foreach($this->data as $_item => $_arrModel)
+			{
+				foreach($_arrModel as $_model => $_arrCampos)
+				{
+					$l = 1;
+					foreach($_arrCampos as $_campo => $_arrProp)
+					{
+						if (!strpos($_campo,'id') && $_campo != 'id' && isset($_arrProp['length']))
+						{
+							$cmp = $_model.'.'.$_campo;
+							array_push($rel_campos,$cmp);
+							$colunas[$l]['lar'] = 20;
+							$colunas[$l]['tit'] = $_campo;
+							$l++;
+						}
+					}
+				}
+			}
+		}
+	}
+	//debug($rel_campos);
 
 	require_once(APP.'Vendor' . DS . 'Fpdf' . DS . 'pdf.php');
 	$pdf = new PDF($pag_orientacao);
@@ -55,6 +90,7 @@
 
 			// propriedades obrigatórias
 			$pdf->colunas[$i]['ali'] = isset($pdf->colunas[$i]['ali']) ? $pdf->colunas[$i]['ali'] : 'L';
+			$pdf->colunas[$i]['lar'] = isset($pdf->colunas[$i]['lar']) ? $pdf->colunas[$i]['lar'] : '10';
 
 			// escrevendo a célula
 			$pdf->Cell($pdf->colunas[$i]['lar'], 5, utf8_decode($valor),1,'',$pdf->colunas[$i]['ali']);

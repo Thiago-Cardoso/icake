@@ -8,12 +8,15 @@
 		if ($this->Session->check('menus'))
 		{
 			$menu 	= $this->Session->read('menus');
-			$itens	= array('cadastro'=>'Cadastro','relatorios'=>'Relatórios','ferramentas'=>'Ferramentas','ajuda'=>'Ajuda');
+			$itens	= array('cadastros'=>'Cadastros','relatorios'=>'Relatórios','ferramentas'=>'Ferramentas','ajuda'=>'Ajuda');
 			$l		= 1;
 			foreach($menu as $_nome => $_arrOpcoes)
 			{
 				$tit = isset($_arrOpcoes['tit']) ? $_arrOpcoes['tit'] : $_nome;
-				echo "<li id='submen-$l' class='subv'><a href='#' class='menu_cadastro'>".$tit."</a>\n";
+				echo "<li id='submen-$l' class='subv'>";
+				echo "<img src='".Router::url('/',true)."con/img/menu_con.png' class='menu_plugin' />";
+				echo "<a href='#' ";
+				echo ">".$tit."</a>\n";
 				echo "<ul class='menuv'>\n";
 				$m = $l;
 				foreach($itens as $_item => $_titItem)

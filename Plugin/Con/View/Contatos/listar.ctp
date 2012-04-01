@@ -1,5 +1,5 @@
 <?php
-	$listaCampos		= array('Contato.nome','Cidade.nome','Estado.nome');
+	$listaCampos		= array('Contato.nome','Contato.aniversario','Cidade.nome','Estado.nome');
 	$camposPesquisa		= array('Contato.nome');
 
 	require_once('campos.ctp');

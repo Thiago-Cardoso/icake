@@ -99,8 +99,12 @@ class AppController extends Controller {
 				);
 				unset($Usuario);
 			}
-			
 		}
+
+		// descobrindo o schema do model corrente
+		//
+		$modelClass			= $this->modelClass;
+		$schema[$modelClass]= $this->$modelClass->schema();
 
 		// jogando as variáveis de ambiente na view
 		$opcoes_restricao 	= Configure::read('RESTRICOES');
@@ -109,7 +113,7 @@ class AppController extends Controller {
 		$SIGLA				= Configure::read('SIGLA');
 
 		$this->set('onRead','');
-		$this->set(compact('opcoes_restricao','SISTEMA','EMPRESA','SIGLA'));
+		$this->set(compact('schema','opcoes_restricao','SISTEMA','EMPRESA','SIGLA'));
 	}
 
 	/**

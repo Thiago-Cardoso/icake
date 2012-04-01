@@ -24,7 +24,7 @@ CREATE  TABLE IF NOT EXISTS `con_contatos` (
   `facebook` VARCHAR(50) NOT NULL ,
   `gtalk` VARCHAR(50) NOT NULL ,
   `msn` VARCHAR(50) NOT NULL ,
-  `aniversario` VARCHAR(5) NOT NULL ,
+  `aniversario` VARCHAR(4) NOT NULL ,
   `obs` TEXT NOT NULL ,
   PRIMARY KEY (`id`) ,
   INDEX `i_nome` (`nome` ASC) ,

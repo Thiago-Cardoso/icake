@@ -354,3 +354,19 @@ select
 	top: 38px;
 	right: 5px;
 }
+
+.menu_plugin
+{
+	float: left;
+	margin: 3px 0px 0px 0px;
+}
+
+.quadro
+{
+	-moz-border-radius: 6px;
+	-webkit-border-radius: 6px;
+	border-radius: 6px;
+	border: 1px solid #333;
+	padding: 5px;
+	background-color: #B6D2EA;
+}
