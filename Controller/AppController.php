@@ -103,8 +103,11 @@ class AppController extends Controller {
 
 		// descobrindo o schema do model corrente
 		//
-		$modelClass			= $this->modelClass;
-		$schema[$modelClass]= $this->$modelClass->schema();
+		if (!isset($this->modelClass))
+		{
+			$modelClass			= $this->modelClass;
+			$schema[$modelClass]= $this->$modelClass->schema();
+		}
 
 		// jogando as variáveis de ambiente na view
 		$opcoes_restricao 	= Configure::read('RESTRICOES');
