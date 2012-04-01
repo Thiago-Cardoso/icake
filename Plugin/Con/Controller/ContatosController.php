@@ -40,14 +40,13 @@ class ContatosController extends ConAppController {
 	 */
 	public function aniversariantes() 
 	{
-		if (isset($this->data['Ani']))
+		if (isset($this->data['Rel']))
 		{
-			$mes			= $this->data['Ani']['Mes'];
-			$meses 			= array(1=>'Janeiro', 2=>'Fevereiro', 3=>'Março', 4=>'Abril', 5=>'Maio', 6=>'Junho', 7=>'Julho', 8=>'Agosto', 9=>'Setembro', 10=>'Outubro', 11=>'Novembro', 12=>'Dezembro');
+			$this->layout 	= isset($this->data['Rel']['Layout']) ? $this->data['Rel']['Layout'] : 'pdf';
+			$mes			= $this->data['Rel']['Mes'];
 			$opcoes 		= array();
 			$opcoes['conditions']['substr(Contato.aniversario,3,2)'] = $mes;
 			$this->data 	= $this->Contato->find('all',$opcoes);
-			$this->layout 	= isset($this->data['Ani']['Layout']) ? $this->data['Ani']['Layout'] : 'pdf';
 			$this->set(compact('meses','mes'));
 		}
 		
@@ -59,8 +58,14 @@ class ContatosController extends ConAppController {
 				break;
 			case 'tela':
 				$visao = 'tela_aniversariantes';
+				$this->layout = 'default';
+				break;
 			case 'csv':
 				$visao = 'csv_aniversariantes';
+				break;
+			case 'imp':
+				$visao = 'imp_aniversariantes';
+				break;
 			default:
 				$visao = 'fil_aniversariantes';
 				break;
