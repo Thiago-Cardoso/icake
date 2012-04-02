@@ -1,4 +1,8 @@
 <?php
+	$arq = APP.'View'.DS.$this->name.DS.'campos.ctp';
+	if (!empty($this->plugin)) $arq = APP.'Plugin'.DS.$this->plugin.DS.'View'.DS.$this->name.DS.'campos.ctp';
+	if (file_exists($arq)) require_once($arq);
+
 	$texto = '';
 
 	// se o oreia não informou os campos, vaou pegar todos, :p
@@ -34,8 +38,10 @@
 		$l = 1;
 		foreach($csvCampos as $_item => $_campo)
 		{
-			$a = explode('.',$_campo);
-			$texto .= '"'.$_arrModel[$a['0']][$a['1']].'",';
+			$c = explode('.',$_campo);
+			$mascara = isset($campos[$c['0']][$c['1']]['mascara']) ? $campos[$c['0']][$c['1']]['mascara'] : '';
+
+			$texto .= '"'.$this->Pagina->getMascara($_arrModel[$c['0']][$c['1']],$mascara).'",';
 		}
 		$texto .= "\n";
 		$l++;

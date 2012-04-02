@@ -1,4 +1,12 @@
-<center><a href='<?= $urlVolta ?>'>Voltar</a></center>
+<?php
+	$arq = APP.'View'.DS.$this->name.DS.'campos.ctp';
+	if (!empty($this->plugin)) $arq = APP.'Plugin'.DS.$this->plugin.DS.'View'.DS.$this->name.DS.'campos.ctp';
+	if (file_exists($arq)) require_once($arq);
+?>
+
+<?php if ($this->layout != 'imp') : ?>
+<center><a href='javascript:history.go(-1);'>Voltar</a></center>
+<?php endif ?>
 <?php
 	$texto = '<table border="1px" class="lista">';
 
@@ -37,10 +45,18 @@
 		$l = 1;
 		$texto .= "<tr>\n";
 		$texto .= "\t<td>$l</td>\n";
+
+		// montando campo a campo
 		foreach($csvCampos as $_item => $_campo)
 		{
 			$a = explode('.',$_campo);
-			$texto .= "\t<td>".$_arrModel[$a['0']][$a['1']]."</td>\n";
+			$texto .= "\t<td>";
+			
+			$c = explode('.',$_campo);
+			$mascara = isset($campos[$c['0']][$c['1']]['mascara']) ? $campos[$c['0']][$c['1']]['mascara'] : '';
+
+			$texto .= $this->Pagina->getMascara($_arrModel[$a['0']][$a['1']],$mascara);
+			$texto .= "</td>\n";
 		}
 		$texto .= "</tr>\n";
 		$l++;

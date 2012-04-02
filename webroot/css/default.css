@@ -394,3 +394,9 @@ select
 {
 	background: #cacaca url('../img/bt_csv.png') no-repeat 6px 4px;
 }
+
+#btImp
+{
+	background: #cacaca url('../img/bt_imp.png') no-repeat 3px 4px;
+	font-size: 11px;
+}

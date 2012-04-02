@@ -569,4 +569,36 @@ class AppController extends Controller {
 		$this->set('link',$url.mb_strtolower(str_replace(' ','_',$pluralHumanName)).'/'.$action);
 		$this->set('pesquisa',$pesquisa);
 	}
+
+	/**
+	 * Exibe o relatório conforme o layout pedido.
+	 * 
+	 * @return	void
+	 */
+	public function relatorio($layout='default')
+	{
+		$this->layout = $layout;
+
+		// definindo a visão com base no layout
+		switch($this->layout)
+		{
+			case 'pdf':
+				$visao = 'pdf';
+				break;
+			case 'tela':
+			case 'imp':
+				$visao = 'tela';
+				if ($this->layout=='tela') $this->layout='default';
+				break;
+			case 'csv':
+				$visao = 'csv';
+				break;
+			default:
+				$visao = 'filtro';
+				break;
+		}
+		$this->viewPath = 'Scaffolds';
+		$this->set(compact('visao'));
+		$this->render($visao);
+	}
 }

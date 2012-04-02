@@ -1,4 +1,8 @@
 <?php
+	$arq = APP.'View'.DS.$this->name.DS.'campos.ctp';
+	if (!empty($this->plugin)) $arq = APP.'Plugin'.DS.$this->plugin.DS.'View'.DS.$this->name.DS.'campos.ctp';
+	if (file_exists($arq)) require_once($arq);
+
 	// definindo as configurações obrigatórias do relatório lista
 	$arquivo 		= isset($arquivo) 		? str_replace(' ','_',$arquivo)	: 'Relatório de '.$this->name;
 	$cabecalho		= isset($cabecalho) 	? $cabecalho 	: 'cabecalho';
@@ -15,7 +19,7 @@
 	{
 		$colunas = array();
 	}
-	
+
 	// adivinhando os campos, caso o oreia não tenha informado
 	if (!isset($rel_campos))
 	{
@@ -41,6 +45,16 @@
 				}
 			}
 		}
+	} else
+	{
+		$l = 1;
+		foreach($rel_campos as $_item => $_campo)
+		{
+			$c = explode('.',$_campo);
+			$tit = isset($campos[$c['0']][$c['1']]['tit']) ? $campos[$c['0']][$c['1']]['tit'] : $_campo;
+			$colunas[$l]['tit'] = $tit;	
+			$l++;
+		}
 	}
 	//debug($rel_campos);
 
@@ -50,7 +64,7 @@
 	$pdf->AliasNbPages( '{total}' );
 	$pdf->largura = ($pag_orientacao=='L') ? $pdf->DefPageSize['1'] : $pdf->DefPageSize['0'];
 
-	// configurando os títulos 
+	// configurando os títulos do relatório
 	$i = 0;
 	foreach($rel_titulos as $_item => $_valor)
 	{
@@ -69,6 +83,7 @@
 	// configurando as colunas
 	$pdf->colunas = $colunas;
 	$tc	= count($pdf->colunas);
+	//debug($colunas);
 
 	// primeira página
 	$pdf->addPage();
