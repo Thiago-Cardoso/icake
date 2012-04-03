@@ -6,9 +6,9 @@
 	$texto = '';
 
 	// se o oreia não informou os campos, vaou pegar todos, :p
-	if (!isset($csvCampos))
+	if (!isset($relCampos))
 	{
-		$csvCampos = array();
+		$relCampos = array();
 		foreach($this->data as $_item => $_arrModel)
 		{
 			foreach($_arrModel as $_model => $_arrCampos)
@@ -16,15 +16,15 @@
 				foreach($_arrCampos as $_campo => $_valor)
 				{
 					$c = $_model.'.'.$_campo;
-					if (!strpos($c,'_id') && $_campo!='id') array_push($csvCampos,$c);
+					if (!strpos($c,'_id') && $_campo!='id') array_push($relCampos,$c);
 				}
 			}
 		}
 	}
-	//debug($csvCampos);
+	//debug($relCampos);
 
 	// cabeçalho
-	foreach($csvCampos as $_item => $_campo)
+	foreach($relCampos as $_item => $_campo)
 	{
 		$a 		= explode('.',$_campo);
 		$tit	= isset($campos[$a['0']][$a['1']]['tit']) ? $campos[$a['0']][$a['1']]['tit'] : $_campo;
@@ -36,7 +36,7 @@
 	foreach($this->data as $_item => $_arrModel)
 	{
 		$l = 1;
-		foreach($csvCampos as $_item => $_campo)
+		foreach($relCampos as $_item => $_campo)
 		{
 			$c = explode('.',$_campo);
 			$mascara = isset($campos[$c['0']][$c['1']]['mascara']) ? $campos[$c['0']][$c['1']]['mascara'] : '';

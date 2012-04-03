@@ -5,13 +5,13 @@
  * @copyright	Copyright 2008-2012, Adriano Carneiro de Moura
  * @link		http://github.com/adrianodemoura/icake 	Projeto iCake
  * @package		icake.contatos
- * @subpackage	icake.contatos.Controller
+ * @subpackage	icake.contatos.controller
  * @since		CakePHP(tm) v 2.1
  * @license		MIT License (http://www.opensource.org/licenses/mit-license.php)
  */
 /**
  * @package			icake.contatos
- * @subpackage		icake.contatos.Controller
+ * @subpackage		icake.contatos.controller
  */
 class ContatosController extends ConAppController {
 	/**
@@ -23,72 +23,85 @@ class ContatosController extends ConAppController {
 	public $uses	= array('Con.Contato');
 
 	/**
-	 * Imprime a lista de cargos
+	 * Imprime o relatório sintético dos contatos.
 	 * 
 	 * @return	void
 	 */
-	public function rel_lista()
+	public function sintetico()
 	{
-		$parametros['order']					= 'Contato.nome';
-		parent::rel_lista($parametros);
+		$relCampos				= array('Contato.nome','Contato.email','Contato.tel1','Contato.tel3','Contato.aniversario');
+
+		// parâmetros para o pdf
+		$relTitulos['0']		= 'Lista Sintética de Contatos';
+		$colunas['1']['lar']	= '90';
+		$colunas['2']['lar']	= '90';
+		$colunas['2']['ali']	= 'C';
+		$colunas['3']['lar']	= '30';
+		$colunas['3']['ali']	= 'C';
+		$colunas['4']['lar']	= '30';
+		$colunas['4']['ali']	= 'C';
+		$colunas['5']['lar']	= '24';
+		$colunas['5']['ali']	= 'C';
+
+		// se o form do relatório foi postado, então recupera os dados do banco
+		if (isset($this->data['Rel']))
+		{
+			$this->layout= isset($this->data['Rel']['Layout']) ? $this->data['Rel']['Layout'] : 'default';
+			$this->data  = $this->Contato->find('all',array('fields'=>$relCampos));
+		}
+
+		// atualizando a view
+		$this->set(compact('relCampos','relTitulos','colunas'));
+
+		// continua o processamento com action pai
+		parent::relatorio();
 	}
 
 	/**
-	 * Exibe a tela para o filtro de aniversariantes
+	 * Exibe a tela para o filtro de aniversariantes ou o relatório conforme o filtro e layout pedido.
 	 *
 	 * @return	void
 	 */
 	public function aniversariantes() 
 	{
-		$layout = 'default';
-		$meses	= array(1=>'Janeiro', 2=>'Fevereiro', 3=>'Março', 4=>'Abril', 5=>'Maio', 6=>'Junho', 7=>'Julho', 8=>'Agosto', 9=>'Setembro', 10=>'Outubro', 11=>'Novembro', 12=>'Dezembro');
+		$meses		= array(1=>'Janeiro', 2=>'Fevereiro', 3=>'Março', 4=>'Abril', 5=>'Maio', 6=>'Junho', 7=>'Julho', 8=>'Agosto', 9=>'Setembro', 10=>'Outubro', 11=>'Novembro', 12=>'Dezembro');
+		$relCampos	= array('Contato.nome','Contato.email','Contato.tel1','Contato.tel3','Contato.aniversario');
 		
-		// se o form do relatório foi postado, então recuperao os dados do banco
+		// se o form do relatório foi postado, então recupera os dados do banco
 		if (isset($this->data['Rel']))
 		{
-			$layout		 	= isset($this->data['Rel']['Layout']) ? $this->data['Rel']['Layout'] : 'default';
-			$mes			= $this->data['Rel']['Mes'];
+			$this->layout 	= isset($this->data['Rel']['Layout']) ? $this->data['Rel']['Layout'] : 'default';
+			$mes			= '00'.$this->data['Rel']['Mes'];
+			$mes			= substr($mes,strlen($mes)-2,2);
+			$this->set(compact('mes'));
 			$opcoes 		= array();
 			$opcoes['conditions']['substr(Contato.aniversario,3,2)'] = $mes;
+			$opcoes['fields']= $relCampos;
 			$this->data 	= $this->Contato->find('all',$opcoes);
-			$this->set(compact('mes'));
 		}
 
-		switch($layout)
-		{
-			case 'pdf':
-				$rel_campos			= array('Contato.nome','Contato.email','Contato.tel1','Contato.tel3','Contato.aniversario');
-				$rel_titulos['0']	= 'Lista dos Aniversariantes do Mês de '.$meses[$mes];
-				$colunas['1']['lar']		= '90';
-				$colunas['2']['lar']		= '90';
-				$colunas['2']['ali']		= 'C';
-				$colunas['3']['lar']		= '30';
-				$colunas['3']['ali']		= 'C';
-				$colunas['4']['lar']		= '30';
-				$colunas['4']['ali']		= 'C';
-				$colunas['5']['lar']		= '24';
-				$colunas['5']['ali']		= 'C';
-				$this->set(compact('rel_campos','rel_titulos','colunas'));
-				break;
-			default:
-				// parâmetros para a tela de filtro
-				$relTitulo = 'Escolha o mês e o Ano para a lista de Aniversariantes';
-				$relCamposFiltro['Rel.Mes']['tit'] = 'Mês';
-				$relCamposFiltro['Rel.Mes']['input']['options'] = $meses;
-				$relCamposFiltro['Rel.Mes']['input']['default'] = date('m');
-				$this->set(compact('relTitulo','relCamposFiltro'));
-		}
+		// parâmetros para o pdf
+		if (isset($mes)) $relTitulos['0'] = 'Lista dos Aniversariantes do Mês de '.$meses[round($mes)];
+		$colunas['1']['lar']	= '90';
+		$colunas['2']['lar']	= '90';
+		$colunas['2']['ali']	= 'C';
+		$colunas['3']['lar']	= '30';
+		$colunas['3']['ali']	= 'C';
+		$colunas['4']['lar']	= '30';
+		$colunas['4']['ali']	= 'C';
+		$colunas['5']['lar']	= '24';
+		$colunas['5']['ali']	= 'C';
 
-		parent::relatorio($layout);
-	}
+		// parâmetros para a tela de filtro
+		$relFiltroTitulo = 'Escolha o Mês para a lista de Aniversariantes';
+		$relCamposFiltro['Rel.Mes']['tit'] 				= 'Mês';
+		$relCamposFiltro['Rel.Mes']['input']['options'] = $meses;
+		$relCamposFiltro['Rel.Mes']['input']['default'] = date('m');
 
+		// jogando tudo na view
+		$this->set(compact('relFiltroTitulo','relCamposFiltro','relCampos','relTitulos','colunas'));
 
-	/**
-	 * Exibe a tela para envio de parabéns
-	 * 
-	 * @return	void
-	 */
-	public function parabens() 
-	{
+		// continua o processamento com action pai
+		parent::relatorio();
 	}
 }

@@ -366,7 +366,7 @@ select
 	-moz-border-radius: 6px;
 	-webkit-border-radius: 6px;
 	border-radius: 6px;
-	border: 1px solid #333;
+	border: 3px solid #ddd;
 	padding: 5px;
 	background-color: #B6D2EA;
 }

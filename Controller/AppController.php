@@ -427,38 +427,6 @@ class AppController extends Controller {
 	}
 
 	/**
-	 * Imprime, em pdf, a lista
-	 * 
-	 * @param	array	$pametros	Matriz com os parâmetros de busca da lista no banco de dados, claúsulas WHERE, ORDER BY, LIMIT e etc ...
-	 */
-	public function rel_lista($parametros=array())
-	{
-		//$this->viewPath 	= 'Scaffolds';
-		$this->layout 		= 'pdf';
-		$modelClass 		= $this->modelClass;
-		$this->set(compact('modelClass'));
-
-		// configurando o filtro da lista, caso NÂO tenha sido configurando no filho, e ainda foi passado por algum FORM
-		if (!isset($parametros['conditions']))
-		{
-			if (isset($this->data) && count($this->data))
-			{
-				unset($this->request->data['btEnviar']);
-				foreach($this->data as $_model => $_arrCampos)
-				{
-					foreach($_arrCampos as $_campo => $_valor)
-					{
-						$parametros['conditions'][$_model.'.'.$_campo] = $_valor;
-					}
-				}
-			}	
-		}
-
-		// recuperando os dados da lista
-		$this->data = $this->$modelClass->find('all',$parametros);
-	}
-
-	/**
 	 * 
 	 */
 	private function setExcluiHbtm($id=0,$idHbtm=0)
@@ -575,10 +543,8 @@ class AppController extends Controller {
 	 * 
 	 * @return	void
 	 */
-	public function relatorio($layout='default')
+	public function relatorio()
 	{
-		$this->layout = $layout;
-
 		// definindo a visão com base no layout
 		switch($this->layout)
 		{

@@ -11,9 +11,9 @@
 	$texto = '<table border="1px" class="lista">';
 
 	// se o oreia não informou os campos, vaou pegar todos, :p
-	if (!isset($csvCampos))
+	if (!isset($relCampos))
 	{
-		$csvCampos = array();
+		$relCampos = array();
 		foreach($this->data as $_item => $_arrModel)
 		{
 			foreach($_arrModel as $_model => $_arrCampos)
@@ -21,7 +21,7 @@
 				foreach($_arrCampos as $_campo => $_valor)
 				{
 					$c = $_model.'.'.$_campo;
-					if (!strpos($c,'_id') && $_campo!='id') array_push($csvCampos,$c);
+					if (!strpos($c,'_id') && $_campo!='id') array_push($RelCampos,$c);
 				}
 			}
 		}
@@ -31,7 +31,7 @@
 	// cabeçalho
 	$texto .= "<tr>\n";
 	$texto .= "\t<td>#</td>\n";
-	foreach($csvCampos as $_item => $_campo)
+	foreach($relCampos as $_item => $_campo)
 	{
 		$a 		= explode('.',$_campo);
 		$tit	= isset($campos[$a['0']][$a['1']]['tit']) ? $campos[$a['0']][$a['1']]['tit'] : $_campo;
@@ -47,7 +47,7 @@
 		$texto .= "\t<td>$l</td>\n";
 
 		// montando campo a campo
-		foreach($csvCampos as $_item => $_campo)
+		foreach($relCampos as $_item => $_campo)
 		{
 			$a = explode('.',$_campo);
 			$texto .= "\t<td>";

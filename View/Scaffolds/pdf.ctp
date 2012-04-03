@@ -12,7 +12,7 @@
 	$pag_formato	= isset($pag_formato)	? $pag_formato	: 'a4';
 	$font_size		= isset($font_size)		? $font_size	: '7';
 	if (isset($config['titulo']) && $arquivo=='relatorio') $arquivo = str_replace(' ','_',$config['titulo']);
-	$rel_titulos['0']= isset($rel_titulos['0']) ? $rel_titulos['0'] : 'Relatório';
+	$relTitulos['0']= isset($relTitulos['0']) ? $relTitulos['0'] : 'Relatório';
 
 	// usando a bola de cristal pra criar os parâmetros obrigatórios
 	if (!isset($colunas))
@@ -21,9 +21,9 @@
 	}
 
 	// adivinhando os campos, caso o oreia não tenha informado
-	if (!isset($rel_campos))
+	if (!isset($relCampos))
 	{
-		$rel_campos = array();
+		$relCampos = array();
 		if (isset($this->data))
 		{
 			foreach($this->data as $_item => $_arrModel)
@@ -36,7 +36,7 @@
 						if (!strpos($_campo,'id') && $_campo != 'id' && isset($_arrProp['length']))
 						{
 							$cmp = $_model.'.'.$_campo;
-							array_push($rel_campos,$cmp);
+							array_push($relCampos,$cmp);
 							$colunas[$l]['lar'] = 20;
 							$colunas[$l]['tit'] = $_campo;
 							$l++;
@@ -48,7 +48,7 @@
 	} else
 	{
 		$l = 1;
-		foreach($rel_campos as $_item => $_campo)
+		foreach($relCampos as $_item => $_campo)
 		{
 			$c = explode('.',$_campo);
 			$tit = isset($campos[$c['0']][$c['1']]['tit']) ? $campos[$c['0']][$c['1']]['tit'] : $_campo;
@@ -56,7 +56,7 @@
 			$l++;
 		}
 	}
-	//debug($rel_campos);
+	//debug($relCampos);
 
 	require_once(APP.'Vendor' . DS . 'Fpdf' . DS . 'pdf.php');
 	$pdf = new PDF($pag_orientacao);
@@ -66,7 +66,7 @@
 
 	// configurando os títulos do relatório
 	$i = 0;
-	foreach($rel_titulos as $_item => $_valor)
+	foreach($relTitulos as $_item => $_valor)
 	{
 		if (strpos($_valor,'{'))
 		{
@@ -94,7 +94,7 @@
 	{
 		$pdf->Cell(8,5,($_linha+1),1,'','C');
 		$i = 1;
-		foreach($rel_campos as $_item => $_campo)
+		foreach($relCampos as $_item => $_campo)
 		{
 			// recuperando o valor do campo no this->data
 			$arrCampo 	= explode('.',$_campo);

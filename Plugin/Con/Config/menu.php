@@ -9,7 +9,7 @@
 	$menu['cadastros']['Contatos']			= Router::url('/',true).'con/contatos';
 
 	// RELATÓRIOS
-	$menu['relatorios']['Lista Sintética de Contatos']			= Router::url('/',true).'con/contatos/rel_lista';
+	$menu['relatorios']['Lista Sintética de Contatos']			= Router::url('/',true).'con/contatos/sintetico';
 	$menu['relatorios']['Lista de Aniversariantes de um Mês']	= Router::url('/',true).'con/contatos/aniversariantes';
 
 	// FERRAMENTAS
