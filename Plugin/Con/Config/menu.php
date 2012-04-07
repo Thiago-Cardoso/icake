@@ -7,6 +7,8 @@
 
 	// CADASTRO
 	$menu['cadastros']['Contatos']			= Router::url('/',true).'con/contatos';
+	$menu['cadastros']['e-mails']			= Router::url('/',true).'con/emails';
+	$menu['cadastros']['Grupos']			= Router::url('/',true).'con/grupos';
 
 	// RELATÓRIOS
 	$menu['relatorios']['Lista Sintética de Contatos']			= Router::url('/',true).'con/contatos/sintetico';

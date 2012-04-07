@@ -38,6 +38,56 @@ CREATE  TABLE IF NOT EXISTS `con_contatos` (
 ENGINE = InnoDB;
 
 
+-- -----------------------------------------------------
+-- Table `con_emails`
+-- -----------------------------------------------------
+DROP TABLE IF EXISTS `con_emails` ;
+
+CREATE  TABLE IF NOT EXISTS `con_emails` (
+  `id` INT NOT NULL AUTO_INCREMENT ,
+  `email` VARCHAR(99) NOT NULL ,
+  PRIMARY KEY (`id`) ,
+  INDEX `i_email` (`email` ASC) )
+ENGINE = InnoDB;
+
+
+-- -----------------------------------------------------
+-- Table `con_grupos`
+-- -----------------------------------------------------
+DROP TABLE IF EXISTS `con_grupos` ;
+
+CREATE  TABLE IF NOT EXISTS `con_grupos` (
+  `id` INT NOT NULL AUTO_INCREMENT ,
+  `nome` VARCHAR(45) NOT NULL ,
+  PRIMARY KEY (`id`) ,
+  INDEX `i_nome` (`nome` ASC) )
+ENGINE = InnoDB;
+
+
+-- -----------------------------------------------------
+-- Table `con_emails_con_grupos`
+-- -----------------------------------------------------
+DROP TABLE IF EXISTS `con_emails_con_grupos` ;
+
+CREATE  TABLE IF NOT EXISTS `con_emails_con_grupos` (
+  `con_email_id` INT NOT NULL ,
+  `con_grupo_id` INT NOT NULL ,
+  PRIMARY KEY (`con_email_id`, `con_grupo_id`) ,
+  INDEX `fk_con_emails_has_con_grupos_con_grupos1` (`con_grupo_id` ASC) ,
+  INDEX `fk_con_emails_has_con_grupos_con_emails` (`con_email_id` ASC) ,
+  CONSTRAINT `fk_con_emails_has_con_grupos_con_emails`
+    FOREIGN KEY (`con_email_id` )
+    REFERENCES `con_emails` (`id` )
+    ON DELETE NO ACTION
+    ON UPDATE NO ACTION,
+  CONSTRAINT `fk_con_emails_has_con_grupos_con_grupos1`
+    FOREIGN KEY (`con_grupo_id` )
+    REFERENCES `con_grupos` (`id` )
+    ON DELETE NO ACTION
+    ON UPDATE NO ACTION)
+ENGINE = InnoDB;
+
+
 
 SET SQL_MODE=@OLD_SQL_MODE;
 SET FOREIGN_KEY_CHECKS=@OLD_FOREIGN_KEY_CHECKS;
