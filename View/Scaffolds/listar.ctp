@@ -1,5 +1,5 @@
 <?php
-	if (!isset($listaCampos)) exit('Os Campos da lista não foram definidos !!!<br />Você deve criar o array $listaCampos = array("Model.campo1","Model.campo2"), dentro do arquivo listar.ctp<br />Veja os exemplo dentro de '.APP . 'View');
+	if (!isset($listaCampos)) exit('Os Campos da lista não foram definidos !!!<br />Você deve criar o array $listaCampos = array("Model.campo1","Model.campo2"), dentro do arquivo listar.ctp ou então dentro da action listar do seu controlador.<br />Veja os exemplo dentro de '.APP . 'View');
 	echo $this->Html->css(Router::url('/',true).'css/listar.css', null, array('inline' => false));
 	$url = Router::url('/',true);
 	if (!empty($this->request->params['plugin'])) $url .= $this->request->params['plugin'].'/';

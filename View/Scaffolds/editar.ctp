@@ -6,7 +6,10 @@
 	$tipo 	= isset($tipo) ? $tipo : 'edicao';
 	$divisor= isset($divisor) ? $divisor : ':';
 	$id		= isset($id) ? $id : 0;
-	if (!isset($edicaoCampos)) die('Você não definiu quais campos serão editados ...<br />Você deve criar o array $edicaoCampos = array("Model.campo1","Model.campo2"), dentro do arquivo editar.ctp<br />Veja os exemplo dentro de '. APP . 'View');
+	if (!isset($edicaoCampos)) die('Você não definiu quais campos serão editados ...<br />
+		Você deve criar o array $edicaoCampos = array("Model.campo1","Model.campo2"), dentro do arquivo editar.ctp<br />
+		Ou dentro da action editar do seu controlador.<br />
+		Veja os exemplo dentro de '. APP . 'View');
 	
 	// botões de ferramentas
 	if (!isset($botoesOff))
