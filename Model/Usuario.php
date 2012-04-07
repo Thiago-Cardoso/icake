@@ -137,6 +137,7 @@ class Usuario extends AppModel {
 	 * 
 	 * @var		array
 	 * @access	public
+	 * @link 	http://book.cakephp.org/2.0/en/models/associations-linking-models-together.html#hasandbelongstomany-habtm
 	 */
 	public $hasAndBelongsToMany	= array
 	(
