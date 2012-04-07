@@ -119,12 +119,12 @@ class FerramentasController extends AppController {
 	public function instalabd()
 	{
 		// limpando o cache model na marra
-		if(!in_array(strtolower(PHP_OS),array('winnt','windows','win','w')))
+		/*if(!in_array(strtolower(PHP_OS),array('winnt','windows','win','w')))
 		{
 			$dirCache	= APP . 'tmp' . DS . 'cache' . DS . 'models'. DS;
 			$ponteiro	= opendir($dirCache);
 			while ($nome_itens = readdir($ponteiro)) if (!in_array($nome_itens,array('.','..','vazio'))) unlink($dirCache.$nome_itens);
-		}
+		}*/
 
 		// Incluindo Model
 		App::uses('ConnectionManager', 'Model');
@@ -266,12 +266,12 @@ class FerramentasController extends AppController {
 	private function getInstalaSql($dir='',$arq='')
 	{
 		// limpando o cache model na marra
-		if(!in_array(strtolower(PHP_OS),array('winnt','windows','win','w')))
+		/*if(!in_array(strtolower(PHP_OS),array('winnt','windows','win','w')))
 		{
 			$dirCache	= APP . 'tmp' . DS . 'cache' . DS . 'models'. DS;
 			$ponteiro	= opendir($dirCache);
 			while ($nome_itens = readdir($ponteiro)) if (!in_array($nome_itens,array('.','..','vazio'))) unlink($dirCache.$nome_itens);
-		}
+		}*/
 
 		// arquivo
 		$arq = $dir.$arq.'.sql';
@@ -334,12 +334,12 @@ class FerramentasController extends AppController {
 	private function setPopulaTabela($arq='',$tabela='',$bd=null)
 	{
 		// limpando o cache model na marra
-		if(!in_array(strtolower(PHP_OS),array('winnt','windows','win','w')))
+		/*if(!in_array(strtolower(PHP_OS),array('winnt','windows','win','w')))
 		{
 			$dirCache	= APP . 'tmp' . DS . 'cache' . DS . 'models'. DS;
 			$ponteiro	= opendir($dirCache);
 			while ($nome_itens = readdir($ponteiro)) if (!in_array($nome_itens,array('.','..','vazio'))) unlink($dirCache.$nome_itens);
-		}
+		}*/
 
 		// importando o database pra saber com qual banco estamos lidando.
 /*		App::uses('ConnectionManager', 'Model');
