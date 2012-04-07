@@ -11,11 +11,12 @@
 	$menu['cadastros']['Grupos']			= Router::url('/',true).'con/grupos';
 
 	// RELATÓRIOS
+	$menu['relatorios']['Etiquetas para Contatos']				= Router::url('/',true).'con/contatos/etiquetas';
 	$menu['relatorios']['Lista Sintética de Contatos']			= Router::url('/',true).'con/contatos/sintetico';
 	$menu['relatorios']['Lista de Aniversariantes de um Mês']	= Router::url('/',true).'con/contatos/aniversariantes';
 
 	// FERRAMENTAS
-	//$menu['ferramentas']['Enviar Parabéns']	= Router::url('/',true).'con/contatos/parabens';
+	$menu['ferramentas']['Enviar NewsLetter']	= Router::url('/',true).'con/emails/newsletter';
 
 	// AJUDA
 	$menu['ajuda']['Contatos'] 				= Router::url('/',true).'con/ajuda/contatos';

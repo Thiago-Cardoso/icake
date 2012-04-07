@@ -50,4 +50,22 @@ class EmailsController extends ConAppController {
 		$this->set(compact('campos','edicaoCampos','listaCampos'));
 		parent::beforeRender();
 	}
+
+	/**
+	 * Exibe a tela de e-mails
+	 * 
+	 * @return	void
+	 */
+	public function newsletter() 
+	{
+		if (!empty($this->data['Mensagem']))
+		{
+			// enviando a mensagem para os grupos ...
+		}
+		$this->loadModel('Con.Grupo');
+		$Grupo = new Grupo();
+		$grupos = $Grupo->find('list');
+
+		$this->set(compact('grupos'));
+	}
 }

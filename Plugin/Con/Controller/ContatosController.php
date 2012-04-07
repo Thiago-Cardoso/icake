@@ -104,4 +104,33 @@ class ContatosController extends ConAppController {
 		// continua o processamento com action pai
 		parent::relatorio();
 	}
+
+	/**
+	 * Imprime etiquetas para o cadastro de contatos
+	 * 
+	 * @return	void
+	 */
+	public function etiquetas()
+	{
+		parent::relatorio();
+	}
+
+	/**
+	 * Exibe a tela de pesquisa de contatos
+	 * 
+	 * @return	void
+	 */
+	public function pesquisar()
+	{
+		$this->layout = 'pesquisar';
+		if (isset($this->data['Form']['pesquisar']) && !empty($this->data['Form']['pesquisar']))
+		{
+			$opcoes['conditions']['OR']['Contato.nome like'] = '%'.$this->data['Form']['pesquisar'].'%';
+			$opcoes['conditions']['OR']['Contato.tel1 like'] = '%'.$this->data['Form']['pesquisar'].'%';
+			$opcoes['conditions']['OR']['Contato.tel2 like'] = '%'.$this->data['Form']['pesquisar'].'%';
+			$opcoes['conditions']['OR']['Contato.tel3 like'] = '%'.$this->data['Form']['pesquisar'].'%';
+			$opcoes['conditions']['OR']['Contato.email like'] = '%'.$this->data['Form']['pesquisar'].'%';
+			$this->data = $this->Contato->find('all',$opcoes);
+		}
+	}
 }
