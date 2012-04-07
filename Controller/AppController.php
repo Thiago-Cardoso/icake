@@ -190,6 +190,7 @@ class AppController extends Controller {
 		// atualiando a view com algumas variáveis
 		$this->set('onRead','');
 		$this->set(compact('title_for_layout','modelClass','paginacao','schema'));
+		$this->setVisao();
 	}
 
 	/**
@@ -246,6 +247,7 @@ class AppController extends Controller {
 
 		$this->set('onRead','');
 		$this->set(compact('id','title_for_layout','lista','modelClass','schema','edicao_erros','primeiro','anterior','proximo','ultimo','tipo'));
+		$this->setVisao();
 	}
 
 	/**
@@ -266,7 +268,7 @@ class AppController extends Controller {
 
 		$this->set('onRead','');
 		$this->set(compact('id','tipo','title_for_layout','lista','modelClass'));
-		$this->render('editar');
+		$this->setVisao();
 	}
 
 	/**
@@ -309,7 +311,7 @@ class AppController extends Controller {
 
 		$this->set('onRead','');
 		$this->set(compact('id','tipo','schema','title_for_layout','modelClass'));
-		$this->render('editar');
+		$this->setVisao();
 	}
 
 	/**
@@ -423,7 +425,7 @@ class AppController extends Controller {
 
 		$this->set('onRead','');
 		$this->set(compact('title_for_layout','modelClass','tipo','edicao_erros','schema'));
-		$this->render('editar');
+		$this->setVisao();
 	}
 
 	/**
@@ -566,5 +568,19 @@ class AppController extends Controller {
 		$this->viewPath = 'Scaffolds';
 		$this->set(compact('visao'));
 		$this->render($visao);
+	}
+
+	/**
+	 * Configura o caminho da visão.\n
+	 * Se não foi criado nenhum arquivo o será usado do caminho do scaffolds.\n
+	 * 
+	 * return void
+	 */
+	private function setVisao()
+	{
+		$arq = APP;
+		if (!empty($this->plugin)) $arq .= 'Plugin'.DS.$this->plugin.DS;
+		$arq .= 'View'.DS.$this->name.DS.$this->action.'.ctp';
+		if (!file_exists($arq)) $this->viewPath = 'Scaffolds';
 	}
 }
