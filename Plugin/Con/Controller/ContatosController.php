@@ -112,6 +112,8 @@ class ContatosController extends ConAppController {
 	 */
 	public function etiquetas()
 	{
+		$title_for_layout	= 'Etiquetas';
+		$this->set(compact('title_for_layout'));
 		parent::relatorio();
 	}
 
@@ -123,6 +125,7 @@ class ContatosController extends ConAppController {
 	public function pesquisar()
 	{
 		$this->layout = 'pesquisar';
+		$title_for_layout	= 'Pesquisa';
 		if (isset($this->data['Form']['pesquisar']) && !empty($this->data['Form']['pesquisar']))
 		{
 			unset($this->data['btEnviar']);
@@ -137,5 +140,6 @@ class ContatosController extends ConAppController {
 		{
 			$this->data = array();
 		}
+		$this->set(compact('title_for_layout'));
 	}
 }
