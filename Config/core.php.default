@@ -22,7 +22,7 @@ Configure::write('SISTEMA','iCake');
 /**
  * Nome da Empresa
  */
-Configure::write('EMPRESA','Viva o GNU/Linux e o MIT/cakePHP');
+Configure::write('EMPRESA','WAD Equipamentos Industriais');
 
 /**
  * Sigla da Empresa
