@@ -1,7 +1,7 @@
 <?php
 	// página principal
 	//Router::connect('/', array('controller' => 'usuarios', 'action' => 'login', 'login'));
-	Router::connect('/', array('plugin'=>'con', 'controller' => 'contatos', 'action' => 'pesquisar'));
+	Router::connect('/', array('plugin'=>'con', 'controller' => 'contatos', 'action' => 'buscar'));
 
 	// páginas de ajuda
 	Router::connect('/ajuda/*', array('controller' => 'ajuda', 'action' => 'pag'));

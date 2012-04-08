@@ -122,13 +122,13 @@ class ContatosController extends ConAppController {
 	 * 
 	 * @return	void
 	 */
-	public function pesquisar()
+	public function buscar()
 	{
 		$this->layout = 'pesquisar';
 		$title_for_layout	= 'Pesquisa';
 		if (isset($this->data['Form']['pesquisar']) && !empty($this->data['Form']['pesquisar']))
 		{
-			unset($this->data['btEnviar']);
+			//if (isset($this->data['btEnviar'])) unset($this->data['btEnviar']);
 			$opcoes['conditions']['OR']['Contato.nome like'] = '%'.$this->data['Form']['pesquisar'].'%';
 			$opcoes['conditions']['OR']['Contato.tel1 like'] = '%'.$this->data['Form']['pesquisar'].'%';
 			$opcoes['conditions']['OR']['Contato.tel2 like'] = '%'.$this->data['Form']['pesquisar'].'%';
