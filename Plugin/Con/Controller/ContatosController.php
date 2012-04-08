@@ -130,6 +130,7 @@ class ContatosController extends ConAppController {
 			$opcoes['conditions']['OR']['Contato.tel2 like'] = '%'.$this->data['Form']['pesquisar'].'%';
 			$opcoes['conditions']['OR']['Contato.tel3 like'] = '%'.$this->data['Form']['pesquisar'].'%';
 			$opcoes['conditions']['OR']['Contato.email like'] = '%'.$this->data['Form']['pesquisar'].'%';
+			$opcoes['limit']	= '1000';
 			$this->data = $this->Contato->find('all',$opcoes);
 		}
 	}

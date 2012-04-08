@@ -2,7 +2,7 @@
 	#pesquisar
 	{
 		width: 80%;
-		margin: 50px auto;
+		margin: 0px auto;
 	}
 	a
 	{
@@ -27,15 +27,15 @@
 <ul>
 	<li>
 		<?php if ($this->Session->check('Usuario.id')) : ?>
-		<a title='Clique aqui para editar este contato ...' href='<?= Router::url('/',true).'con/contatos/editar/'.$this->Session->read('Usuario.id') ?>'><?= $_arrModel['Contato']['nome'] ?></a>
+		<a title='Clique aqui para editar este contato ...' href='<?= Router::url('/',true).'con/contatos/editar/'.$_arrModel['Contato']['id'] ?>'><?= $_arrModel['Contato']['nome'] ?></a>
 		<?php else : ?>
 		<?= $_arrModel['Contato']['nome'] ?>
 		<?php endif ?>
 		<br />
-		<?= $this->Pagina->getMascara($_arrModel['Contato']['tel1'],'(99)9999-9999'); ?><br />
-		<?= $this->Pagina->getMascara($_arrModel['Contato']['tel2'],'(99)9999-9999'); ?><br />
-		<?= $this->Pagina->getMascara($_arrModel['Contato']['tel3'],'(99)9999-9999'); ?><br />
-		<?= $_arrModel['Contato']['email'] ?><br />
+		<?php if (!empty($_arrModel['Contato']['tel1'])) echo $this->Pagina->getMascara($_arrModel['Contato']['tel1'],'(99)9999-9999'); ?><br />
+		<?php if (!empty($_arrModel['Contato']['tel2'])) echo  $this->Pagina->getMascara($_arrModel['Contato']['tel2'],'(99)9999-9999'); ?><br />
+		<?php if (!empty($_arrModel['Contato']['tel3'])) echo $this->Pagina->getMascara($_arrModel['Contato']['tel3'],'(99)9999-9999'); ?><br />
+		<?php if (!empty($_arrModel['Contato']['email'])) echo  $_arrModel['Contato']['email'] ?><br />
 	</li>
 </ul>
 <?php endforeach ?>
