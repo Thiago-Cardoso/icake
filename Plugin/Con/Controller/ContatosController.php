@@ -125,6 +125,7 @@ class ContatosController extends ConAppController {
 		$this->layout = 'pesquisar';
 		if (isset($this->data['Form']['pesquisar']) && !empty($this->data['Form']['pesquisar']))
 		{
+			unset($this->data['btEnviar']);
 			$opcoes['conditions']['OR']['Contato.nome like'] = '%'.$this->data['Form']['pesquisar'].'%';
 			$opcoes['conditions']['OR']['Contato.tel1 like'] = '%'.$this->data['Form']['pesquisar'].'%';
 			$opcoes['conditions']['OR']['Contato.tel2 like'] = '%'.$this->data['Form']['pesquisar'].'%';
@@ -132,6 +133,9 @@ class ContatosController extends ConAppController {
 			$opcoes['conditions']['OR']['Contato.email like'] = '%'.$this->data['Form']['pesquisar'].'%';
 			$opcoes['limit']	= '1000';
 			$this->data = $this->Contato->find('all',$opcoes);
+		} else
+		{
+			$this->data = array();
 		}
 	}
 }
