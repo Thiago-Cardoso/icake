@@ -42,7 +42,7 @@
 
 	<div id="cabecalho">
 		<div id='titulo'>
-			<a href='<?= Router::url('/',true); ?>'><?= $SIGLA.' - '.$EMPRESA ?></a>
+			<a href='<?= Router::url('/',true); ?>'><?= $EMPRESA ?></a>
 		</div>
 
 		<div id='menu_admin'>
