@@ -58,14 +58,19 @@ class EmailsController extends ConAppController {
 	 */
 	public function newsletter() 
 	{
-		if (!empty($this->data['Mensagem']))
-		{
-			// enviando a mensagem para os grupos ...
-		}
 		$this->loadModel('Con.Grupo');
 		$Grupo = new Grupo();
 		$grupos = $Grupo->find('list');
 
 		$this->set(compact('grupos'));
+	}
+
+	/**
+	 * Envia a mensagem de e-mail
+	 * 
+	 * @return	void
+	 */
+	public function enviar_msg()
+	{
 	}
 }
