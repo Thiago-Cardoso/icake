@@ -567,6 +567,7 @@ class AppController extends Controller {
 		}
 		$this->viewPath = 'Scaffolds';
 		$this->set(compact('visao'));
+		if (!isset($this->viewVars['title_for_layout'])) $this->viewVars['title_for_layout'] = Configure::read('SISTEMA').' - Relatórios - '.ucfirst($this->action);
 		$this->render($visao);
 	}
 

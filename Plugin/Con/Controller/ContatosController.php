@@ -64,6 +64,7 @@ class ContatosController extends ConAppController {
 	 */
 	public function aniversariantes() 
 	{
+		$title_for_layout = 'Relatório de Aniversariantes';
 		$meses		= array(1=>'Janeiro', 2=>'Fevereiro', 3=>'Março', 4=>'Abril', 5=>'Maio', 6=>'Junho', 7=>'Julho', 8=>'Agosto', 9=>'Setembro', 10=>'Outubro', 11=>'Novembro', 12=>'Dezembro');
 		$relCampos	= array('Contato.nome','Contato.email','Contato.tel1','Contato.tel3','Contato.aniversario');
 		
@@ -99,7 +100,7 @@ class ContatosController extends ConAppController {
 		$relCamposFiltro['Rel.Mes']['input']['default'] = date('m');
 
 		// jogando tudo na view
-		$this->set(compact('relFiltroTitulo','relCamposFiltro','relCampos','relTitulos','colunas'));
+		$this->set(compact('relFiltroTitulo','relCamposFiltro','relCampos','relTitulos','colunas','title_for_layout'));
 
 		// continua o processamento com action pai
 		parent::relatorio();
