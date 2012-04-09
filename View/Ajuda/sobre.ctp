@@ -11,7 +11,7 @@ Tecnologia:
 
 - jQuery
 
-* Recomendável Sistema Operacional GNU/Linux.
+* Recomendável Sistema Operacional GNU/Linux e Mozilla Firefox.
 </pre>
 </div>
 
