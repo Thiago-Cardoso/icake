@@ -1,3 +1,4 @@
+<?php ?>
 <style>
 	#pesquisar
 	{
@@ -15,15 +16,30 @@
 	}
 	#resposta
 	{
-		/*border: 1px solid #ccc;*/
 		min-width: 500px;
 		max-width: 90%;
 		margin: 0px auto;
+	}
+	h5
+	{
+		margin: 0px;
+		padding: 0px;
+	}
+	h5,
+	#FormPesquisar,
+	#btEnviar
+	{
+		font-size: 20px;
+	}
+	#resposta
+	{
+		font-size: 20px;
 	}
 </style>
 <div id='pesquisar'>
 	<form name='formPesquisar' method='post' action=''>
 	<center>
+	<h5>Digite um texto para pesquisar em contatos ...</h5>
 	<input type='text' name='data[Form][pesquisar]' id='FormPesquisar' autofocus />
 	<input type='submit' name='btEnviar' id='btEnviar' value='Ok' />
 	</center>

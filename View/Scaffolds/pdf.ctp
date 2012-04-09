@@ -60,7 +60,7 @@
 
 	require_once(APP.'Vendor' . DS . 'Fpdf' . DS . 'pdf.php');
 	$pdf = new PDF($pag_orientacao);
-	$pdf->titEsquerdo = $SIGLA.' - '.$SISTEMA;
+	$pdf->titEsquerdo = $SIGLA;
 	$pdf->AliasNbPages( '{total}' );
 	$pdf->largura = ($pag_orientacao=='L') ? $pdf->DefPageSize['1'] : $pdf->DefPageSize['0'];
 

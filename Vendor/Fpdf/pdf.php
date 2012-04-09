@@ -45,9 +45,16 @@ class PDF extends FPDF
 		
 		//Seleciona a fonte Arial itálico 8
 		$this->SetFont('Arial','I',8);
+		
+		// Imprime o nome do sistema
+		$this->SetXY(10,$this->GetY());
+		$this->Cell(10,5,Configure::read('SISTEMA'),0,0,'C');
 
 		//Imprime o número da página corrente e o total de páginas
-		$this->Cell(0,10,utf8_decode('Página ').$this->PageNo().' de {total}',0,0,'C');
+		$this->Cell(0,5,utf8_decode('Página ').$this->PageNo().' de {total}',0,0,'C');
+		
+		// Imprime a data de impressão
+		$this->Cell(0,5,date('d/m/Y H:i:s'),0,0,'R');
 	}
 }
 ?>
