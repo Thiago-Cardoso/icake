@@ -16,7 +16,7 @@
 	$menu['relatorios']['Lista de Aniversariantes']		= Router::url('/',true).'con/contatos/aniversariantes';
 
 	// FERRAMENTAS
-	$menu['ferramentas']['Enviar NewsLetter']	= Router::url('/',true).'con/emails/newsletter';
+	$menu['ferramentas']['Enviar NewsLetter']	= Router::url('/',true).'con/emails/escrever_msg';
 
 	// AJUDA
 	$menu['ajuda']['Contatos'] 				= Router::url('/',true).'con/ajuda/contatos';

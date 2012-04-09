@@ -20,7 +20,8 @@
 	// botões de ferramentas
 	if (!isset($botoesFerramentasOff))
 	{
-		if (!isset($ferramentas['0']) && !in_array('G',$this->Session->read('Usuario.Restricoes')))
+		//if (!isset($ferramentas['0']) && !in_array('G',$this->Session->read('Usuario.Restricoes')))
+		if (!isset($ferramentas['0']))
 		{
 			$ferramentas['0']['link'] 	= $url.'editar/{id}';
 			$ferramentas['0']['img'] 	= 'bt_editar.png';
@@ -62,12 +63,10 @@
 	<!-- mensagens -->
 	<?php if (isset($listaMsg)) echo '<div id="listaMsg">'.$listaMsg.'</div>'; ?>
 
-	<?php if (!in_array('G',$this->Session->read('Usuario.Restricoes'))) : ?>
 	<!-- pesquisa -->
 	<div id='pesquisa'>
 	<?php echo $this->element('pesquisar',array('camposPesquisa'=>$camposPesquisa)); ?>
 	</div>
-	<?php endif ?>
 
 </div>
 

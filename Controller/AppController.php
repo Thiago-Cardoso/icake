@@ -201,13 +201,6 @@ class AppController extends Controller {
 	 */
 	public function editar($id=0, $idHbtm=0)
 	{
-		// verificando a permissão
-		if (in_array('G',$this->Session->read('Usuario.Restricoes')) && $this->name!='Usuarios')
-		{
-			$this->Session->setFlash('Você não tem autorização para acessar esta página !!!','default',array('class' => 'msgErro'));
-			$this->redirect(Router::url('/',true).'usuarios/editar/'.$this->Session->read('Usuario.id'));
-		}
-
 		// se postou um id hbtm, executa ação para excluí-lo
 		if (!empty($idHbtm))
 		{
@@ -388,6 +381,13 @@ class AppController extends Controller {
 	 */
 	public function novo()
 	{
+		// verificando a permissão
+		if (in_array('G',$this->Session->read('Usuario.Restricoes')) && $this->name!='Usuarios')
+		{
+			$this->Session->setFlash('Você não tem autorização para criar um novo registro !!!','default',array('class' => 'msgErro'));
+			$this->redirect(Router::url('/',true).'usuarios/editar/'.$this->Session->read('Usuario.id'));
+		}
+
 		// verifica os campos obrigatórios
 		$modelClass = $this->modelClass;
 		$schema[$modelClass]= $this->$modelClass->schema();

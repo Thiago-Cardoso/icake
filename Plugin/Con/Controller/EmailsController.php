@@ -46,8 +46,9 @@ class EmailsController extends ConAppController {
 		$campos['Email']['email']['th']['width']	= '600px';
 		$campos['Email']['email']['focus'] 			= true;
 		$campos['Email']['email']['input']['style'] = 'width: 400px';
+		$camposPesquisa		= array('Email.email');
 
-		$this->set(compact('campos','edicaoCampos','listaCampos'));
+		$this->set(compact('campos','edicaoCampos','listaCampos','camposPesquisa'));
 		parent::beforeRender();
 	}
 
@@ -56,7 +57,7 @@ class EmailsController extends ConAppController {
 	 * 
 	 * @return	void
 	 */
-	public function newsletter() 
+	public function escrever_msg() 
 	{
 		$this->loadModel('Con.Grupo');
 		$Grupo = new Grupo();
