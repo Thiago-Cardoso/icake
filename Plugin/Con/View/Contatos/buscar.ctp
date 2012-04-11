@@ -35,8 +35,14 @@
 	{
 		font-size: 20px;
 	}
+	#logo
+	{
+		position: absolute;
+		margin: 0px 0px 0px 210px;
+	}
 </style>
 <div id='pesquisar'>
+	<div id='logo'><img src='img/buscar.png' /></div>
 	<form name='formPesquisar' method='post' action=''>
 	<center>
 	<h5>Digite um texto para pesquisar em contatos ...</h5>
