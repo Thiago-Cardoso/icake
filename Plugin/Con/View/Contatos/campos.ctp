@@ -1,10 +1,10 @@
 <?php
 	$campos['Contato']['nome']['tit']				        = 'Contato';
 	$campos['Contato']['nome']['focus']			            = true;
-	$campos['Contato']['nome']['input']['style']	        = 'width: 500px;  text-transform: uppercase;';
+	$campos['Contato']['nome']['input']['style']	        = 'text-transform: uppercase;';
 	
 	$campos['Contato']['endereco']['tit']				    = 'Endereco';
-	$campos['Contato']['endereco']['input']['style']		= 'width: 500px; text-transform: uppercase;';	
+	$campos['Contato']['endereco']['input']['style']		= 'text-transform: uppercase;';	
 
 	$campos['Contato']['email']['tit']				        = 'e-mail';
 
@@ -32,6 +32,12 @@
 	$campos['Contato']['tel3']['th']['width']		        = '110px';
 	$campos['Contato']['tel3']['td']['align']		        = 'center';
 
+	$campos['Contato']['cpf']['tit']				        = 'Cpf';
+	$campos['Contato']['cpf']['mascara']			        = '999.999.999-99';
+	$campos['Contato']['cpf']['input']['style']	       	 	= 'width: 99px;';
+	$campos['Contato']['cpf']['th']['width']		        = '110px';
+	$campos['Contato']['cpf']['td']['align']		        = 'center';
+
 
 	$campos['Contato']['bairro']['tit']				        = 'Bairro';
 	$campos['Contato']['bairro']['th']['width']		        = '100px';
@@ -45,21 +51,17 @@
 	$campos['Contato']['aniversario']['input']['style']		= 'width: 50px; text-align: center;';
 
 	$campos['Contato']['obs']['tit']						= 'Obs';
-	$campos['Contato']['obs']['input']['style']				= 'width: 500px;';
-
 
 	$campos['Cidade']['nome']['tit'] 						= 'Cidade';
 	$campos['Cidade']['nome']['th']['style']				= 'width: 200px';
 	$campos['Contato']['cidade_id']['tit'] 					= 'Cidade';
 	$campos['Contato']['cidade_id']['input']['empty']		= '-- Escolha uma Cidade --';
-	$campos['Contato']['cidade_id']['input']['style']		= 'width: 500px;';
 	$campos['Contato']['cidade_id']['input']['default']		= 2302;
 
 	$campos['Estado']['nome']['tit'] 						= 'Estado';
 	$campos['Estado']['nome']['th']['style']				= 'width: 150px';
 	$campos['Contato']['estado_id']['tit'] 					= 'Estado';
 	$campos['Contato']['estado_id']['input']['empty']		= '-- Escolha um Estado --';
-	$campos['Contato']['estado_id']['input']['style']		= 'width: 500px;';
 	$campos['Contato']['estado_id']['combo'] 				= array('Contato.cidade_id','cidades');
 	$campos['Contato']['estado_id']['input']['default']		= 1;
 

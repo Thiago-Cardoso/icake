@@ -19,6 +19,7 @@ CREATE  TABLE IF NOT EXISTS `con_contatos` (
   `tel1` VARCHAR(13) NOT NULL ,
   `tel2` VARCHAR(13) NOT NULL ,
   `tel3` VARCHAR(45) NOT NULL ,
+  `cpf` VARCHAR(11) NOT NULL ,
   `email` VARCHAR(80) NOT NULL ,
   `twitter` VARCHAR(50) NOT NULL ,
   `facebook` VARCHAR(50) NOT NULL ,
@@ -34,7 +35,8 @@ CREATE  TABLE IF NOT EXISTS `con_contatos` (
   INDEX `i_email` (`email` ASC) ,
   INDEX `i_im` (`twitter` ASC, `facebook` ASC, `gtalk` ASC, `msn` ASC) ,
   INDEX `i_aniversario` (`aniversario` ASC) ,
-  INDEX `i_obs` (`obs`(1000) ASC) )
+  INDEX `i_obs` (`obs`(1000) ASC) ,
+  INDEX `i_cpf` (`cpf` ASC) )
 ENGINE = InnoDB;
 
 

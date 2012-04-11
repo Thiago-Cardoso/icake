@@ -1,0 +1,35 @@
+#div_contato_tel1,
+#div_contato_tel3,
+#div_contato_bairro,
+#div_contato_twitter,
+#div_contato_gtalk
+{
+	float: left;
+}
+
+#id_contato_tel2,
+#id_contato_cpf
+{
+	width: 256px;
+}
+
+#ContatoEmail,
+#ContatoObs,
+#ContatoNome,
+#ContatoEndereco,
+#ContatoEstadoId,
+#ContatoCidadeId
+{
+	width: 576px;
+}
+
+#div_contato_email,
+#div_contato_aniversario
+{
+	margin: 10px 0px 10px 0px;
+}
+
+#div_contato_estado_id
+{
+	margin: 10px 0px 0px 0px;
+}
