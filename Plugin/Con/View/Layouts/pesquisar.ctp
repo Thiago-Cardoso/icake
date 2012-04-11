@@ -3,6 +3,8 @@
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head>
 	<title><?= $title_for_layout ?></title>
+	<link href="<?= Router::url('/',true); ?>favicon.ico" type="image/x-icon" rel="icon" />
+	<link href="<?= Router::url('/',true); ?>favicon.ico" type="image/x-icon" rel="shortcut icon" />
 
 	<link rel="stylesheet" type="text/css" href="<?= Router::url('/',true); ?>css/default.css" />
 
