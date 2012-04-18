@@ -113,6 +113,18 @@ class Contato extends ConAppModel {
 			'fields' 		=> 'Cidade.id, Cidade.nome'
 		)
 	);
+
+	/**
+	 * Executa código antes de buscar algum dados no banco de dados.
+	 * 
+	 * @param	array	$queryData	Parâmetros da busca.
+	 * @return	array	$queryData	A mesma matriz de parâmetros, só que desta vez, incrementada com o filtro.
+	 */
+	/*public function beforeFind($queryData) 
+	{
+		$queryData['conditions']['Contato.cidade_id'] = 2302;
+		return $queryData;
+	}*/
 }
 
 ?>
