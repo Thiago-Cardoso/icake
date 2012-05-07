@@ -46,10 +46,10 @@
 	<?php echo $this->Form->input('Mensagem',array('format'=>array('input'), 'type'=>'textarea','cols'=>90,'rows'=>10)); ?>
 	</div>
 
-	<?php if (!in_array('VISITANTE',$this->Session->read('Usuario.Perfis'))) : ?>
-	<br /><input type='submit' name='btEnviar' id='btEnviar' value='Enviar' />
-	<?php else : ?>
+	<?php if ($this->Session->read('Usuario.perfil')=='VISITANTE') : ?>
 	<p style='color: red; font-weight: bold;'>Usuários de perfil VISITANTE, não podem enviar e-mails !!!</p>
+	<?php else : ?>
+	<br /><input type='submit' name='btEnviar' id='btEnviar' value='Enviar' />
 	<?php endif ?>
 	
 	</form>
