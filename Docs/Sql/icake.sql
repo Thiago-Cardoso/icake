@@ -86,6 +86,7 @@ CREATE  TABLE IF NOT EXISTS `usuarios` (
   `online` TINYINT(1) NOT NULL DEFAULT false ,
   `cidade_id` INT NOT NULL DEFAULT 2302 ,
   `estado_id` INT NOT NULL DEFAULT 1 ,
+  `perfil_id` INT NOT NULL DEFAULT 3 ,
   PRIMARY KEY (`id`) ,
   UNIQUE INDEX `i_login` (`login` ASC) ,
   INDEX `i_ativo` (`ativo` ASC) ,
@@ -96,21 +97,8 @@ CREATE  TABLE IF NOT EXISTS `usuarios` (
   INDEX `fk_usuarios_cidades1` (`cidade_id` ASC) ,
   INDEX `fk_usuarios_estados1` (`estado_id` ASC) ,
   INDEX `i_ultimo_click` (`ultimo_click` ASC) ,
-  INDEX `i_online` (`online` ASC) )
-ENGINE = MyISAM;
-
-
--- -----------------------------------------------------
--- Table `usuarios_perfis`
--- -----------------------------------------------------
-DROP TABLE IF EXISTS `usuarios_perfis` ;
-
-CREATE  TABLE IF NOT EXISTS `usuarios_perfis` (
-  `usuario_id` INT NOT NULL ,
-  `perfil_id` INT NOT NULL ,
-  PRIMARY KEY (`usuario_id`, `perfil_id`) ,
-  INDEX `i_usuarios_perfis_perfil` (`perfil_id` ASC) ,
-  INDEX `i_usuarios_perfis_usuario` (`usuario_id` ASC) )
+  INDEX `i_online` (`online` ASC) ,
+  INDEX `fk_usuarios_perfis1` (`perfil_id` ASC) )
 ENGINE = MyISAM;
 
 
