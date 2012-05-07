@@ -48,7 +48,7 @@ class UsuariosController extends AppController {
 	 */
 	public function editar($id=0)
 	{
-		if (!in_array('ADMINISTRADOR',$this->Session->read('Usuario.Perfis')))
+		if (!$this->Session->read('Usuario.perfil')=='ADMINISTRADOR')
 		{
 			if ($this->Session->read('Usuario.id') != $id)
 			{
@@ -66,7 +66,7 @@ class UsuariosController extends AppController {
 	 */
 	public function listar()
 	{
-		if (!in_array('ADMINISTRADOR',$this->Session->read('Usuario.Perfis')))
+		if (!$this->Session->read('Usuario.perfil')=='ADMINISTRADOR')
 		{
 			if ($this->Session->read('Usuario.id') != $id)
 			{
@@ -182,43 +182,10 @@ class UsuariosController extends AppController {
 					$arrUsu['email']  	= $dataUsuario[0]['Usuario']['email'];
 					$arrUsu['trocar']  	= $dataUsuario[0]['Usuario']['trocar_senha'];
 					$arrUsu['ultimo'] 	= $dataUsuario[0]['Usuario']['ultimo_acesso'];
+					$arrUsu['perfil'] 	= $dataUsuario[0]['Perfil']['nome'];
 					$arrUsu['acessos'] 	= ($dataUsuario[0]['Usuario']['acessos'])+1;
 					$arrUsu['Restricoes']= array();
-
-					// pegando os perfis do usuários
-					if (!empty($dataUsuario[0]['Perfil']))
-					{
-						$restricoes = array();
-						$arrPerfis = $dataUsuario[0]['Perfil'];
-
-						// recuperando a restrição de cada perfil
-						foreach($arrPerfis as $_linha => $_arrCampos)
-						{
-							$arrUsu['Perfis'][$_linha] = $_arrCampos['nome'];
-							$dataPerfil = $this->Usuario->Perfil->find('all',array('conditions'=>array('Perfil.id'=>$_arrCampos['id'])));
-							if (!empty($dataPerfil['0']['Perfil']['restricao']))
-							{
-								array_push($restricoes,$dataPerfil['0']['Perfil']['restricao']);
-							}
-						}
-
-						// removendo as duplicidades de restricoes
-						$arrNovasRestricoes = array();
-						foreach($restricoes as $_item => $_texto)
-						{
-							$tmpArrRestricoes = explode(',',$_texto);
-							foreach($tmpArrRestricoes as $_item => $_letra)
-							{
-								if (!in_array($_letra,$arrNovasRestricoes)) array_push($arrNovasRestricoes,$_letra);
-							}
-						}
-						// gravando restrições
-						asort($arrNovasRestricoes);
-						$arrUsu['Restricoes'] = $arrNovasRestricoes;
-					} else $arrUsu['Perfis'] = array();
-
 					$this->Session->write('Usuario',$arrUsu);
-					$arrPer = array();
 
 					// atualizando dados do usuário
 					$this->Usuario->updateAll(

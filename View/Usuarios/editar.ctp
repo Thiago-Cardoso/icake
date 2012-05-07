@@ -1,6 +1,6 @@
 <?php
 	$this->viewVars['tit_cadastro'] = 'Usuários';
-	$edicaoCampos 	= array('Usuario.login','Usuario.ativo','Usuario.trocar_senha','Usuario.nome','Usuario.email','Usuario.celular','Usuario.estado_id','Usuario.cidade_id','Perfil.Perfil','Usuario.senha','Usuario.senha2');
+	$edicaoCampos 	= array('Usuario.login','Usuario.ativo','Usuario.trocar_senha','Usuario.nome','Usuario.email','Usuario.celular','Usuario.estado_id','Usuario.cidade_id','Usuario.perfil_id','Usuario.senha','Usuario.senha2');
 	$camposPesquisa	= array('Usuario.login','Usuario.nome','Usuario.email','Usuario.celular');
 
 	$this->request->data['Usuario']['restricoes']			= '';
@@ -15,13 +15,12 @@
 		$campos['Usuario']['nome']['focus'] 			= true;
 		if ($this->data['Usuario']['id'] != $this->Session->read('Usuario.id'))
 		{
-			$edicaoCampos = array('Usuario.login','Usuario.ativo','Usuario.trocar_senha','Usuario.nome','Usuario.email','Usuario.celular','Usuario.estado_id','Usuario.cidade_id','Perfil.Perfil');
+			$edicaoCampos = array('Usuario.login','Usuario.ativo','Usuario.trocar_senha','Usuario.nome','Usuario.email','Usuario.celular','Usuario.estado_id','Usuario.cidade_id','Usuario.perfil_id');
 		}
 
-		if (!in_array('ADMINISTRADOR',$this->Session->read('Usuario.Perfis')))
+		if (!$this->Session->read('Usuario.perfil')=='ADMINISTRADOR')
 		{
-			$campos['Perfil']['Perfil']['input']['type']	= 'leitura';
-			if (in_array('VISITANTE',$this->Session->read('Usuario.Perfis')))
+			if ($this->Session->read('Usuario.perfil')=='VISITANTE')
 			{
 				$botoes = array();
 			} else
@@ -31,8 +30,15 @@
 				$botoes['1']['onclick']= "javascript:edicaoForm.submit();";
 			}
 			$paginacao_off = true;
-			$edicaoCampos = array('Usuario.login','Usuario.nome','Usuario.email','Usuario.celular','Usuario.estado_id','Usuario.cidade_id','Usuario.senha','Usuario.senha2','Perfil.Perfil','Usuario.restricoes');
+			$edicaoCampos = array('Usuario.login','Usuario.nome','Usuario.email','Usuario.celular','Usuario.estado_id','Usuario.cidade_id','Usuario.senha','Usuario.senha2','Usuario.perfil_id','Usuario.restricoes');
 		}
+
+		// se está editando o usuário administrador, ele não pode ser excluído
+		if (isset($this->data['Usuario']['id']) && $this->data['Usuario']['id']==1)
+		{
+			$botoes['2'] = array();
+		}
+		
 
 		// administrador não precisa definir perfil, pois ele pode tudo meu chapa !!!
 		if ($this->data['Usuario']['id'] == $this->Session->read('Usuario.id'))
@@ -49,8 +55,7 @@
 
 	if (in_array($this->action,array('excluir','imprimir')))
 	{
-		$campos['Perfil']['Perfil']['input']['type'] = 'leitura';
-		$edicaoCampos = array('Usuario.login','Usuario.ativo','Usuario.trocar_senha','Usuario.nome','Usuario.email','Usuario.celular','Usuario.estado_id','Usuario.cidade_id','Perfil.Perfil');
+		$edicaoCampos = array('Usuario.login','Usuario.ativo','Usuario.trocar_senha','Usuario.nome','Usuario.email','Usuario.celular','Usuario.estado_id','Usuario.cidade_id','Usuario.perfil_id');
 	}
 
 	if (in_array($this->action,array('novo')))

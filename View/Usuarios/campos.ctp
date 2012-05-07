@@ -1,7 +1,4 @@
 <?php
-	$campos['Perfil']['Perfil']['tit']						= 'Perfis';
-	//$campos['Perfil']['Perfil']['input']['empty']			= '-- nenhum perfil --';
-
 	$campos['Usuario']['login']['tit'] 						= 'Login';
 
 	$campos['Usuario']['ativo']['tit'] 						= 'Ativo';
@@ -49,5 +46,9 @@
 	$campos['Usuario']['login']['td']['style'] 				= 'text-align: center;';
 	$campos['Usuario']['celular']['th']['style'] 			= 'width: 100px;';
 	$campos['Usuario']['email']['th']['style'] 				= 'width: 200px;';
+
+	$campos['Usuario']['perfil_id']['tit'] 					= 'Perfil';
+	$campos['Usuario']['perfil_id']['input']['style']		= 'width: 300px;';
+	$campos['Perfil']['nome']['tit'] 						= 'Perfil';
 
 ?>

@@ -1,7 +1,7 @@
 <?php
 	$this->viewVars['tit_cadastro'] = 'Usuários';
 
-	$listaCampos	= array('Usuario.login','Usuario.ativo','Usuario.nome','Usuario.email','Usuario.celular');
+	$listaCampos	= array('Usuario.login','Usuario.ativo','Usuario.nome','Usuario.email','Usuario.celular','Perfil.nome');
 	$camposPesquisa	= array('Usuario.login','Usuario.nome','Usuario.email','Usuario.celular');
 
 	// desligando o excluir do perfil administrador

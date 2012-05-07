@@ -42,7 +42,7 @@
 			}
 		}
 	?>
-	<?php if (in_array('ADMINISTRADOR',$this->Session->read('Usuario.Perfis'))) : ?>
+	<?php if ($this->Session->read('Usuario.perfil')=='ADMINISTRADOR') : ?>
 	<li id="submenu-6" class="subv"><a href="#" class="menu_sistema">Sistema</a>
 		<ul class="menuv">
 			<li id="submenu-61" class="submenu"><a href="<?= Router::url('/',true).'usuarios' ?>">Cadastro de Usuários</a></li>

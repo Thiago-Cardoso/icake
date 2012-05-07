@@ -2,7 +2,7 @@
 <div id='botoess'>
  	<input type='button' name='btPdf' 	id='btPdf' 	value='Pdf' 	class='botao' />
 	<input type='button' name='btTela' 	id='btTel'	value='Tela' 	class='botao' />
-	<?php if (!in_array('VISITANTE',$this->Session->read('Usuario.Perfis'))) : ?>
+	<?php if (in_array($this->Session->read('Usuario.perfil'),array('ADMINISTRADOR','GERENTE'))) : ?>
 	<input type='button' name='btCsv' 	id='btCsv'	value='Csv'		class='botao' />
 	<?php endif ?>
 	<input type='button' name='btImp' 	id='btImp'	value='Impressora'	class='botao' />

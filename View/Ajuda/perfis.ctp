@@ -10,7 +10,7 @@ Inicialmente são criado 4 perfis:
 
 O Perfi administrador é o único obrigatório, o sistema não vai conseguir excluí-lo, bem como definir restrições a ele.
 Nos demais perfis é possível definir restrições.
-<?php if (in_array('ADMINISTRADOR',$this->Session->read('Usuario.Perfis'))) : ?>
+<?php if ($this->Session->read('Usuario.perfil')=='ADMINISTRADOR') : ?>
 Veja mais sobre restrições em 'Sistema/Perfis'.
 <?php endif ?>
 

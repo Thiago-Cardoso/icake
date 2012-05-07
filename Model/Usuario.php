@@ -129,26 +129,12 @@ class Usuario extends AppModel {
 			'foreignKey' 	=> 'cidade_id',
 			'conditions' 	=> '',
 			'fields' 		=> 'Cidade.id, Cidade.nome'
-		)
-	);
-
-	/**
-	 * Relacionamento n para n
-	 * 
-	 * @var		array
-	 * @access	public
-	 * @link 	http://book.cakephp.org/2.0/en/models/associations-linking-models-together.html#hasandbelongstomany-habtm
-	 */
-	public $hasAndBelongsToMany	= array
-	(
-		'Perfil' => array
-		(
-			'className'		=> 'Perfil',
-			'joinTable'		=> 'usuarios_perfis',
-			'associationForeignKey' => 'perfil_id',
-			'foreignKey'	=> 'usuario_id',
-			'unique'		=> true,
-			'fields' 		=> 'id, nome'
+		),
+		'Perfil' => array(
+			'className' 	=> 'Perfil',
+			'foreignKey' 	=> 'perfil_id',
+			'conditions' 	=> '',
+			'fields' 		=> 'Perfil.id, Perfil.nome'
 		)
 	);
 
@@ -211,8 +197,7 @@ class Usuario extends AppModel {
 				// sempre ativo
 				$this->data['Usuario']['ativo'] 		= true;
 				$this->data['Usuario']['trocar_senha'] 	= false;
-				$this->data['Perfil']['Perfil']['0']	= 1;
-				//debug($this->data[$this->name]);
+				$this->data['Usuario']['perfil_id']		= 1;
 			}
 		}
 		return parent::beforeSave($options);
@@ -221,7 +206,7 @@ class Usuario extends AppModel {
 	/**
 	 * Executa código antes de deletar
 	 * 
-	 * - Usuário administrador não pode ser deltado.
+	 * - Usuário administrador não pode ser deletado.
 	 * 
 	 * @param	array	$cascade	Se verdadeiro deleta os registros de dependência também.
 	 * @link 	http://book.cakephp.org/view/1048/Callback-Methods#beforeDelete-1054
