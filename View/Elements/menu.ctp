@@ -49,8 +49,9 @@
 			<li id="submenu-62" class="submenu"><a href="<?= Router::url('/',true).'cidades' ?>">Cadastro de Cidades</a></li>
 			<li id="submenu-63" class="submenu"><a href="<?= Router::url('/',true).'estados' ?>">Cadastro de Estados</a></li>
 			<li id="submenu-64" class="submenu"><a href="<?= Router::url('/',true).'perfis' ?>">Cadastro de Perfis</a></li>
+			<li id="submenu-64" class="submenu"><a href="<?= Router::url('/',true).'plugins' ?>">Cadastro de Plugins</a></li>
 			<li><div class='hr'><hr></div></li>
-			<li id="submenu-65" class="submenu"><a href="<?= Router::url('/',true).'ferramentas/instalar_plugin' ?>">Instalar Plugin</a></li>
+			<li id="submenu-65" class="submenu"><a href="<?= Router::url('/',true).'ferramentas/instalar_plugin' ?>">Novo Plugin</a></li>
 		</ul>
 	</li>
 	<?php endif ?>
