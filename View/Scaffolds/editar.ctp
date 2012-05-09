@@ -445,4 +445,5 @@ echo $subForm;
 //debug($campos);
 //debug($camposPesquisa);
 //debug($url);
+debug($this->Session->read('Usuario.Restricoes'));
 ?>

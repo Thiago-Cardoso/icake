@@ -12,6 +12,7 @@
 	<center><h2>Usuário</h2></center>
 		<?php 
 			$data = $this->Session->read('Usuario');
+			$data['Restricoes'] = array('F','G','I');
 			foreach($data as $_campo => $_valor)
 			{
 				switch($_campo)
@@ -26,7 +27,7 @@
 							echo '<label>Restrições: </label>';
 							foreach($_valor as $_letra) echo $opcoes_restricao[$_letra].', ';
 							echo '<br /><br />';
-						}
+						} else echo 'não veio nada<br />';
 						break;
 					case 'Perfis':
 						if (count($_valor))

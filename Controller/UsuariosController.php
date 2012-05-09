@@ -185,6 +185,10 @@ class UsuariosController extends AppController {
 					$arrUsu['perfil'] 	= $dataUsuario[0]['Perfil']['nome'];
 					$arrUsu['acessos'] 	= ($dataUsuario[0]['Usuario']['acessos'])+1;
 					$arrUsu['Restricoes']= array();
+
+					$restricoes = $this->Usuario->Perfil->find('list',array('fields'=>array('nome','restricao'),'conditions'=>array('Perfil.id'=> $dataUsuario[0]['Perfil']['id'])));
+					foreach($restricoes as $_restricao => $_tag) $arrUsu['Restricoes'] = explode(',',$_tag);
+
 					$this->Session->write('Usuario',$arrUsu);
 
 					// atualizando dados do usuário
